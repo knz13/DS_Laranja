@@ -2,6 +2,8 @@
 
 Link: https://unbbr.sharepoint.com/sites/Desenvolvimentodesoftware-grupolaranja/Documentos%20Compartilhados/General/Recordings/Meeting%20in%20General_20220624_205722.mp4?web=1
 
+Presentes: Todos!
+
 ## Tópicos
 
 * Decidir o tema do projeto final

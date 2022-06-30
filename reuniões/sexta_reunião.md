@@ -2,6 +2,8 @@
 
 Link: https://unbbr.sharepoint.com/sites/Desenvolvimentodesoftware-grupolaranja/Documentos%20Compartilhados/General/Recordings/Reuni%C3%B5es%20Semanais-20220630_184858-Meeting%20Recording.mp4?web=1
 
+Presentes: Todos menos o pedro
+
 ## Tópicos
 
 * Conversa sobre as obrigações do backend

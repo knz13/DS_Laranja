@@ -2,6 +2,8 @@
 
 Link: https://unbbr.sharepoint.com/sites/Desenvolvimentodesoftware-grupolaranja/Documentos%20Compartilhados/General/Recordings/Reuni%C3%B5es%20Semanais-20220630_181624-Meeting%20Recording.mp4?web=1
 
+Presentes: Todos menos o Pedro
+
 ## Tópicos
 
  * Decisões sobre o layout e as coisas que vamos fazer
