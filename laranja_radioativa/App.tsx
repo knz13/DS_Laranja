@@ -16,6 +16,8 @@ export interface Props {
 function MainScreen({navigation} : Props){
   return (
     <View>
+      
+      <Text>Hi!</Text>
 
     </View>
   );
