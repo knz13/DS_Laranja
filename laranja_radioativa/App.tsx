@@ -5,9 +5,12 @@ import { NavigationContainer,NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
-
+import { TelaDeLogin } from './tela_de_login';
+import { TelaDeMaterias } from './tela_de_materias';
+import { TelaDoHub } from './tela_do_hub';
 
 const Stack = createNativeStackNavigator();
+const Bottom = createBottomTabNavigator();
 
 export interface Props {
   navigation: NavigationProp<any, any>;
@@ -15,11 +18,11 @@ export interface Props {
 
 function MainScreen({navigation} : Props){
   return (
-    <View>
-      
-      <Text>Hi!</Text>
-
-    </View>
+    <Bottom.Navigator>
+      <Bottom.Screen name="Login" component={TelaDeLogin}></Bottom.Screen>
+      <Bottom.Screen name="Hub" component={TelaDoHub}></Bottom.Screen>
+      <Bottom.Screen name="Materias" component={TelaDeMaterias}></Bottom.Screen>
+    </Bottom.Navigator>
   );
 }
 
