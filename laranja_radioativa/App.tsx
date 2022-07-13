@@ -6,7 +6,7 @@ import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScree
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './tela_de_login';
-import MateriasHome from './tela_de_materias';
+import MateriasHome, { EngSoftware } from './tela_de_materias';
 import { TelaDoHub } from './tela_do_hub';
 import { Props } from './geral';
 
@@ -35,6 +35,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
+          <Stack.Screen name="FluxSoftware" options={{gestureEnabled:false , title : 'Engenharia de Software'}} component={EngSoftware} />
         </Stack.Navigator>
       </NavigationContainer>
     );
