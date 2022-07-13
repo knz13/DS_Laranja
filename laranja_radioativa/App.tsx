@@ -6,22 +6,20 @@ import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScree
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './tela_de_login';
-import { TelaDeMaterias } from './tela_de_materias';
+import MateriasHome from './tela_de_materias';
 import { TelaDoHub } from './tela_do_hub';
+import { Props } from './geral';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 
-export interface Props {
-  navigation: NavigationProp<any, any>;
-}
 
 function MainScreen({navigation} : Props){
   return (
     <Bottom.Navigator>
       <Bottom.Screen name="Login" component={TelaDeLogin}></Bottom.Screen>
       <Bottom.Screen name="Hub" component={TelaDoHub}></Bottom.Screen>
-      <Bottom.Screen name="Materias" component={TelaDeMaterias}></Bottom.Screen>
+      <Bottom.Screen name="Materias" component={MateriasHome}></Bottom.Screen>
     </Bottom.Navigator>
   );
 }
