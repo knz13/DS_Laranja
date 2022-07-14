@@ -9,6 +9,7 @@ import { TelaDeLogin } from './tela_de_login';
 import MateriasHome, { EngSoftware } from './tela_de_materias';
 import { TelaDoHub } from './tela_do_hub';
 import { Props } from './geral';
+import { SafeAreaView } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -17,9 +18,43 @@ const Bottom = createBottomTabNavigator();
 function MainScreen({navigation} : Props){
   return (
     <Bottom.Navigator>
-      <Bottom.Screen name="Login" component={TelaDeLogin}></Bottom.Screen>
-      <Bottom.Screen name="Hub" component={TelaDoHub}></Bottom.Screen>
-      <Bottom.Screen name="Materias" component={MateriasHome}></Bottom.Screen>
+      <Bottom.Screen 
+        name="Login" 
+        component={TelaDeLogin}
+        options={{
+          headerStyle: {
+            backgroundColor: '#f45d00',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}></Bottom.Screen>
+      <Bottom.Screen 
+        name="Hub" 
+        component={TelaDoHub}
+        options={{
+          headerStyle: {
+            backgroundColor: '#f45d00',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}></Bottom.Screen>
+      <Bottom.Screen 
+        name="Materias" 
+        component={MateriasHome} 
+        options={{
+          title: 'Matérias',
+          headerStyle: {
+            backgroundColor: '#f45d00',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}></Bottom.Screen>
     </Bottom.Navigator>
   );
 }
@@ -30,11 +65,17 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator 
           screenOptions={{
-            headerStyle: {backgroundColor: "rgb(20,20,90)"},
+            headerStyle: {backgroundColor: '"rgb(20,20,90)"'},
             headerTintColor: 'rgb(255,255,255)',
           }}
         >
-          <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
+          <Stack.Screen 
+            name="Main" 
+            options={{
+              headerShown:false,
+              gestureEnabled:false,
+            }} 
+            component={MainScreen} />
           <Stack.Screen name="FluxSoftware" options={{gestureEnabled:false , title : 'Engenharia de Software'}} component={EngSoftware} />
         </Stack.Navigator>
       </NavigationContainer>
