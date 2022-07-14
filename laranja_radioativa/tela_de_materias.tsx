@@ -40,11 +40,11 @@ export default function MateriasHome({navigation} : Props) {
 
 export function EngSoftware({navigation} : Props) {
     return (
-        <View style={{flex:1,justifyContent:'center',alignContent:'center',alignSelf:'center',alignItems:'center'}}>
+        <View style={{flex:1,justifyContent:'flex-start',alignContent:'flex-start',alignSelf:'center',alignItems:'flex-start',flexDirection: 'column'}}>
             <Text>
                 1º Semestre{'\n'}
             </Text>
-            <Button title='Cálculo 1' onPress={()=>{navigation.navigate()}}>
+            <Button title='Cálculo 1' onPress={()=>alert('Informações a respeito da matéria aqui')}>
             </Button>
             <Text>
                 {'\n'}
