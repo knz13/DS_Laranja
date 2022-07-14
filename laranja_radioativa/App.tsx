@@ -76,7 +76,20 @@ export default function App() {
               gestureEnabled:false,
             }} 
             component={MainScreen} />
-          <Stack.Screen name="FluxSoftware" options={{gestureEnabled:false , title : 'Engenharia de Software'}} component={EngSoftware} />
+          <Stack.Screen 
+            name="FluxSoftware" 
+            options={{
+              gestureEnabled:false , 
+              title : 'Engenharia de Software',
+              headerStyle: {
+                backgroundColor: '#f45d00',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }
+            }} 
+            component={EngSoftware} />
         </Stack.Navigator>
       </NavigationContainer>
     );
