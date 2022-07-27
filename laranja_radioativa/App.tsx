@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './tela_de_login';
 import { TelaDeMenu } from './tela_de_menu';
-import { TelaDePersonagens } from './tela_de_personagens';
+import { CriarPersonagem, TelaDePersonagens, VisualizarPersonagem } from './tela_de_personagens';
 import { TelaDeItens } from './tela_de_itens';
 import { DBContext } from './geral';
 import * as SQLite from 'expo-sqlite'
@@ -68,6 +68,8 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
+          <Stack.Screen name="CriarP" options={{title: 'Criar Personagem', gestureEnabled:false}} component={CriarPersonagem} />
+          <Stack.Screen name="VerP" options={{title: 'Visualizar Personagens', gestureEnabled:false}} component={VisualizarPersonagem} />
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>
