@@ -35,9 +35,7 @@ const loadingFunc = async () => {
     ).then(() => {
       console.log('copied mainDB!');
     });
-  }
-  
-  
+  }  
 }
 
 
@@ -68,8 +66,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
-          <Stack.Screen name="CriarP" options={{title: 'Criar Personagem', gestureEnabled:false}} component={CriarPersonagem} />
-          <Stack.Screen name="VerP" options={{title: 'Visualizar Personagens', gestureEnabled:false}} component={VisualizarPersonagem} />
+          
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>
