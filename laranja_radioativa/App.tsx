@@ -8,11 +8,12 @@ import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './tela_de_login';
 import { TelaDeMenu } from './tela_de_menu';
 import { CriarPersonagem, TelaDePersonagens, VisualizarPersonagem } from './tela_de_personagens';
-import { TelaDeItens } from './tela_de_itens';
-import { DBContext } from './geral';
+import { TelaDeCompendium } from './tela_de_compendium';
+import { DBContext, GlobalContext } from './geral';
 import * as SQLite from 'expo-sqlite'
 import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
+import { TelaDeCadastro } from './tela_de_cadastro';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -42,10 +43,10 @@ const loadingFunc = async () => {
 function MainScreen({navigation} : Props){
   return (
     <Bottom.Navigator>
-      <Bottom.Screen name="Login" component={TelaDeLogin}></Bottom.Screen>
+      <Bottom.Screen name="Login" component={TelaDeLogin} options={{headerShown:false}}></Bottom.Screen>
       <Bottom.Screen name="Menu" component={TelaDeMenu}></Bottom.Screen>
       <Bottom.Screen name="Personagens" component={TelaDePersonagens}></Bottom.Screen>
-      <Bottom.Screen name="Itens" component={TelaDeItens}></Bottom.Screen>
+      <Bottom.Screen name="Itens" component={TelaDeCompendium}></Bottom.Screen>
     </Bottom.Navigator>
   );
 }
@@ -55,6 +56,7 @@ export default function App() {
   loadingFunc();
 
   return (
+    <GlobalContext.Provider value={{user_id:null}}>
     <DBContext.Provider value={(() => {
       return SQLite.openDatabase('mainDB.db');
     })()}>
@@ -66,10 +68,10 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
-          
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>
+      </GlobalContext.Provider>
     );
 
 }
