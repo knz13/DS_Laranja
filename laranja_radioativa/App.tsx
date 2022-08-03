@@ -14,6 +14,7 @@ import * as SQLite from 'expo-sqlite'
 import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 import { TelaDeCadastro } from './tela_de_cadastro';
+import { TelaDeCriacaoDePersonagens } from './tela_de_criacao_de_personagens';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -45,7 +46,7 @@ function MainScreen({navigation} : Props){
     <Bottom.Navigator>
       <Bottom.Screen name="Login" component={TelaDeLogin} options={{headerShown:false}}></Bottom.Screen>
       <Bottom.Screen name="Menu" component={TelaDeMenu}></Bottom.Screen>
-      <Bottom.Screen name="Personagens" component={TelaDePersonagens}></Bottom.Screen>
+      <Bottom.Screen name="Personagens" component={TelaDePersonagens} options={{headerShown:false}}></Bottom.Screen>
       <Bottom.Screen name="Itens" component={TelaDeCompendium}></Bottom.Screen>
     </Bottom.Navigator>
   );
@@ -68,6 +69,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
+          <Stack.Screen name="CriacaoDePersonagens" options={{headerShown:false}} component={TelaDeCriacaoDePersonagens} />
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>

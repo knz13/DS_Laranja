@@ -4,18 +4,18 @@ import { StyleSheet,Switch, Text, View,Alert, TextInput,TouchableOpacity, Pressa
 import { Styles } from "./styles";
 
 import Button from "./components/Button";
+import { MainView } from "./components/MainView";
 
 export const TelaDeMenu = () => {
   const signIn = () => {
     alert('MELHOR APLICATIVO');
   }
     return (
-      <View style={styles.container}>
+      <MainView>
         <Button labelButton="AVENTURAS" onpress={signIn}/>
         <Button labelButton="PERSONAGENS" onpress={signIn}/>
         <Button labelButton="ITENS" onpress={signIn}/>
-
-      </View>
+      </MainView>
     )
 }
 

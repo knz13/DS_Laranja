@@ -8,6 +8,7 @@ import { PopupCard } from "./components/PopupCard";
 import { runOnJS, useAnimatedGestureHandler, useAnimatedScrollHandler } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { TelaDeCadastro } from "./tela_de_cadastro";
+import { MainView } from "./components/MainView";
 
 
 
@@ -38,7 +39,7 @@ export const TelaDeLogin = () => {
 
     return <>
     <Pressable style={{flex:1}} onPress={() => Keyboard.dismiss()}>
-    <View style={[Styles.mainView,{backgroundColor:AppColors.preto}]}>
+    <MainView>
         <Image source={require('./assets/images/logo.jpeg')} style={{height:'20%',aspectRatio:1,resizeMode:'stretch',marginVertical:'15%'}}></Image>
         <Text style={{color:AppColors.laranja_radioativo}}>Nome de Usuário</Text>
         <MyTextInput></MyTextInput>
@@ -57,7 +58,7 @@ export const TelaDeLogin = () => {
                 <Text style={{color:'blue'}}>Cadastre-se</Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </MainView>
     </Pressable>
     <PopupCard paddingTop={'15%'}  visible={visible} onExit={() => {
         setVisibility(false)

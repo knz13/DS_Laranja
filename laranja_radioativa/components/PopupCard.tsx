@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Dimensions, StyleProp, ViewStyle } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Dimensions, Modal, StyleProp, ViewStyle } from "react-native";
 import { NativeScrollEvent, NativeSyntheticEvent, Pressable, View } from "react-native";
 import Animated, { AnimatedStyleProp, max, measure, runOnJS, runOnUI, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { AppColors} from "./Styles";
@@ -13,7 +13,7 @@ const Window = {
 
 
 interface PopupCardProps {
-    visible: Boolean,
+    visible: boolean,
     onScroll?: ((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | Animated.Node<(event: NativeSyntheticEvent<NativeScrollEvent>) => void>,
     children?: React.ReactNode,
     initialPos?: number,
@@ -23,12 +23,16 @@ interface PopupCardProps {
     width?: number,
     paddingTop?:number | string,
     paddingBottom?: number | string,
-    scrollable?: boolean
+    scrollable?: boolean,
+    bgColor?: string,
+    backOpacity?: number,
+    contentContainerStyle?: StyleProp<ViewStyle>,
+    backGroundRender?:React.ReactNode,
 
 }
 
 
-export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,finalPos,posRelation,onExit,paddingBottom,paddingTop,width} : PopupCardProps) => {
+export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bgColor,scrollable,visible,children,onScroll,initialPos,finalPos,posRelation,onExit,paddingBottom,paddingTop,width} : PopupCardProps) => {
     const position = useSharedValue(initialPos? initialPos : -Window.height);
     const height = useSharedValue(0);
     const calculatedHeight = useSharedValue(0);
@@ -36,6 +40,7 @@ export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,final
     const backGroundHeight = useSharedValue(0);
     const bgOpacity = useSharedValue(0);
     const viewRef = useAnimatedRef<Animated.View>();
+    const [modalVisible,setModalVisible] = useState(false);
 
     const style = useAnimatedStyle(() => {
         return {
@@ -62,8 +67,8 @@ export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,final
     const bgStyle = useAnimatedStyle(() => {
         return {
             opacity:bgOpacity.value,
-            width:backGroundWidth.value,
-            height:backGroundHeight.value,
+            width:Window.width,
+            height:Window.height,
             backgroundColor:'black'
         }
     })
@@ -77,6 +82,7 @@ export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,final
                 if(onExit){
                     onExit();
                 }
+                setModalVisible(false);
             }
         }
 
@@ -99,14 +105,16 @@ export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,final
         },
     })
 
-    
-    
 
     useEffect(() => {
         if(visible){
-            backGroundWidth.value = Window.width;
-            backGroundHeight.value = Window.height;
-            bgOpacity.value = withTiming(1,{duration:500});
+            setModalVisible(true);
+            
+            let opacity = 1;
+            if(backOpacity?.valueOf() != null ||backOpacity?.valueOf() != undefined){
+                opacity = 1 - backOpacity 
+            }
+            bgOpacity.value = withTiming(opacity,{duration:500});
             position.value = withTiming(finalPos? finalPos : 0,{duration:500});
         }
         else {
@@ -116,14 +124,17 @@ export const PopupCard = ({scrollable,visible,children,onScroll,initialPos,final
 
 
     return <>
-    <Animated.View style={[bgStyle,{position:'absolute'}]}>
-        <Animated.ScrollView contentContainerStyle={{flexGrow:1}}  onScroll={onScroll? onScroll : gestureHandler} scrollEventThrottle={1.2} style={[scrollStyle]} showsVerticalScrollIndicator={false}>
-            <View style={{height:paddingTop? paddingTop: Window.height/6}}></View>
-            <Animated.View ref={viewRef} style={[style,{borderRadius:15,alignSelf:'center',justifyContent:'center',borderWidth:1}]}>
-                        {children}
-            </Animated.View>
-            <View style={{height:paddingBottom? paddingBottom : Window.height/3}}></View>
-        </Animated.ScrollView>
+    <Modal visible={modalVisible} transparent={true}>
+    <Animated.View style={[bgStyle,{position:'absolute',zIndex:-1}]}>
     </Animated.View>
+    <Animated.ScrollView scrollEnabled={scrollable?.valueOf() == null || scrollable?.valueOf() == undefined? true : scrollable} contentContainerStyle={{flexGrow:1,zIndex:-1}}  onScroll={onScroll? onScroll : gestureHandler} scrollEventThrottle={1.2} style={[scrollStyle]} showsVerticalScrollIndicator={false}>
+        <View style={{height:paddingTop? paddingTop: Window.height/6,zIndex:-1}}></View>
+        <Animated.View ref={viewRef} style={[style,{alignSelf:'center',justifyContent:'center',backgroundColor:'white'},contentContainerStyle]}>
+            {children}
+        </Animated.View>
+        <View style={{height:paddingBottom? paddingBottom : Window.height/3,zIndex:-1}}></View>
+    </Animated.ScrollView>
+    {backGroundRender}
+    </Modal>
     </>
 }
