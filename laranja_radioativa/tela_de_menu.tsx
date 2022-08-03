@@ -1,37 +1,30 @@
-import {DBContext, Props} from "./geral";
-import React, { useState,Component, useContext, useEffect } from 'react';
-import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import {Props} from "./geral";
+import React, { useState,Component } from 'react';
+import { StyleSheet,Switch, Text, View,Alert, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, Touchable } from 'react-native';
 import { Styles } from "./styles";
 
-
-
-
-
-const styles = StyleSheet.create({
-  containerForm:{
-    flex:2,
-    backgroundColor: '#cd5f00'
-  }
-})
-
+import Button from "./components/Button";
 
 export const TelaDeMenu = () => {
-    const db = useContext(DBContext);
-
-    useEffect(() => {
-      db.readTransaction(tx => {
-        tx.executeSql('SELECT item_name FROM items WHERE item_id=0',[],(tx,result) => {
-          console.log(JSON.stringify(result))
-        })
-      })
-    })
-
-
+  const signIn = () => {
+    alert('MELHOR APLICATIVO');
+  }
     return (
-      <View style={styles.containerForm}>
-        <Text style={{}}>Tela de Menu</Text>
-        <Text style={{}}>Teste Teste Teste</Text>  
+      <View style={styles.container}>
+        <Button labelButton="AVENTURAS" onpress={signIn}/>
+        <Button labelButton="PERSONAGENS" onpress={signIn}/>
+        <Button labelButton="ITENS" onpress={signIn}/>
+
       </View>
     )
 }
-  
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+})
+
