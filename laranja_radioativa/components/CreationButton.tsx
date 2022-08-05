@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { TouchableOpacity } from "react-native-gesture-handler"
+import { TouchableOpacity } from "react-native"
 import Animated, { runOnJS, SlideInDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
 import { Modal, StyleProp, Text, View, ViewStyle } from "react-native"
 import { MainView } from "./MainView"
@@ -42,7 +42,7 @@ export const CreationButton = ({children,title,onPress,style} : ButtonInterface)
         }
     })
 
-    return <TouchableOpacity onPress={() => {
+    return <TouchableOpacity style={{flex:1}} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -55,12 +55,12 @@ export const CreationButton = ({children,title,onPress,style} : ButtonInterface)
                 <MainView>
                     {children}
                 </MainView>
-                <View style={{position:'absolute',top:Window.height/6,left:Window.width/6}}>
+                <View style={{position:'absolute',top:Window.height/15,left:Window.width/10}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);
                     }}>
-                        <View style={{width:40,height:40,borderRadius:20,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'}}>
-                            <Text>{'<'}</Text>
+                        <View style={{width:40,height:40,borderRadius:20,backgroundColor:'red',alignItems:'center',justifyContent:'center'}}>
+                            <Text style={{fontSize:25}}>{'<'}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
