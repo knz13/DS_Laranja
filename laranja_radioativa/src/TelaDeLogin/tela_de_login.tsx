@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TelaDeCadastro } from "./tela_de_cadastro";
 import { MainView } from "./../components/MainView";
 import Beholder from './../components/beholder'
+import * as Filesystem from 'expo-file-system';
 
 
 export const TelaDeLogin = () => {
@@ -24,7 +25,7 @@ export const TelaDeLogin = () => {
     const db = useContext(DBContext);
     const [visible,setVisibility] = useState(false);
 
-    const style = StyleSheet.create({
+    const style = StyleSheet.create({   
         all: {
             margin:12,
             padding:10,
@@ -32,6 +33,11 @@ export const TelaDeLogin = () => {
             borderWidth:1,
             width:'60%'
         }
+    })
+
+    Filesystem.readAsStringAsync(Filesystem.documentDirectory + 'text.txt').then(content => {
+        setMyToken(content);
+        navigation.navigate('Main');
     })
 
     const MyTextInput = ({onChangeText}) => {
@@ -78,6 +84,12 @@ export const TelaDeLogin = () => {
                 }).then(res => res.json().then(json => {
                     if(json['state'] == 'success'){
                         setMyToken(json['token']);
+
+                        Filesystem.writeAsStringAsync(Filesystem.documentDirectory + 'text.txt',json['token']).then(() => {
+                            console.log('written token to file!');
+                        });
+
+
                         navigation.navigate('Main');
                     }
                     else {
