@@ -1,10 +1,10 @@
-import {Props, Window} from "./geral";
+import {Props, Window} from "../geral";
 import React, { useState,Component } from 'react';
 import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, SectionList } from 'react-native';
-import { AppColors, Styles } from "./styles";
+import { AppColors, Styles } from "../styles";
 import { NavigationContainer, NavigationProp, StackActions, useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
-import { MainView } from "./components/MainView";
+import { MainView } from "../components/MainView";
 
 
 

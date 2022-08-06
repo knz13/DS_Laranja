@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { View,Text, TouchableOpacity } from "react-native"
-import { DBContext } from "./geral"
-import { AppColors, AppConstants, Styles } from "./styles"
+import { DBContext } from "../geral"
+import { AppColors, AppConstants, Styles } from "../styles"
 import { LinearGradient } from 'expo-linear-gradient';
-import { MainView } from "./components/MainView";
+import { MainView } from "./../components/MainView";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import Animated,{SlideInDown} from "react-native-reanimated";
-import { CreationButton } from "./components/CreationButton";
+import { CreationButton } from "./../components/CreationButton";
 
 
 
@@ -49,8 +49,8 @@ export const TelaDeCriacaoDePersonagens = () => {
             <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
         </View>
 
-        <View style={{flexDirection: "row",justifyContent: 'space-between',}}>
-            <CreationButton title={'classes'}> 
+        <View style={{flexDirection: "row",justifyContent: 'space-between'}}>
+            <CreationButton title={'classes'} style={{alignSelf:'baseline'}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
                     return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
@@ -65,42 +65,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 }}></FlatList>
             </CreationButton>
 
-            <CreationButton title={'raças'}> 
-                <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
-                        db.readTransaction(tx => {
-                            tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
-                                setSpecificClassData(JSON.stringify(result.rows._array));
-                            })
-                        })
-
-                    }}>
-                        <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
-                }}></FlatList>
-            </CreationButton>
-
-            
-        </View>
-
-        <View style={{flexDirection: "row",justifyContent: 'space-between',justifyContent:'center',alignItems:'center'}}>
-
-            <CreationButton title={'atributos'}> 
-                <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
-                        db.readTransaction(tx => {
-                            tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
-                                setSpecificClassData(JSON.stringify(result.rows._array));
-                            })
-                        })
-
-                    }}>
-                        <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
-                }}></FlatList>
-            </CreationButton>
-
-            <CreationButton title={'proficiências'}> 
+            <CreationButton title={'raças'}  style={{alignSelf:'baseline'}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
                     return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
@@ -119,8 +84,43 @@ export const TelaDeCriacaoDePersonagens = () => {
         </View>
 
         <View style={{flexDirection: "row",justifyContent: 'space-between',justifyContent:'center',alignItems:'center'}}>
+
+            <CreationButton title={'atributos'}  style={{alignSelf:'baseline'}}> 
+                <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
+                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                        db.readTransaction(tx => {
+                            tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
+                                setSpecificClassData(JSON.stringify(result.rows._array));
+                            })
+                        })
+
+                    }}>
+                        <Text style={{color:'white'}}>{specificClass}</Text>
+                    </CreationButton>
+                }}></FlatList>
+            </CreationButton>
+
+            <CreationButton title={'proficiências'}  style={{alignSelf:'baseline'}}> 
+                <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
+                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                        db.readTransaction(tx => {
+                            tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
+                                setSpecificClassData(JSON.stringify(result.rows._array));
+                            })
+                        })
+
+                    }}>
+                        <Text style={{color:'white'}}>{specificClass}</Text>
+                    </CreationButton>
+                }}></FlatList>
+            </CreationButton>
+
+            
+        </View>
+
+        <View style={{flexDirection: "row",justifyContent:'center',alignItems:'center'}}>
         
-            <CreationButton title={'salvaguardas'}> 
+            <CreationButton title={'salvaguardas'}  style={{alignSelf:'baseline'}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
                     return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
@@ -135,7 +135,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 }}></FlatList>
             </CreationButton>
 
-            <CreationButton title={'perícias'}> 
+            <CreationButton title={'perícias'}  style={{alignSelf:'baseline'}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
                     return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {

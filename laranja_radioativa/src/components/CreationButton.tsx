@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { TouchableOpacity } from "react-native-gesture-handler"
-import Animated, { runOnJS, SlideInDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import { TouchableOpacity } from "react-native"
+import Animated, { runOnJS, SlideInDown, SlideOutDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
 import { Modal, StyleProp, Text, View, ViewStyle } from "react-native"
 import { MainView } from "./MainView"
 import { Window } from "../geral"
@@ -48,7 +48,7 @@ export const CreationButton = ({children,title,onPress,style} : ButtonInterface)
         }
         setVisible(true);
         }}>
-        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown}>
+        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown.duration(500)}>
             <Text style={{margin:'5%'}}>{title}</Text>
             <Modal visible={modal} transparent={true}>
                 <Animated.View style={[animationStyle,{flex:1}]}>
