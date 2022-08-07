@@ -42,15 +42,7 @@ const loadingFunc = async () => {
 }
 
 
-function MainScreen({navigation} : Props){
-  return (
-    <Bottom.Navigator>
-      <Bottom.Screen name="Menu" component={TelaDeMenu}></Bottom.Screen>
-      <Bottom.Screen name="Personagens" component={TelaDePersonagens} options={{headerShown:false}}></Bottom.Screen>
-      <Bottom.Screen name="Compendium" component={TelaDeCompendium}></Bottom.Screen>
-    </Bottom.Navigator>
-  );
-}
+
 
 export default function App() {
 
@@ -67,10 +59,9 @@ export default function App() {
             headerStyle: {backgroundColor: "rgb(20,20,90)"},
             headerTintColor: 'rgb(255,255,255)',
           }}
-          
         > 
           <Stack.Screen name="Login" component={TelaDeLogin} options={{gestureEnabled:false,headerLeft: () => <></>,headerShown:false}}></Stack.Screen>
-          <Stack.Screen name="Main" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={MainScreen} />
+          <Stack.Screen name="Menu" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={TelaDeMenu} />
           <Stack.Screen name="CriacaoDePersonagens" options={{headerShown:false}} component={TelaDeCriacaoDePersonagens} />
         </Stack.Navigator>
       </NavigationContainer>

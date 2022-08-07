@@ -1,5 +1,5 @@
 import {DBContext, GlobalContext, Hash, Props, Window} from "../geral";
-import React, { useState,Component, useContext, useRef } from 'react';
+import React, { useState,Component, useContext, useRef, useEffect } from 'react';
 import { Image,StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, FlatList } from 'react-native';
 import { AppColors, Styles } from "../styles";
 import * as Crypto from 'crypto-js/sha256';
@@ -34,26 +34,27 @@ export const TelaDeLogin = () => {
             width:'60%'
         }
     })
-
-    Filesystem.readAsStringAsync(Filesystem.documentDirectory + 'text.txt').then(content => {
-        console.log(`logging in with token => ${content}`)
-        fetch('https://dnd-party.herokuapp.com/database/login',{
-                    method:"POST",
-                    headers:{
-                        Accept:'application/json',
-                        'Content-Type':'application/json',
-                        'x-access-token':content
-                    }
-                }).then(res => res.json().then(json => {
-                    if(json['state'] == 'success'){
-                        console.log('logged in successfully')
-                        setMyToken(json['token']);
-                        navigation.navigate('Main');
-                    }
-                    else {
-                        alert(json['message']);
-                    }
-        }))
+    useEffect(() => {
+        Filesystem.readAsStringAsync(Filesystem.documentDirectory + 'text.txt').then(content => {
+            console.log(`logging in with token => ${content}`)
+            fetch('https://dnd-party.herokuapp.com/database/login',{
+                        method:"POST",
+                        headers:{
+                            Accept:'application/json',
+                            'Content-Type':'application/json',
+                            'x-access-token':content
+                        }
+                    }).then(res => res.json().then(json => {
+                        if(json['state'] == 'success'){
+                            console.log('logged in successfully')
+                            setMyToken(json['token']);
+                            navigation.navigate('Menu');
+                        }
+                        else {
+                            alert(json['message']);
+                        }
+            }))
+        })
     })
 
     const MyTextInput = ({onChangeText}) => {
