@@ -5,6 +5,8 @@ import { AppColors, Styles } from "../styles";
 import { NavigationContainer, NavigationProp, StackActions, useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView";
+import { CreationButton } from "../components/CreationButton";
+import { TelaDeCriacaoDePersonagens } from "./tela_de_criacao_de_personagens";
 
 
 
@@ -24,13 +26,13 @@ export const TelaDePersonagens = () => {
 
     return <MainView>
         <FlatList style={{width:'80%'}} data={dados} renderItem={renderItem}></FlatList>
-        <TouchableOpacity style={{flex:1,position:'absolute',bottom:Window.height/20}} onPress={() => {
-            navigation.navigate('CriacaoDePersonagens')
-        }}>
-            <View style={{backgroundColor:'green',alignItems:'center',borderRadius:15}}>
-                <Text style={{margin:'4%',fontSize:22}}>Adicionar</Text>
-            </View>
-        </TouchableOpacity>
+        <CreationButton 
+        title={'Adicionar'} 
+        textStyle={{fontSize:20}}
+        style={{alignSelf:'center',flex:1,position:'absolute',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.laranja_radioativo}}
+        >
+            <TelaDeCriacaoDePersonagens></TelaDeCriacaoDePersonagens>
+        </CreationButton>
     </MainView>
 }
 

@@ -54,9 +54,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle} : Button
             <Modal visible={modal} transparent={true}>
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
-                <MainView>
-                    {children}
-                </MainView>
+                {children}
                 <View style={{position:'absolute',top:Window.height/12,left:Window.width/10}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);

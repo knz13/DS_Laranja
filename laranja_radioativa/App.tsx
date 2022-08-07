@@ -62,7 +62,6 @@ export default function App() {
         > 
           <Stack.Screen name="Login" component={TelaDeLogin} options={{gestureEnabled:false,headerLeft: () => <></>,headerShown:false}}></Stack.Screen>
           <Stack.Screen name="Menu" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={TelaDeMenu} />
-          <Stack.Screen name="CriacaoDePersonagens" options={{headerShown:false}} component={TelaDeCriacaoDePersonagens} />
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>
