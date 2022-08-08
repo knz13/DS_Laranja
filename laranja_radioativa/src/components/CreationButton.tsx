@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { TouchableOpacity } from "react-native"
-import Animated, { runOnJS, SlideInDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import { TextStyle, TouchableOpacity } from "react-native"
+import Animated, { runOnJS, SlideInDown, SlideOutDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
 import { Modal, StyleProp, Text, View, ViewStyle } from "react-native"
 import { MainView } from "./MainView"
 import { Window } from "../geral"
@@ -10,10 +10,12 @@ interface ButtonInterface {
     children?:React.ReactNode,
     title:string,
     onPress?: () => void,
-    style?:StyleProp<ViewStyle>
+    style?:StyleProp<ViewStyle>,
+    textStyle?:StyleProp<TextStyle>,
+    backButtonStyle?:StyleProp<ViewStyle>
 }
 
-export const CreationButton = ({children,title,onPress,style} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
@@ -48,23 +50,23 @@ export const CreationButton = ({children,title,onPress,style} : ButtonInterface)
         }
         setVisible(true);
         }}>
-        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown}>
-            <Text style={{margin:'5%'}}>{title}</Text>
+        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown.duration(500)}>
+            <Text style={[{margin:'3%'},textStyle]}>{title}</Text>
             <Modal visible={modal} transparent={true}>
+                {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
-                <MainView>
-                    {children}
-                </MainView>
-                <View style={{position:'absolute',top:Window.height/15,left:Window.width/10}}>
+                {children}
+                <View style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);
                     }}>
-                        <View style={{width:40,height:40,borderRadius:20,backgroundColor:'red',alignItems:'center',justifyContent:'center'}}>
+                        <View style={{width:50,height:50,borderRadius:25,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'}}>
                             <Text style={{fontSize:25}}>{'<'}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 </Animated.View>
+                } 
             </Modal>
         </Animated.View>
     </TouchableOpacity>

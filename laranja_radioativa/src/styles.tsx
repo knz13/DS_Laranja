@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export const AppColors = {
     white: 'rgb(255,255,255)',
     amarelo_radioativo: '#f09137',
-    laranja_radioativo: '#cd5f00',
+    laranja_radioativo: '#F76151',
     vermelho_saturado: '#a52728',
     marrom: '#9a4800',
     preto: '#000000'

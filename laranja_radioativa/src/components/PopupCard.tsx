@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Dimensions, Modal, StyleProp, ViewStyle } from "react-native";
-import { NativeScrollEvent, NativeSyntheticEvent, Pressable, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Platform,Dimensions, Modal, StyleProp, ViewStyle } from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, Pressable, View,Text } from "react-native";
 import Animated, { AnimatedStyleProp, max, measure, runOnJS, runOnUI, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { AppColors} from "./Styles";
+import GestureRecognizer from "react-native-swipe-gestures";
+import { AppColors} from "../Styles";
 
 
 const Window = {
@@ -41,6 +42,7 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
     const bgOpacity = useSharedValue(0);
     const viewRef = useAnimatedRef<Animated.View>();
     const [modalVisible,setModalVisible] = useState(false);
+    let currentOffset = useRef(0).current
 
     const style = useAnimatedStyle(() => {
         return {
@@ -51,7 +53,7 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
     const scrollStyle = useAnimatedStyle(() => {
 
         let val = {
-            
+            height: Platform.OS == "android" ? Window.height * 1.3 : Window.height
         }
 
         if(posRelation){
@@ -98,10 +100,8 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
     
 
     const gestureHandler = useAnimatedScrollHandler({
-        onEndDrag: (event,ctx) => {
-            if(event.contentOffset.y < -Window.height/7){
-                runOnJS(onChange)();
-            }
+        onScroll: (event,ctx) => {
+            currentOffset = event.contentOffset.y;
         },
     })
 
@@ -124,10 +124,19 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
 
 
     return <>
+    <GestureRecognizer
+        config={{velocityThreshold:3}}
+        onSwipeDown={() => {
+            console.log('swiping down')
+            if(currentOffset == 0){
+                onChange();
+            }
+        }}
+    >
     <Modal visible={modalVisible} transparent={true}>
     <Animated.View style={[bgStyle,{position:'absolute',zIndex:-1}]}>
     </Animated.View>
-    <Animated.ScrollView scrollEnabled={scrollable?.valueOf() == null || scrollable?.valueOf() == undefined? true : scrollable} contentContainerStyle={{flexGrow:1,zIndex:-1}}  onScroll={onScroll? onScroll : gestureHandler} scrollEventThrottle={1.2} style={[scrollStyle]} showsVerticalScrollIndicator={false}>
+    <Animated.ScrollView bounces={false} scrollEnabled={scrollable?.valueOf() == null || scrollable?.valueOf() == undefined? true : scrollable} contentContainerStyle={{flexGrow:1,zIndex:-1}} onScroll={gestureHandler} scrollEventThrottle={1.2} style={[scrollStyle]} showsVerticalScrollIndicator={false}>
         <View style={{height:paddingTop? paddingTop: Window.height/6,zIndex:-1}}></View>
         <Animated.View ref={viewRef} style={[style,{alignSelf:'center',justifyContent:'center',backgroundColor:'white'},contentContainerStyle]}>
             {children}
@@ -136,5 +145,6 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
     </Animated.ScrollView>
     {backGroundRender}
     </Modal>
+    </GestureRecognizer>
     </>
 }

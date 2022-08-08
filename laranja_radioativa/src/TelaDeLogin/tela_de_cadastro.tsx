@@ -1,27 +1,33 @@
-import {DBContext, Hash, Props, Window} from "./geral";
-import React, { useState,Component, useContext } from 'react';
-import { Image,StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, FlatList } from 'react-native';
-import { AppColors, Styles } from "./styles";
+import {DBContext, Hash, Props, Window} from "../geral";
+import React, { useState,Component, useContext, useRef } from 'react';
+import { Image,StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, FlatList, ActivityIndicator } from 'react-native';
+import { AppColors, Styles } from "../styles";
 import * as Crypto from 'crypto-js/sha256';
-import { Accordion } from "./components/accordion";
-import { PopupCard } from "./components/PopupCard";
+import { Accordion } from "./../components/accordion";
+import { PopupCard } from "./../components/PopupCard";
 import { runOnJS, useAnimatedGestureHandler, useAnimatedScrollHandler } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
-import { AlertPopup } from "./components/AlertPopup";
-import App from "./App";
+import { AlertPopup } from "./../components/AlertPopup";
 
 interface TextInputInterface {
     onChangeText?: (arg0:string) => void
 }
 
-export const TelaDeCadastro = () => {
+interface TelaDeCadastroInterface {
+    onConfirm?: (message:string) => void,
+    onLeave?: () => void
+}
 
-    const [email,setEmail] = useState('');
-    const [senha,setSenha] = useState('');
-    const [username,setUsername] = useState('');
+export const TelaDeCadastro = ({onConfirm,onLeave} : TelaDeCadastroInterface) => {
+
+    let email = useRef('').current;
+    let senha = useRef('').current;
+    let username = useRef('').current
     const [alertPopupVisibility,setAlertPopupVisibility] = useState(false);
     const [alertPopupText,setAlertPopupText] = useState('');
+    const [loading,setLoading] = useState(false);
     
+
 
 
     const MyTextInput = ({onChangeText} : TextInputInterface) => {
@@ -33,17 +39,18 @@ export const TelaDeCadastro = () => {
     return <View style={{backgroundColor:AppColors.laranja_radioativo,borderRadius:10,alignItems:'center'}}>
         <View style={{height:'20%'}}></View>
         <Text>Insira o nome de Usuário</Text>
-        <MyTextInput onChangeText={(text) => {
-            setUsername(text);
+        <MyTextInput  onChangeText={(text) => {
+            username = text;
         }}></MyTextInput>
         <Text>Insira seu email</Text>
-        <MyTextInput onChangeText={(text) => {
-            setEmail(text);
+        <MyTextInput  onChangeText={(text) => {
+            email = text
         }}></MyTextInput>
         <Text>Insira a senha</Text>
         <MyTextInput onChangeText={(text) => {
-            setSenha(text);
+            senha = text;
         }}></MyTextInput>
+        <ActivityIndicator animating={loading}></ActivityIndicator>
         <TouchableOpacity onPress={() => {
             if(email.length == 0){
                 alert('Por favor preencha o email.');
@@ -57,32 +64,38 @@ export const TelaDeCadastro = () => {
                 alert("Por favor preencha a senha");
                 return;
             }
+            console.log(`username ${username}, senha ${senha}, email ${email}`)
+            setLoading(true);
+            Hash(senha).then(hashedPassword => {
             fetch('https://dnd-party.herokuapp.com/database/users',{
                 method:"POST",
+                headers:{
+                    Accept:'application/json',
+                    'Content-Type':'application/json'
+                },
                 body: JSON.stringify({
                     user_name: username,
-                    user_password_hash: Hash(senha),
+                    user_password_hash: hashedPassword,
                     email: email
                 })
             }).then((response) => {
-                console.log(response.body);
+                response.json().then(json => {
+                    setLoading(false);
+                    if(json['state'] == 'success'){
+                        if(onConfirm){
+                            onConfirm(json['message']);
+                        }
+                    }
+                })
             }).catch((err) => {
                 console.log(JSON.stringify(err))
             });
-
+            })
         }}>
             <View style={{backgroundColor:'green',justifyContent:'center',alignItems:'center'}}>
                 <Text style={{color:'white',marginHorizontal:'10%',marginVertical:'2%',fontSize:18}}>Cadastrar</Text>
             </View>
         </TouchableOpacity>
         <View style={{height:'10%'}}></View>
-        <AlertPopup visible={alertPopupVisibility}>
-            <View style={{height:'100%',backgroundColor:AppColors.laranja_radioativo}}>
-                <Text>{alertPopupText}</Text>
-                <Button onPress={() => {
-                    setAlertPopupVisibility(false);
-                }} title={'OK'}></Button>
-            </View>
-        </AlertPopup>
     </View>
 }
