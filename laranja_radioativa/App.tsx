@@ -16,6 +16,8 @@ import { Asset } from 'expo-asset';
 import { TelaDeCadastro } from './src/TelaDeLogin/tela_de_cadastro';
 import { TelaDeCriacaoDePersonagens } from './src/TelaDePersonagens/tela_de_criacao_de_personagens';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useFonts } from 'expo-font';
+
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -47,6 +49,10 @@ const loadingFunc = async () => {
 export default function App() {
 
   loadingFunc();
+
+  useFonts({
+    'exo':require('./assets/fonts/Exo2-Bold.ttf')
+  })
 
   return (
     <GlobalContext.Provider value={{user_id:null}}>

@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MainView } from "./../components/MainView";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import Animated,{SlideInDown} from "react-native-reanimated";
-import { CreationButton } from "./../components/CreationButton";
+import { PageButton } from "./../components/PageButton";
 
 
 
@@ -14,6 +14,7 @@ import { CreationButton } from "./../components/CreationButton";
 
 export const TelaDeCriacaoDePersonagens = () => {
     const [classes,setClasses] = useState([]);
+    
     const [specificClass,setSpecificClassData] = useState('');
     const db = useContext(DBContext);
     
@@ -49,10 +50,10 @@ export const TelaDeCriacaoDePersonagens = () => {
             <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
         </View>
 
-        <View style={{flexDirection: "row",justifyContent: 'space-between'}}>
-            <CreationButton title={'classes'} style={{alignSelf:'baseline'}}> 
+        <View style={{flexDirection: "row",width:'90%',alignItems:'center',justifyContent:'center',marginTop:'25%'}}>
+            <PageButton title={'classes'} style={{marginVertical:'2%'}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -61,13 +62,15 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
 
-            <CreationButton title={'raças'}  style={{alignSelf:'baseline'}}> 
+            <View style={{width:'10%'}}></View>
+
+            <PageButton title={'raças'} style={{}}> 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -76,18 +79,18 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
 
             
         </View>
 
-        <View style={{flexDirection: "row",justifyContent: 'space-between',justifyContent:'center',alignItems:'center'}}>
+        <View style={{flexDirection: "row",justifyContent: 'center',alignItems:'center',width:'90%',marginVertical:'6%'}}>
 
-            <CreationButton title={'atributos'}  style={{alignSelf:'baseline'}}> 
+            <PageButton title={'atributos'} > 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -96,13 +99,15 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
 
-            <CreationButton title={'proficiências'}  style={{alignSelf:'baseline'}}> 
+            <View style={{width:'10%'}}></View>
+
+            <PageButton title={'proficiências'} > 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -111,18 +116,18 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
 
             
         </View>
 
-        <View style={{flexDirection: "row",justifyContent:'center',alignItems:'center'}}>
+        <View style={{flexDirection: "row",justifyContent:'center',alignItems:'center',width:'90%'}}>
         
-            <CreationButton title={'salvaguardas'}  style={{alignSelf:'baseline'}}> 
+            <PageButton title={'salvaguardas'} > 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -131,13 +136,15 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
 
-            <CreationButton title={'perícias'}  style={{alignSelf:'baseline'}}> 
+            <View style={{width:'10%'}}></View>
+
+            <PageButton title={'perícias'} > 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{marginVertical:'2%'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -146,9 +153,9 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
-            </CreationButton>
+            </PageButton>
         </View>
         
     </MainView>

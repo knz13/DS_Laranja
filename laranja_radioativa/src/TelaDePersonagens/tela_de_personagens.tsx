@@ -5,7 +5,7 @@ import { AppColors, Styles } from "../styles";
 import { NavigationContainer, NavigationProp, StackActions, useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView";
-import { CreationButton } from "../components/CreationButton";
+import { PageButton } from "../components/PageButton";
 import { TelaDeCriacaoDePersonagens } from "./tela_de_criacao_de_personagens";
 
 
@@ -26,13 +26,13 @@ export const TelaDePersonagens = () => {
 
     return <MainView>
         <FlatList style={{width:'80%'}} data={dados} renderItem={renderItem}></FlatList>
-        <CreationButton 
+        <PageButton 
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
         style={{alignSelf:'center',flex:1,position:'absolute',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.laranja_radioativo}}
         >
             <TelaDeCriacaoDePersonagens></TelaDeCriacaoDePersonagens>
-        </CreationButton>
+        </PageButton>
     </MainView>
 }
 

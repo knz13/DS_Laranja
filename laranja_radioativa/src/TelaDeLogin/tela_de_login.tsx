@@ -35,25 +35,29 @@ export const TelaDeLogin = () => {
         }
     })
     useEffect(() => {
-        Filesystem.readAsStringAsync(Filesystem.documentDirectory + 'text.txt').then(content => {
-            console.log(`logging in with token => ${content}`)
-            fetch('https://dnd-party.herokuapp.com/database/login',{
-                        method:"POST",
-                        headers:{
-                            Accept:'application/json',
-                            'Content-Type':'application/json',
-                            'x-access-token':content
-                        }
-                    }).then(res => res.json().then(json => {
-                        if(json['state'] == 'success'){
-                            console.log('logged in successfully')
-                            setMyToken(json['token']);
-                            navigation.navigate('Menu');
-                        }
-                        else {
-                            alert(json['message']);
-                        }
-            }))
+        Filesystem.getInfoAsync(Filesystem.documentDirectory + 'text.txt').then(file =>{
+            if(file.exists){
+                Filesystem.readAsStringAsync(Filesystem.documentDirectory + 'text.txt').then(content => {
+                    console.log(`logging in with token => ${content}`)
+                    fetch('https://dnd-party.herokuapp.com/database/login',{
+                                method:"POST",
+                                headers:{
+                                    Accept:'application/json',
+                                    'Content-Type':'application/json',
+                                    'x-access-token':content
+                                }
+                            }).then(res => res.json().then(json => {
+                                if(json['state'] == 'success'){
+                                    console.log('logged in successfully')
+                                    setMyToken(json['token']);
+                                    navigation.navigate('Menu');
+                                }
+                                else {
+                                    alert(json['message']);
+                                }
+                            }))
+                })
+            }
         })
     })
 
@@ -107,7 +111,7 @@ export const TelaDeLogin = () => {
                         });
 
 
-                        navigation.navigate('Main');
+                        navigation.navigate('Menu');
                     }
                     else {
                         alert(json['message']);

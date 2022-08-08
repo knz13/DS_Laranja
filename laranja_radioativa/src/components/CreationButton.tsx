@@ -11,7 +11,8 @@ interface ButtonInterface {
     title:string,
     onPress?: () => void,
     style?:StyleProp<ViewStyle>,
-    textStyle?:StyleProp<TextStyle>
+    textStyle?:StyleProp<TextStyle>,
+    backButtonStyle?:StyleProp<ViewStyle>
 }
 
 export const CreationButton = ({children,title,onPress,style,textStyle} : ButtonInterface) => {
@@ -43,7 +44,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle} : Button
         }
     })
 
-    return <TouchableOpacity style={{width:'100%'}} onPress={() => {
+    return <TouchableOpacity style={{flex:1}} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -55,11 +56,11 @@ export const CreationButton = ({children,title,onPress,style,textStyle} : Button
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
                 {children}
-                <View style={{position:'absolute',top:Window.height/12,left:Window.width/10}}>
+                <View style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);
                     }}>
-                        <View style={{width:40,height:40,borderRadius:20,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'}}>
+                        <View style={{width:50,height:50,borderRadius:25,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'}}>
                             <Text style={{fontSize:25}}>{'<'}</Text>
                         </View>
                     </TouchableOpacity>
