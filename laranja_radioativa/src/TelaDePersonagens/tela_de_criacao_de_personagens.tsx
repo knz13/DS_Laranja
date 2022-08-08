@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { View,Text, TouchableOpacity } from "react-native"
-import { DBContext } from "./geral"
-import { AppColors, AppConstants, Styles } from "./styles"
+import { DBContext } from "./../geral"
+import { AppColors, AppConstants, Styles } from "./../styles"
 import { LinearGradient } from 'expo-linear-gradient';
-import { MainView } from "./components/MainView";
+import { MainView } from "./../components/MainView";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import Animated,{SlideInDown} from "react-native-reanimated";
-import { CreationButton } from "./components/CreationButton";
+import { PageButton } from "./../components/PageButton";
 import { SafeAreaView } from "react-navigation";
 
 
@@ -35,7 +35,7 @@ export const TelaDeCriacaoDePersonagens = () => {
         })
     },[])
 
-    // <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+    // <PageButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
     //     db.readTransaction(tx => {
     //         tx.executeSql(`SELECT ${nome} FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
     //             setSpecificClassData(JSON.stringify(result.rows._array));
@@ -44,11 +44,11 @@ export const TelaDeCriacaoDePersonagens = () => {
 
     // }}>
     //     <Text style={{color:'white'}}>{specificClass}</Text>
-    // </CreationButton>
+    // </PageButton>
 
     const MostrarDB = ({sql_query,params,data,children}) => {
         return <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-            return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+            return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                 db.readTransaction(tx => {
                     tx.executeSql(`${sql_query}`,params,(tx,result) => {
                         setSpecificClassData(JSON.stringify(result.rows._array));
@@ -57,7 +57,7 @@ export const TelaDeCriacaoDePersonagens = () => {
 
             }}>
                 <Text style={{color:'white'}}>{specificClass}</Text>
-            </CreationButton>
+            </PageButton>
         }}></FlatList>
     }
 
@@ -84,10 +84,10 @@ export const TelaDeCriacaoDePersonagens = () => {
         </View>
 
         <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
-            <CreationButton title={'classes'}>
+            <PageButton title={'classes'}>
                 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
+                    return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -96,17 +96,17 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
                 
-            </CreationButton>
+            </PageButton>
 
             <View style={{width:'5%'}}></View>
 
-            <CreationButton title={'raças'}> 
+            <PageButton title={'raças'}> 
 
                 <FlatList style={{width:'70%',marginTop:'10%'}} data={races} renderItem={({item}) => {
-                    return <CreationButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.race_name} onPress={() => {
+                    return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.race_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM 'races' WHERE race_name=?`,[item.race_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));
@@ -115,15 +115,15 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                     }}>
                         <Text style={{color:'white'}}>{specificClass}</Text>
-                    </CreationButton>
+                    </PageButton>
                 }}></FlatList>
 
-            </CreationButton>
+            </PageButton>
         </View>
 
         <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
 
-            <CreationButton title={'atributos'}>
+            <PageButton title={'atributos'}>
 
                 <Text style={{color:AppColors.vermelho_saturado}}>Força</Text>
                 <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
@@ -155,26 +155,26 @@ export const TelaDeCriacaoDePersonagens = () => {
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-            </CreationButton>
+            </PageButton>
 
             <View style={{width:'5%'}}></View>
 
 
-            <CreationButton title={'proficiências'}> 
-            </CreationButton>
+            <PageButton title={'proficiências'}> 
+            </PageButton>
 
             
         </View>
 
         <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
         
-            <CreationButton title={'salvaguardas'}> 
-            </CreationButton>
+            <PageButton title={'salvaguardas'}> 
+            </PageButton>
 
             <View style={{width:'5%'}}></View>
 
 
-            <CreationButton title={'perícias'}> 
+            <PageButton title={'perícias'}> 
 
                 <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
@@ -336,12 +336,12 @@ export const TelaDeCriacaoDePersonagens = () => {
 
                 </View>
             
-            </CreationButton>
+            </PageButton>
         </View>
 
         <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
         
-            <CreationButton title={'informações secundárias'}> 
+            <PageButton title={'informações secundárias'}> 
                 
                 <Text style={{color:AppColors.vermelho_saturado}}>Classe da Armadura</Text>
                 <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
@@ -378,12 +378,12 @@ export const TelaDeCriacaoDePersonagens = () => {
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-            </CreationButton>
+            </PageButton>
 
             <View style={{width:'5%'}}></View>
 
 
-            <CreationButton title={'informações adicionais'}> 
+            <PageButton title={'informações adicionais'}> 
 
                 <Text style={{color:AppColors.vermelho_saturado}}>Traços de Personalidade</Text>
                 <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
@@ -424,7 +424,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View> 
-            </CreationButton>
+            </PageButton>
         </View>
         
     </MainView>
