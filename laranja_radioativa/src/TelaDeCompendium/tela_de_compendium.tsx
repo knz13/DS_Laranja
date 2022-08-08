@@ -1,44 +1,24 @@
 import React, { useState,Component, useContext, useEffect } from 'react';
-<<<<<<< Updated upstream
-import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { Styles } from "../styles";
-
-=======
 import { StyleSheet,Switch, Text, View, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { AppColors, Styles } from "../styles";
 import { MainView } from "../components/MainView";
 import { CreationButton } from "../components/CreationButton";
->>>>>>> Stashed changes
 
 
-
+//style dos buttons
+const styles1 = StyleSheet.create({button:{
+    backgroundColor:AppColors.laranja_radioativo,padding:20,marginHorizontal:8,marginVertical:16,borderRadius:6,width:300}
+})
 
 
 export const TelaDeCompendium = () => {
+    const item_types = ['Armor','Weapon','Adventuring Gear','Tools','Poisons','Potions and Oils','Wondrous Item','Other']
 
-    const db = useContext(DBContext);
-
-    const [data,setData] = useState([] as Array<string>)
-
-    useEffect(() => {
-        db.readTransaction(tx => {
-            tx.executeSql('SELECT class_name FROM classes',[],(tx,result) => {
-                setData(result.rows._array);
-            });
-        },(err) => {
-            console.log(err)
-        })
-    })
-
-    return <View style={Styles.mainView}>
-        <ScrollView style={{}}></ScrollView>
-<<<<<<< Updated upstream
-    </View>
-}
-=======
+    return <MainView>
+            <ScrollView contentContainerStyle={{flexGrow:1, marginHorizontal:20}}>
+                {item_types.map(type => <CreationButton title={type} style={styles1.button} ></CreationButton>)}
+            </ScrollView>   
     </MainView>
 }
 //Telas de cada Categoria
 //uso de HOOKS
-
->>>>>>> Stashed changes
