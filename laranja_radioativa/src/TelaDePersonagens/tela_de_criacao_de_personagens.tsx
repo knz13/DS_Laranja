@@ -8,6 +8,7 @@ import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import Animated,{SlideInDown} from "react-native-reanimated";
 import { PageButton } from "./../components/PageButton";
 import { SafeAreaView } from "react-navigation";
+import { TelaDeClasses } from "./tela_de_classes";
 
 
 
@@ -35,41 +36,15 @@ export const TelaDeCriacaoDePersonagens = () => {
         })
     },[])
 
-    // <PageButton style={{backgroundColor:'red',width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
-    //     db.readTransaction(tx => {
-    //         tx.executeSql(`SELECT ${nome} FROM classes WHERE class_name=?`,[item.class_name],(tx,result) => {
-    //             setSpecificClassData(JSON.stringify(result.rows._array));
-    //         })
-    //     })
+    const textoDosBotoes = ['classes','raças','atributos','proficiências','salvaguardas','perícias','informações secundárias','informações adicionais']
 
-    // }}>
-    //     <Text style={{color:'white'}}>{specificClass}</Text>
-    // </PageButton>
-
-    const MostrarDB = ({sql_query,params,data,children}) => {
-        return <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-            return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {
-                db.readTransaction(tx => {
-                    tx.executeSql(`${sql_query}`,params,(tx,result) => {
-                        setSpecificClassData(JSON.stringify(result.rows._array));
-                    })
-                })
-
-            }}>
-                <Text style={{color:'white'}}>{specificClass}</Text>
-            </PageButton>
-        }}></FlatList>
+    const renderizarDentroDoBotao = (nome : string) => {
+        if(nome == "classes") {
+            return <TelaDeClasses></TelaDeClasses>
+        }
+        return <View></View>
     }
 
-    const MyTextInput = () => {
-        return <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.marrom}}>
-            <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-    }
-
-    const NormalText = ({children}) => {
-        return <Text style={{color:AppColors.white}}>{children}</Text>
-    }
 
     return <MainView>
 
@@ -82,6 +57,14 @@ export const TelaDeCriacaoDePersonagens = () => {
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
             <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
         </View>
+
+        {[...Array(textoDosBotoes.length/2)].map((item,index) => {
+            return <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
+                <PageButton title={textoDosBotoes[index]}>{renderizarDentroDoBotao(textoDosBotoes[index])}</PageButton>
+                <View style={{width:'5%'}}></View>
+                <PageButton title={textoDosBotoes[index+1]}>{renderizarDentroDoBotao(textoDosBotoes[index+1])}</PageButton>
+            </View>
+        })}
 
         <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
             <PageButton title={'classes'}>
