@@ -105,8 +105,8 @@ export const TelaDeCriacaoDePersonagens = () => {
 
             <PageButton title={'raças'}> 
 
-                <FlatList style={{width:'70%',marginTop:'10%'}} data={races} renderItem={({item}) => {
-                    return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.race_name} onPress={() => {
+                <FlatList style={{width:'70%',marginTop:'10%'}} data={races} numColumns={2} renderItem={({item}) => {
+                    return <PageButton style={{width:'100%',alignSelf:'center'}} title={item.race_name} onPress={() => {
                         db.readTransaction(tx => {
                             tx.executeSql(`SELECT * FROM 'races' WHERE race_name=?`,[item.race_name],(tx,result) => {
                                 setSpecificClassData(JSON.stringify(result.rows._array));

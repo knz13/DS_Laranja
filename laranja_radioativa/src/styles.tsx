@@ -7,7 +7,7 @@ export const AppColors = {
     amarelo_radioativo: '#f09137',
     laranja_radioativo: '#F76151',
     vermelho_saturado: '#a52728',
-    marrom: '#9a4800',
+    marrom: '#FFA46C',
     preto: '#000000'
 };
 
