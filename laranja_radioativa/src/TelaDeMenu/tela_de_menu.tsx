@@ -1,5 +1,5 @@
-import {Props, Window} from "../geral";
-import React, { useState,Component } from 'react';
+import {DBContext, Props, Window} from "../geral";
+import React, { useState,Component, useContext } from 'react';
 import { StyleSheet,Switch, Text, View,Alert, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, Touchable } from 'react-native';
 import { AppColors, Styles } from "../styles";
 
@@ -27,8 +27,6 @@ export const TelaDeMenu = () => {
         {children}
       </PageButton>
     }
-
-
 
     return (
       <MainView>

@@ -6,6 +6,7 @@ import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Press
 import { AppColors, Styles } from "../styles";
 import { MainView } from "../components/MainView";
 import { PageButton } from "../components/PageButton";
+import { PopupCard } from "../components/PopupCard";
 
 
 
@@ -15,6 +16,7 @@ import { PageButton } from "../components/PageButton";
 export const TelaDeAventuras = () => { 
 
     const [salas,setSalas] = useState([])
+    const [shouldShowCreationPopup,setShowCreationPopup] = useState(false);
     const global = useContext(GlobalContext)
 
     useEffect(() => {
@@ -38,11 +40,15 @@ export const TelaDeAventuras = () => {
             <Text>{item}</Text>
         </View>}></FlatList>
         <PageButton 
+        onPress={() => {
+
+        }}
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
         style={{alignSelf:'center',flex:1,position:'absolute',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.laranja_radioativo}}
         >
-            <PageButton title='hello!'></PageButton>
+            <Button title={'meu butão'}></Button>
         </PageButton>
+        
     </MainView>
 }

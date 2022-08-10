@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { TextStyle, TouchableOpacity } from "react-native"
-import Animated, { runOnJS, SlideInDown, SlideOutDown, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
+import Animated, { runOnJS, SlideInDown,SlideInLeft, SlideOutDown, SlideOutLeft, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated"
 import { Modal, StyleProp, Text, View, ViewStyle } from "react-native"
 import { MainView } from "./MainView"
 import { Window } from "../geral"
@@ -15,7 +15,7 @@ interface ButtonInterface {
     backButtonStyle?:StyleProp<ViewStyle>
 }
 
-export const CreationButton = ({children,title,onPress,style,textStyle} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
@@ -56,15 +56,15 @@ export const CreationButton = ({children,title,onPress,style,textStyle} : Button
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
                 {children}
-                <View style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
+                <Animated.View entering={SlideInLeft.duration(500)} style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);
                     }}>
-                        <View style={{width:50,height:50,borderRadius:25,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'}}>
+                        <View style={[{width:50,height:50,borderRadius:25,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'},backButtonStyle]}>
                             <Text style={{fontSize:25}}>{'<'}</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
+                </Animated.View>
                 </Animated.View>
                 } 
             </Modal>
