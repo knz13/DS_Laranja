@@ -14,6 +14,7 @@ import { TelaDeAtributos } from "./tela_de_atributos";
 import { TelaDePericias } from "./tela_de_pericias";
 import { TelaInfoSecundaria } from "./tela_info_secundaria";
 import { TelaInfoAdicional } from "./tela_info_adicional";
+import { MainTextInput } from "../components/MainTextInput";
 
 
 
@@ -52,15 +53,9 @@ export const TelaDeCriacaoDePersonagens = () => {
 
     return <MainView>
 
-        <Text style={{color:AppColors.vermelho_saturado}}>Nome do Personagem</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-            <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
+        <MainTextInput title={'Nome do personagem'}></MainTextInput>
 
-        <Text style={{color:AppColors.vermelho_saturado}}>Descrição</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-            <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
-        </View>
+        <MainTextInput title={"Descrição"}></MainTextInput>
 
         {[...Array(textoDosBotoes.length/2)].map((item,index) => {
             return <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
