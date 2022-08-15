@@ -1,5 +1,5 @@
 import React from "react"
-import { KeyboardAvoidingView,Platform, View } from "react-native"
+import { KeyboardAvoidingView,Platform, Pressable, View,Keyboard } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { AppColors, Styles } from "../styles"
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -10,7 +10,9 @@ interface ViewInterface {
 
 export const MainView = ({children} : ViewInterface) => {
     const headerHeight = useHeaderHeight();
-    return <KeyboardAvoidingView 
+    return <Pressable style={{flex:1}} onPress={() => {
+        Keyboard.dismiss()
+    }}><KeyboardAvoidingView 
     keyboardVerticalOffset={headerHeight}
     style={[Styles.mainView,{}]}
     behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -19,4 +21,5 @@ export const MainView = ({children} : ViewInterface) => {
     </LinearGradient>
     {children}
     </KeyboardAvoidingView>
+    </Pressable>
 }

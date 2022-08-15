@@ -48,7 +48,9 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
         if(onPress){
             onPress();
         }
-        setVisible(true);
+            if(children){
+                setVisible(true);
+            }
         }}>
         <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown.duration(500)}>
             <Text style={[{margin:'3%'},textStyle]}>{title}</Text>

@@ -17,7 +17,7 @@ interface PageButtonInterface {
 }
 
 export const PageButton = ({title,children,textStyle,style,onPress}:PageButtonInterface) => {
-    return <CreationButton style={[{backgroundColor:AppColors.laranja_radioativo},style]} backButtonStyle={{borderWidth:5,borderColor:AppColors.marrom}} textStyle={[{fontFamily:'exo',marginVertical:'2%',marginHorizontal:'5%',fontSize:17},textStyle]} onPress={onPress} title={title}>{children && <MainView>
+    return <CreationButton style={[{backgroundColor:AppColors.laranja_radioativo,borderRadius:15},style]} backButtonStyle={{borderWidth:5,borderColor:AppColors.marrom}} textStyle={[{fontFamily:'exo',marginVertical:'5%',marginHorizontal:'5%',fontSize:17},textStyle]} onPress={onPress} title={title}>{children && <MainView>
             {children}
         </MainView>}</CreationButton>
 }
