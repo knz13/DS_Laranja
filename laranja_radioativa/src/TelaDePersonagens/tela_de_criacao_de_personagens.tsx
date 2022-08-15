@@ -55,7 +55,7 @@ export const TelaDeCriacaoDePersonagens = () => {
 
         <MainTextInput title={'Nome do personagem'}></MainTextInput>
 
-        <MainTextInput title={"Descrição"}></MainTextInput>
+        <MainTextInput textInputProps={{multiline: true}} title={"Descrição"}></MainTextInput>
 
         {[...Array(textoDosBotoes.length/2)].map((item,index) => {
             return <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
