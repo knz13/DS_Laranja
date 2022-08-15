@@ -34,13 +34,13 @@ const loadingFunc = async () => {
   
   if(await (await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite/mainDB.db")).exists){
     await FileSystem.deleteAsync(FileSystem.documentDirectory + "SQLite/mainDB.db");
-  }  
-  await FileSystem.downloadAsync(
-    Asset.fromModule(require('./assets/mainDB.db')).uri,
-    FileSystem.documentDirectory + `SQLite/mainDB.db`
-  ).then(() => {
-    console.log('copied mainDB!');
-  });
+    await FileSystem.downloadAsync(
+      Asset.fromModule(require('./assets/mainDB.db')).uri,
+      FileSystem.documentDirectory + `SQLite/mainDB.db`
+    ).then(() => {
+      console.log('copied mainDB!');
+    });
+  } 
 }
 
 

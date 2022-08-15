@@ -11,6 +11,7 @@ import { TelaDeCadastro } from "./tela_de_cadastro";
 import { MainView } from "./../components/MainView";
 import Beholder from './../components/beholder'
 import * as Filesystem from 'expo-file-system';
+import { MainTextInput } from "../components/MainTextInput";
 
 
 export const TelaDeLogin = () => {
@@ -61,11 +62,7 @@ export const TelaDeLogin = () => {
         })
     })
 
-    const MyTextInput = ({onChangeText}) => {
-        return <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.marrom}}>
-                <TextInput onChangeText={onChangeText} style={{margin:'3%',color:AppColors.white}}></TextInput>
-            </View>
-    }
+   
 
 
     return <>
@@ -75,13 +72,13 @@ export const TelaDeLogin = () => {
             <Beholder style={{}}></Beholder>
         </View>
         <Text style={{color:AppColors.laranja_radioativo}}>Nome de Usuário</Text>
-        <MyTextInput onChangeText={(text) => {
+        <MainTextInput onChangeText={(text) => {
             login = text;
-        }}></MyTextInput>
+        }}></MainTextInput>
         <Text style={{color:AppColors.laranja_radioativo}}>Senha</Text>
-        <MyTextInput onChangeText={text => {
+        <MainTextInput onChangeText={text => {
             senha = text;
-        }}></MyTextInput>
+        }}></MainTextInput>
         <TouchableOpacity onPress={() => {
             if(login.length == 0){
                 alert('Please insert an username');
