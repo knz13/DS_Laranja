@@ -12,15 +12,23 @@ interface ButtonInterface {
     onPress?: () => void,
     style?:StyleProp<ViewStyle>,
     textStyle?:StyleProp<TextStyle>,
-    backButtonStyle?:StyleProp<ViewStyle>
+    backButtonStyle?:StyleProp<ViewStyle>,
+    shouldGoBack?:boolean
 }
 
-export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
     const opacity = useSharedValue(0);
 
+    useEffect(() => {
+        if(shouldGoBack?.valueOf() != undefined){
+            if(shouldGoBack){
+                setVisible(false)
+            }
+        }
+    },[shouldGoBack])
 
     useEffect(() => {
         if(visible){
@@ -44,7 +52,9 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
         }
     })
 
-    return <TouchableOpacity style={{flex:1}} onPress={() => {
+    return <>
+    <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center'},style]}>
+    <TouchableOpacity style={[{alignSelf:'flex-start'}]} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -52,7 +62,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 setVisible(true);
             }
         }}>
-        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown.duration(500)}>
+        {/* <Animated.View style={[{alignItems:'center',justifyContent:'center',alignSelf:'center'}]}> */}
             <Text style={[{margin:'3%'},textStyle]}>{title}</Text>
             <Modal visible={modal} transparent={true}>
                 {modal && 
@@ -70,6 +80,8 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 </Animated.View>
                 } 
             </Modal>
-        </Animated.View>
+        {/* </Animated.View> */}
     </TouchableOpacity>
+    </View>
+    </>
 }

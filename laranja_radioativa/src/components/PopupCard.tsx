@@ -103,7 +103,6 @@ export const PopupCard = ({backGroundRender,contentContainerStyle,backOpacity,bg
     }
 
     useDerivedValue(() => {
-        console.log(currentAccumulatedDistance.value)
         if(currentAccumulatedDistance.value > Window.height/20 && currentOffset.value == 0){
             runOnJS(onChange)();
         }

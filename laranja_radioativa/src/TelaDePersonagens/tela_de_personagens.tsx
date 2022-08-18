@@ -29,7 +29,7 @@ export const TelaDePersonagens = () => {
         <PageButton 
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
-        style={{alignSelf:'center',flex:1,position:'absolute',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.laranja_radioativo}}
+        style={{bottom:Window.height/15}}
         >
             <TelaDeCriacaoDePersonagens></TelaDeCriacaoDePersonagens>
         </PageButton>
