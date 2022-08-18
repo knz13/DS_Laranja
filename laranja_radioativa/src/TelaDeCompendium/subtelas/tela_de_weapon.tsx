@@ -19,7 +19,7 @@ export const TelaDeWeapon = () => {
 
     useEffect(() => {
         db.readTransaction(tx => {
-            tx.executeSql('SELECT * FROM items WHERE item_type = Weapon',[],(tx,result) => {
+            tx.executeSql('SELECT * FROM items WHERE item_type = ?',['Weapon'],(tx,result) => {
                 setWeapon(result.rows._array)
             },(tx,err) => {
                 console.log(err.message)

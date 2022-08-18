@@ -12,28 +12,25 @@ import { DBContext } from "../../geral"
 
 
 
-export const TelaDeArmor = () => {
+export const TelaDeWondrousItem = () => {
 
     const db = useContext(DBContext);
-    const [armors,setArmors] = useState([] as Array<any>);
+    const [wondrous,setWondrous] = useState([] as Array<any>);
 
     useEffect(() => {
         db.readTransaction(tx => {
-            tx.executeSql('SELECT * FROM items INNER JOIN armors ON items.item_id = armors.item_id',[],(tx,result) => {
-                setArmors(result.rows._array)
+            tx.executeSql('SELECT * FROM items WHERE item_type = Wondrous Item',[],(tx,result) => {
+                setWondrous(result.rows._array)
             },(tx,err) => {
                 console.log(err.message)
                 return false;
             })
         })
     })
-    
 
-    return <FlatList data={armors} renderItem={({item}) => {
+    return <FlatList data={wondrous} renderItem={({item}) => {
         return <PageButton title={item.item_name}>
-            <View style={{backgroundColor:'blue'}}>
-                <Text>{item.description}</Text>
-            </View>
+            {item.description =! 'null' && (<Text>{item.description}</Text>)}
         </PageButton>
     }}></FlatList>
 }
