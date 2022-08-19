@@ -58,7 +58,7 @@ export const TelaDeAventuras = () => {
         getSalas()
     }
     return <MainView>
-        <FlatList style={{width:'80%',paddingTop:'20%'}} data={salas} renderItem={({item}) => <View>
+        <FlatList style={{width:'80%',paddingTop:'100%'}} data={salas} renderItem={({item}) => <View>
             <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.laranja_radioativo}}>
                 <Text style={{color:AppColors.laranja_radioativo}}>{item.room_name}</Text>
             </View>

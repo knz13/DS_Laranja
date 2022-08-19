@@ -52,18 +52,19 @@ export const TelaDeCriacaoDePersonagens = () => {
 
 
     return <MainView>
-
-        <MainTextInput title={'Nome do personagem'}></MainTextInput>
-
-        <MainTextInput textInputProps={{multiline: true}} title={"Descrição"}></MainTextInput>
-
-        {[...Array(textoDosBotoes.length/2)].map((item,index) => {
-            return <View style={{flexDirection: "row",width:'70%',marginVertical:'2%'}}>
-                <PageButton title={textoDosBotoes[index*2]}>{renderizarDentroDoBotao(textoDosBotoes[index*2])}</PageButton>
-                <View style={{width:'5%'}}></View>
-                <PageButton title={textoDosBotoes[index*2+1]}>{renderizarDentroDoBotao(textoDosBotoes[index*2+1])}</PageButton>
+        <View style={{}}>
+            <MainTextInput title={'Nome do personagem'}></MainTextInput>
+            <MainTextInput textInputProps={{multiline: true}} title={"Descrição"}></MainTextInput>
+            <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
+            {[...Array(textoDosBotoes.length/2)].map((item,index) => {
+                return <View style={{flexDirection: "row",width:'100%',marginVertical:'5%'}}>
+                    <PageButton title={textoDosBotoes[index*2]}>{renderizarDentroDoBotao(textoDosBotoes[index*2])}</PageButton>
+                    <View style={{width:'7%'}}></View>
+                    <PageButton title={textoDosBotoes[index*2+1]}>{renderizarDentroDoBotao(textoDosBotoes[index*2+1])}</PageButton>
+                </View>
+            })}
             </View>
-        })}
+        </View>
 
     </MainView>
     

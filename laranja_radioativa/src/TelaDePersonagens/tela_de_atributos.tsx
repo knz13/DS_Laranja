@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react"
 import { PageButton } from "../components/PageButton"
-import { DBContext } from "../geral"
+import { DBContext, Window } from "../geral"
 import { AppColors } from "../styles"
 import { View,Text, TouchableOpacity } from "react-native"
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView"
+import { MainTextInput } from "../components/MainTextInput"
 
 
 
@@ -25,36 +26,21 @@ export const TelaDeAtributos = () => {
     // })
 
     return <MainView>
+        <View style={{width:Window.width/1.8}}>
+        
+        <MainTextInput title="Força" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
+        
+        <MainTextInput title="Destreza" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
+        
+        <MainTextInput title="Constituição" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
+        
+        <MainTextInput title="Inteligência" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
+        
+        <MainTextInput title="Sabedoria" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
+        
+        <MainTextInput title="Carisma" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}}></MainTextInput>
 
-        <Text style={{color:AppColors.vermelho_saturado}}>Força</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
+        
         </View>
-
-        <Text style={{color:AppColors.vermelho_saturado}}>Destreza</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-
-        <Text style={{color:AppColors.vermelho_saturado}}>Constituição</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-
-        <Text style={{color:AppColors.vermelho_saturado}}>Inteligência</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-
-        <Text style={{color:AppColors.vermelho_saturado}}>Sabedoria</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-
-        <Text style={{color:AppColors.vermelho_saturado}}>Carisma</Text>
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
-        <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-        </View>
-
     </MainView>
 }
