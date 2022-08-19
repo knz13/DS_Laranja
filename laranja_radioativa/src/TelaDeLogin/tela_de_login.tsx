@@ -71,12 +71,10 @@ export const TelaDeLogin = () => {
         <View style={{width:'40%',height:'40%'}}>
             <Beholder style={{}}></Beholder>
         </View>
-        <Text style={{color:AppColors.laranja_radioativo}}>Nome de Usuário</Text>
-        <MainTextInput onChangeText={(text) => {
+        <MainTextInput title={'Nome de usuário'} textStyle={{width:Window.width/1.6}} onChangeText={(text) => {
             login = text;
         }}></MainTextInput>
-        <Text style={{color:AppColors.laranja_radioativo}}>Senha</Text>
-        <MainTextInput onChangeText={text => {
+        <MainTextInput title={'Senha'} textStyle={{width:Window.width/1.6}} onChangeText={text => {
             senha = text;
         }}></MainTextInput>
         <TouchableOpacity onPress={() => {

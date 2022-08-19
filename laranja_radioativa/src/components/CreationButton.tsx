@@ -53,8 +53,8 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
     })
 
     return <>
-    <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center'},style]}>
-    <TouchableOpacity style={[{alignSelf:'flex-start'}]} onPress={() => {
+    <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%'},style]}>
+    <TouchableOpacity style={[{alignItems:'center'}]} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -62,8 +62,8 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 setVisible(true);
             }
         }}>
-        {/* <Animated.View style={[{alignItems:'center',justifyContent:'center',alignSelf:'center'}]}> */}
-            <Text style={[{margin:'3%'},textStyle]}>{title}</Text>
+        <Animated.View style={[{alignSelf:'center'}]}>
+            <Text style={[{margin:'3%',alignSelf:'center'},textStyle]}>{title}</Text>
             <Modal visible={modal} transparent={true}>
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
@@ -80,7 +80,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 </Animated.View>
                 } 
             </Modal>
-        {/* </Animated.View> */}
+        </Animated.View>
     </TouchableOpacity>
     </View>
     </>

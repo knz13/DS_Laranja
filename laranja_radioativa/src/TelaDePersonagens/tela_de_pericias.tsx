@@ -5,7 +5,6 @@ import { AppColors } from "../styles"
 import { View,Text, TouchableOpacity } from "react-native"
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView"
-import Animated, { useAnimatedStyle, useSharedValue } from "react-native-reanimated"
 
 
 
@@ -15,66 +14,19 @@ export const TelaDePericias = () => {
 
     // const db = useContext(DBContext)
     const [atributos,setAtributos] = useState([] as Array<any>)
-    const selected = useSharedValue([-1]);
 
-    const pericias = [`Acrobacia (Des)`,
-    `Adestrar Animal (Sab)`,
-    `Arcana (Int)`,
-    `Atletismo (For)`,
-    `Atuação (Cha)`,
-    `Furtividade (Des)`,
-    `História (Int)`,
-    `Intimidação (Car)`,
-    `Medicina (Int)`,
-    `Natureza (Int)`,
-    `Percepção (Sab)`,
-    `Persuasão (Cha)`,
-    `Prestidigitação (Dex)`,
-    `Procurar (Int)`,
-    `Religião (Int)`,
-    `Sentir Motivação (Sab)`,
-    `Sobrevivência (Sab)`,
-    `Trapacear (Cha)`];
-
-    const RenderizarPericia = ({item,index}) => {
-        
-        const bolinhaStyle = useAnimatedStyle(() => {
-            return {
-                borderRadius:15,
-                width:30,
-                height:30,
-                borderWidth:1,
-                left:0,
-                backgroundColor: selected.value.includes(index) ? 'white' : 'black'
-            }
-        })
-
-
-        return <TouchableOpacity onPress={() => {
-            console.log(selected.value)
-            if(!selected.value.includes(index)){
-                selected.value.push(index)
-            }
-            else {
-                selected.value = selected.value.filter((item) => {
-                    return item != index;
-                })
-            }
-        }}><Animated.View style={{borderRadius:15,borderWidth:1}}>
-            <Animated.View style={{flexDirection:'row',alignItems:'center',margin:'5%'}}>
-                <Animated.View style={bolinhaStyle}></Animated.View>
-                <Text style={{textAlign:'center',color:AppColors.laranja_radioativo}}>  {item}</Text>
-            </Animated.View>
-        </Animated.View>
-        </TouchableOpacity>
-    }
+    
+    // useEffect(() => {
+    //     db.readTransaction(tx => {
+    //         tx.executeSql(`SELECT * FROM races`,[],(tx,result) => {
+    //             setRaces(result.rows._array);
+    //         })
+    //     })
+    // })
 
     return <MainView>
 
-        <FlatList showsVerticalScrollIndicator={false} data={pericias} renderItem={({item,index}) => <RenderizarPericia item={item} index={index}></RenderizarPericia>}></FlatList>
-
-
-        {/* <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
+        <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
             <Text style={{color:AppColors.vermelho_saturado,textAlign:'center'}}>Acrobacia</Text>
@@ -232,7 +184,7 @@ export const TelaDePericias = () => {
             </View>
         </View>
 
-        </View> */}
+        </View>
 
 
     </MainView>
