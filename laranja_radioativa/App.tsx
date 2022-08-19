@@ -55,7 +55,7 @@ export default function App() {
   })
 
   return (
-    <GlobalContext.Provider value={{user_id:null}}>
+    <GlobalContext.Provider value={{token:null}}>
     <DBContext.Provider value={(() => {
       return SQLite.openDatabase('mainDB.db');
     })()}>
