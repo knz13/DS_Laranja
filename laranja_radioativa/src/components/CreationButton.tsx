@@ -12,15 +12,23 @@ interface ButtonInterface {
     onPress?: () => void,
     style?:StyleProp<ViewStyle>,
     textStyle?:StyleProp<TextStyle>,
-    backButtonStyle?:StyleProp<ViewStyle>
+    backButtonStyle?:StyleProp<ViewStyle>,
+    shouldGoBack?:boolean
 }
 
-export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
     const opacity = useSharedValue(0);
 
+    useEffect(() => {
+        if(shouldGoBack?.valueOf() != undefined){
+            if(shouldGoBack){
+                setVisible(false)
+            }
+        }
+    },[shouldGoBack])
 
     useEffect(() => {
         if(visible){
@@ -44,7 +52,9 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
         }
     })
 
-    return <TouchableOpacity style={{flex:1}} onPress={() => {
+    return <>
+    <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%'},style]}>
+    <TouchableOpacity style={[{alignItems:'center'}]} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -52,8 +62,8 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 setVisible(true);
             }
         }}>
-        <Animated.View style={[{alignItems:'center',justifyContent:'center',backgroundColor:'red'},style]} entering={SlideInDown.duration(500)}>
-            <Text style={[{margin:'3%'},textStyle]}>{title}</Text>
+        <Animated.View style={[{alignSelf:'center'}]}>
+            <Text style={[{margin:'3%',alignSelf:'center'},textStyle]}>{title}</Text>
             <Modal visible={modal} transparent={true}>
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
@@ -72,4 +82,6 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
             </Modal>
         </Animated.View>
     </TouchableOpacity>
+    </View>
+    </>
 }

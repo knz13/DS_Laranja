@@ -39,7 +39,7 @@ export const TelaDeMenu = () => {
                 navigation.navigate('Login');
               })
             }}>
-              <View style={{backgroundColor:AppColors.laranja_radioativo,width:50,height:50,borderRadius:25}}>
+              <View style={{backgroundColor:AppColors.laranja_radioativo,width:50,height:50,borderRadius:25,borderWidth:5,borderColor:AppColors.marrom}}>
               <Logout fill={'black'} style={{transform:[{rotate:'0deg'},{scale:0.5}]}}></Logout>
               </View>
             </TouchableOpacity>
