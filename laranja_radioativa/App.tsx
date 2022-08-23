@@ -32,9 +32,7 @@ const loadingFunc = async () => {
     await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'SQLite');
   };
   
-  if(await (await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite/mainDB.db")).exists){
-    console.log(await FileSystem.readDirectoryAsync(FileSystem.documentDirectory + "SQLite"))
-    await FileSystem.deleteAsync(FileSystem.documentDirectory + "SQLite/mainDB.db");
+  if(!await (await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite/mainDB.db")).exists){
     await FileSystem.downloadAsync(
       Asset.fromModule(require('./assets/mainDB.db')).uri,
       FileSystem.documentDirectory + `SQLite/mainDB.db`

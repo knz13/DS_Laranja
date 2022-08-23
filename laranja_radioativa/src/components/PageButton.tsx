@@ -36,7 +36,7 @@ export const PageButton = ({title,children,textStyle,style,onPress,mainViewStyle
             </View>
         </View>
     }}
-    style={[{backgroundColor:AppColors.azul,borderRadius:15},style]} textStyle={[{fontFamily:'inter',fontSize:17},textStyle]} onPress={onPress} title={title}>{children && <MainView style={mainViewStyle}>
+    style={[{backgroundColor:AppColors.azul,borderRadius:15},style]} textStyle={[{fontFamily:'inter',color:'white',fontSize:17},textStyle]} onPress={onPress} title={title}>{children && <MainView style={mainViewStyle}>
             {children}
         </MainView>}</CreationButton>
 }
