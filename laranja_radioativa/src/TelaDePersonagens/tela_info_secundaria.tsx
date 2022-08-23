@@ -26,38 +26,38 @@ export const TelaInfoSecundaria = () => {
 
     return <MainView>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>Classe da Armadura</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>Classe da Armadura</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>Iniciativa</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>Iniciativa</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>Deslocamento</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>Deslocamento</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>PV Atuais</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>PV Atuais</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>PV Temporários</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>PV Temporários</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>Inspiração</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>Inspiração</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
 
-                <Text style={{color:AppColors.vermelho_saturado}}>Bônus de Proficiência</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.vermelho_saturado}}>
+                <Text style={{color:AppColors.azul_escuro_fundo}}>Bônus de Proficiência</Text>
+                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
                 <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
                 </View>
     </MainView>

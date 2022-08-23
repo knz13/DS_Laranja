@@ -33,6 +33,7 @@ const loadingFunc = async () => {
   };
   
   if(await (await FileSystem.getInfoAsync(FileSystem.documentDirectory + "SQLite/mainDB.db")).exists){
+    console.log(await FileSystem.readDirectoryAsync(FileSystem.documentDirectory + "SQLite"))
     await FileSystem.deleteAsync(FileSystem.documentDirectory + "SQLite/mainDB.db");
     await FileSystem.downloadAsync(
       Asset.fromModule(require('./assets/mainDB.db')).uri,
@@ -51,7 +52,8 @@ export default function App() {
   loadingFunc();
 
   useFonts({
-    'exo':require('./assets/fonts/Exo2-Bold.ttf')
+    'exo':require('./assets/fonts/Exo2-Bold.ttf'),
+    'inter':require('./assets/fonts/Inter-SemiBold.ttf')
   })
 
   return (

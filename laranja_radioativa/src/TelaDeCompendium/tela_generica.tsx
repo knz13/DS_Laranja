@@ -19,5 +19,5 @@ export const SubTela_Button = ({type}: subtelaInterface) => {
         </PageButton>
     }
 
-    return <FlatList style={{width:'75%'}} data={compendium_Context[type]} renderItem={renderItem}></FlatList>
+    return <FlatList showsVerticalScrollIndicator={false} style={{width:'75%',paddingTop:'20%'}} data={compendium_Context[type]} renderItem={renderItem}></FlatList>
 }

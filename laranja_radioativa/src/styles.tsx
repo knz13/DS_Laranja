@@ -4,10 +4,9 @@ import { StyleSheet } from "react-native";
 
 export const AppColors = {
     white: 'rgb(255,255,255)',
-    amarelo_radioativo: '#f09137',
-    laranja_radioativo: '#F76151',
-    vermelho_saturado: '#a52728',
-    marrom: '#FFA46C',
+    azul_escuro_extra: '#292D41',
+    azul: '#43DFFF',
+    azul_escuro_fundo: '#1B1D27',
     preto: '#000000'
 };
 
@@ -26,7 +25,7 @@ export const Styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         width:'100%',
-        backgroundColor:AppColors.preto
+        backgroundColor:AppColors.azul_escuro_fundo
     }
 
 

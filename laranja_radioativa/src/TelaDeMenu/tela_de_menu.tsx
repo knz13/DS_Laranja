@@ -23,7 +23,7 @@ export const TelaDeMenu = () => {
     const navigation = useNavigation();
 
     const MenuButton = ({text,children} : MenuButtonInterface) => {
-      return <PageButton textStyle={{fontFamily:'exo'}} title={text} style={{backgroundColor:'#F76151',marginVertical:'2%',width:'100%',alignSelf:'center'}}>
+      return <PageButton textStyle={{fontFamily:'exo',color:'white'}} title={text} style={{backgroundColor:AppColors.azul,marginVertical:'2%',width:'100%',alignSelf:'center'}}>
         {children}
       </PageButton>
     }
@@ -39,7 +39,7 @@ export const TelaDeMenu = () => {
                 navigation.navigate('Login');
               })
             }}>
-              <View style={{backgroundColor:AppColors.laranja_radioativo,width:50,height:50,borderRadius:25,borderWidth:5,borderColor:AppColors.marrom}}>
+              <View style={{backgroundColor:AppColors.azul,width:50,height:50,borderRadius:25,borderWidth:5,borderColor:AppColors.marrom}}>
               <Logout fill={'black'} style={{transform:[{rotate:'0deg'},{scale:0.5}]}}></Logout>
               </View>
             </TouchableOpacity>

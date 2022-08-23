@@ -12,7 +12,7 @@ import { View } from 'react-native';
 
 //style dos buttons
 const styles1 = StyleSheet.create({button:{
-    backgroundColor:AppColors.laranja_radioativo,marginHorizontal:'2%',marginVertical:'1%',borderRadius:6,width:Window.width*0.75}
+    backgroundColor:AppColors.azul,marginHorizontal:'2%',marginVertical:'1%',borderRadius:6,width:Window.width*0.75}
 })
 
 export const Compendium_Context = createContext({})

@@ -13,10 +13,11 @@ interface ButtonInterface {
     style?:StyleProp<ViewStyle>,
     textStyle?:StyleProp<TextStyle>,
     backButtonStyle?:StyleProp<ViewStyle>,
-    shouldGoBack?:boolean
+    shouldGoBack?:boolean,
+    headerRender?:(backFunc:() => void) => React.ReactNode
 }
 
-export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack,headerRender} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
@@ -67,16 +68,19 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
             <Modal visible={modal} transparent={true}>
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>
+                {headerRender?.valueOf() != null && headerRender(() => {
+                    setVisible(false)
+                })}
                 {children}
-                <Animated.View entering={SlideInLeft.duration(500)} style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
+                {headerRender?.valueOf() == null && <Animated.View entering={SlideInLeft.duration(500)} style={{position:'absolute',top:Window.height/20,left:Window.width/20}}>
                     <TouchableOpacity style={{flex:1}} onPress={() => {
                         setVisible(false);
                     }}>
-                        <View style={[{width:50,height:50,borderRadius:25,backgroundColor:AppColors.laranja_radioativo,alignItems:'center',justifyContent:'center'},backButtonStyle]}>
+                        <View style={[{width:50,height:50,borderRadius:25,backgroundColor:AppColors.azul,alignItems:'center',justifyContent:'center'},backButtonStyle]}>
                             <Text style={{fontSize:25}}>{'<'}</Text>
                         </View>
                     </TouchableOpacity>
-                </Animated.View>
+                </Animated.View>}
                 </Animated.View>
                 } 
             </Modal>

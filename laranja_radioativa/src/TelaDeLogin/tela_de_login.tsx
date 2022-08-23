@@ -122,7 +122,7 @@ export const TelaDeLogin = () => {
             </View>
         </TouchableOpacity>
         <View style={{flexDirection:'row',alignItems:'center'}}>
-            <Text style={{marginVertical:'3%',color:AppColors.laranja_radioativo}}>Não tem uma conta? </Text>
+            <Text style={{marginVertical:'3%',color:AppColors.azul}}>Não tem uma conta? </Text>
             <TouchableOpacity onPress={() => {
                 setVisibility(true)
             }}>
@@ -131,7 +131,7 @@ export const TelaDeLogin = () => {
         </View>
     </MainView>
     </Pressable>
-    <PopupCard contentContainerStyle={{backgroundColor:AppColors.laranja_radioativo}} paddingTop={'15%'}  visible={visible} onExit={() => {
+    <PopupCard contentContainerStyle={{backgroundColor:AppColors.azul}} paddingTop={'15%'}  visible={visible} onExit={() => {
         setVisibility(false)
     }}>
         <TelaDeCadastro onConfirm={(text) => {

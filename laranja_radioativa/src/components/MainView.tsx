@@ -19,8 +19,6 @@ export const MainView = ({children,style} : ViewInterface) => {
     contentContainerStyle={[Styles.mainView,style]}
     scrollEnabled={false}
     >
-    <LinearGradient  locations={[0.5,0.8]} colors={['#22162b','#960e0e']} style={{position:'absolute',height:'100%',width:'100%',top:0}}>
-    </LinearGradient>
     {children}
     </KeyboardAwareScrollView>
     </Pressable>

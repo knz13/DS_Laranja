@@ -53,20 +53,26 @@ export const TelaDeAventuras = () => {
             })
     }
 
+    const renderItem = ({item}) => {
+        return <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.azul}}>
+            <Text style={{color:AppColors.azul}}>{item.room_name}</Text>
+        </View>
+    }
+
     if(salas?.valueOf() == null){
         console.log('get salas!')
         getSalas()
     }
     return <MainView>
         <FlatList style={{width:'80%',paddingTop:'100%'}} data={salas} renderItem={({item}) => <View>
-            <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.laranja_radioativo}}>
-                <Text style={{color:AppColors.laranja_radioativo}}>{item.room_name}</Text>
+            <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.azul}}>
+                <Text style={{color:AppColors.azul}}>{item.room_name}</Text>
             </View>
         </View>}></FlatList>
         <PageButton
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
-        style={{alignSelf:'center',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.laranja_radioativo}}
+        style={{alignSelf:'center',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
         mainViewStyle={{alignItems:'center',justifyContent:'center'}}
         shouldGoBack={shouldGoBack}
         >

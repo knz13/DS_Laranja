@@ -36,7 +36,7 @@ export const TelaDeCadastro = ({onConfirm,onLeave} : TelaDeCadastroInterface) =>
             </View>
     }
 
-    return <View style={{backgroundColor:AppColors.laranja_radioativo,borderRadius:10,alignItems:'center'}}>
+    return <View style={{backgroundColor:AppColors.azul,borderRadius:10,alignItems:'center'}}>
         <View style={{height:'20%'}}></View>
         <Text>Insira o nome de Usuário</Text>
         <MyTextInput  onChangeText={(text) => {
