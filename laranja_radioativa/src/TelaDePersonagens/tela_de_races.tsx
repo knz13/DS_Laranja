@@ -29,5 +29,5 @@ export const TelaDeRaces = () => {
         </PageButton>
     }
 
-    return <FlatList showsVerticalScrollIndicator={false} style={{width:'70%',marginTop:'10%'}} data={races} renderItem={renderItem}></FlatList>
+    return <FlatList showsVerticalScrollIndicator={false} style={{width:'70%'}} contentContainerStyle={{marginTop:'20%',paddingBottom:'50%'}} data={races} renderItem={renderItem}></FlatList>
 }
