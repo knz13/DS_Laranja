@@ -8,16 +8,17 @@ import { AppColors } from "../styles"
 
 interface ButtonInterface { 
     children?:React.ReactNode,
-    title:string,
+    title?:string,
     onPress?: () => void,
     style?:StyleProp<ViewStyle>,
     textStyle?:StyleProp<TextStyle>,
+    textRender?:React.ReactNode,
     backButtonStyle?:StyleProp<ViewStyle>,
     shouldGoBack?:boolean,
     headerRender?:(backFunc:() => void) => React.ReactNode
 }
 
-export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack,headerRender} : ButtonInterface) => {
+export const CreationButton = ({children,title,onPress,style,textStyle,backButtonStyle,shouldGoBack,headerRender,textRender} : ButtonInterface) => {
 
     const [visible,setVisible] = useState(false);
     const [modal,setModal] = useState(false);
@@ -55,7 +56,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
 
     return <>
     <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%'},style]}>
-    <TouchableOpacity style={[{alignItems:'center'}]} onPress={() => {
+    <TouchableOpacity style={[{alignItems:'center',width:'100%'}]} onPress={() => {
         if(onPress){
             onPress();
         }
@@ -63,8 +64,9 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
                 setVisible(true);
             }
         }}>
-        <Animated.View style={[{alignSelf:'center'}]}>
-            <Text style={[{margin:'3%',alignSelf:'center'},textStyle]}>{title}</Text>
+        <Animated.View style={[{alignSelf:'center',width:'96%'}]}>
+            {textRender?.valueOf() == null && <Text style={[{margin:'3%',alignSelf:'center'},textStyle]}>{title}</Text>}
+            {textRender}
             <Modal visible={modal} transparent={true}>
                 {modal && 
                 <Animated.View style={[animationStyle,{flex:1}]}>

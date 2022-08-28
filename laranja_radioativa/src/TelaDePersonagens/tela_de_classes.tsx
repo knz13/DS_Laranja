@@ -24,8 +24,10 @@ export const TelaDeClasses = () => {
         })
     })
 
-    return <FlatList style={{width:'70%',marginTop:'10%'}} data={classes} renderItem={({item}) => {
-        return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.class_name} onPress={() => {}}>
+    const renderItem = ({item}) => {
+        return <PageButton style={{marginVertical:2,alignSelf:'center'}} title={item.class_name}>
         </PageButton>
-    }}></FlatList>
+    }
+
+    return <FlatList showsVerticalScrollIndicator={false} style={{width:'70%'}} contentContainerStyle={{paddingTop:'20%',paddingBottom:'20%'}} data={classes} renderItem={renderItem}></FlatList>
 }

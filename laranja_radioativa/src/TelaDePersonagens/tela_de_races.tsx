@@ -24,8 +24,10 @@ export const TelaDeRaces = () => {
         })
     })
 
-    return <FlatList style={{width:'70%',marginTop:'10%'}} data={races} renderItem={({item}) => {
-        return <PageButton style={{width:'80%',alignSelf:'center'}} title={item.race_name} onPress={() => {}}>
+    const renderItem = ({item}) => {
+        return <PageButton style={{alignSelf:'center',marginVertical:2}} title={item.race_name} onPress={() => {}}>
         </PageButton>
-    }}></FlatList>
+    }
+
+    return <FlatList showsVerticalScrollIndicator={false} style={{width:'70%',marginTop:'10%'}} data={races} renderItem={renderItem}></FlatList>
 }

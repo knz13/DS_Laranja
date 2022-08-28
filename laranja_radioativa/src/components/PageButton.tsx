@@ -10,18 +10,19 @@ import { Window } from "../geral"
 
 
 interface PageButtonInterface {
-    title:string,
+    title?:string,
     children?:React.ReactNode,
     textStyle?:StyleProp<TextStyle>,
     style?:StyleProp<ViewStyle>,
     onPress?: () => void,
     mainViewStyle?:StyleProp<ViewStyle>,
     shouldGoBack?: boolean,
+    textRender?: React.ReactNode,
 }
 
 
-export const PageButton = ({title,children,textStyle,style,onPress,mainViewStyle,shouldGoBack}:PageButtonInterface) => {
-    return <CreationButton shouldGoBack={shouldGoBack} 
+export const PageButton = ({title,children,textStyle,style,onPress,mainViewStyle,shouldGoBack,textRender}:PageButtonInterface) => {
+    return <CreationButton shouldGoBack={shouldGoBack} textRender={textRender}
     headerRender={(backFunc) => {
         return <View style={{width:'100%',height:'13%',top:0,backgroundColor:AppColors.azul_escuro_fundo,borderBottomWidth:1,borderBottomColor:'white'}}>
             <View style={{height:'50%'}}></View>

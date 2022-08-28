@@ -20,7 +20,6 @@ export const TelaDePersonagens = () => {
 
     const renderItem = ({item}) => {
         // renderizar personagem
-
         return <View></View>
     }
 
@@ -29,7 +28,7 @@ export const TelaDePersonagens = () => {
         <PageButton 
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
-        style={{bottom:Window.height/15}}
+        style={{bottom:Window.height/15,width:'50%'}}
         >
             <TelaDeCriacaoDePersonagens></TelaDeCriacaoDePersonagens>
         </PageButton>
