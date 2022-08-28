@@ -52,7 +52,7 @@ export const TelaDeCriacaoDePersonagens = () => {
 
 
     return <MainView>
-        <View style={{}}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingTop:'20%',paddingBottom:'20%',width:'100%'}}>
             <MainTextInput title={'Nome do personagem'}></MainTextInput>
             <MainTextInput textInputProps={{multiline: true}} title={"Descrição"}></MainTextInput>
             <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
@@ -64,7 +64,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 </View>
             })}
             </View>
-        </View>
+        </ScrollView>
 
     </MainView>
     
