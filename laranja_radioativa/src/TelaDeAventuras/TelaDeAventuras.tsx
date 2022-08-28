@@ -36,6 +36,7 @@ export const TelaDeAventuras = () => {
     
             promise.then(response => response.json()).then(json => {
                 try {
+                    console.log(json['message'])
                     if(JSON.parse(json['message'])['rooms']){
                         console.log('setting salas!')
                         setSalas(JSON.parse(json['message'])['rooms']);
@@ -54,9 +55,12 @@ export const TelaDeAventuras = () => {
     }
 
     const renderItem = ({item}) => {
-        return <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.azul}}>
-            <Text style={{color:AppColors.azul}}>{item.room_name}</Text>
-        </View>
+        return <TouchableOpacity>
+            <View style={{borderRadius:15,backgroundColor:AppColors.azul_escuro_extra,borderColor:AppColors.azul,borderWidth:2,marginVertical:5}}>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item.room_name}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{item.number_of_players == null? 0 : item.number_of_players}</Text>
+            </View>
+        </TouchableOpacity>
     }
 
     if(salas?.valueOf() == null){
@@ -64,15 +68,11 @@ export const TelaDeAventuras = () => {
         getSalas()
     }
     return <MainView>
-        <FlatList style={{width:'80%',paddingTop:'100%'}} data={salas} renderItem={({item}) => <View>
-            <View style={{borderRadius:15,borderWidth:1,borderColor:AppColors.azul}}>
-                <Text style={{color:AppColors.azul}}>{item.room_name}</Text>
-            </View>
-        </View>}></FlatList>
+        <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas} renderItem={renderItem}></FlatList>
         <PageButton
-        title={'Adicionar'} 
+        title={'ADICIONAR'} 
         textStyle={{fontSize:20}}
-        style={{alignSelf:'center',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
+        style={{alignSelf:'center',width:'50%',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
         mainViewStyle={{alignItems:'center',justifyContent:'center'}}
         shouldGoBack={shouldGoBack}
         >
