@@ -2,6 +2,20 @@
 
 * dominio principal do backend: https://dnd-party.herokuapp.com
 
+## Lidando com erros
+Erros podem acontecer durante uma requisição no endpoint, por isso há um sistema para lidar com cada tipo de situação
+
+Os dados retornados no body da resposta sempre serão
+* "state" -> variável que será sempre "success","warning" ou "error" de acordo com o que acontecer
+* "message" -> variável que informará o que aconteceu no erro caso ocorra ou os dados requisitados quando der certo
+* "status" -> variável com os status http da requisição (é so pesquisar no google o que cada um significa), alguns exemplos são:
+    * 200 -> Sucesso!
+    * 201 -> Objeto criado! 
+    * 400 -> Requisição errada (alguma coisa está errada na requisição)
+    * 404 -> Resultado não encontrado (Pode ser desde um pedido não encontrado à requisições em um endpoint inexistente)
+    * 500 -> Erro interno do servidor (É muito variavel e depende do que aconteceu, sempre mande uma mensagem se ver um desses)
+
+
 ## Endpoints
 Cada endpoint é uma endereço derivado do dominio principal onde podemos realizar requests http para obtermos dados, cadastrarmos dados ou realizarmos operações
 
