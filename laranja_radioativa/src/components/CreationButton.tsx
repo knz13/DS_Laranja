@@ -55,7 +55,7 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
     })
 
     return <>
-    <View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%'},style]}>
+    <Animated.View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%'},style]}>
     <TouchableOpacity style={[{alignItems:'center',width:'100%'}]} onPress={() => {
         if(onPress){
             onPress();
@@ -88,6 +88,6 @@ export const CreationButton = ({children,title,onPress,style,textStyle,backButto
             </Modal>
         </Animated.View>
     </TouchableOpacity>
-    </View>
+    </Animated.View>
     </>
 }

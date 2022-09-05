@@ -25,9 +25,9 @@ export const TelaDeRaces = () => {
     })
 
     const renderItem = ({item}) => {
-        return <PageButton style={{alignSelf:'center',marginVertical:2}} title={item.race_name} onPress={() => {}}>
+        return <PageButton style={{alignSelf:'center',marginVertical:2,width:'70%'}} title={item.race_name} onPress={() => {}}>
         </PageButton>
     }
 
-    return <FlatList showsVerticalScrollIndicator={false} style={{width:'70%'}} contentContainerStyle={{marginTop:'20%',paddingBottom:'50%'}} data={races} renderItem={renderItem}></FlatList>
+    return <FlatList showsVerticalScrollIndicator={false} style={{width:'100%'}} contentContainerStyle={{marginTop:'20%',paddingBottom:'50%'}} data={races} renderItem={renderItem}></FlatList>
 }
