@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import { AppColors, Styles } from "../styles"
 import { useHeaderHeight } from '@react-navigation/elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Window } from "../geral";
 
 
 interface ViewInterface {
@@ -16,6 +17,7 @@ export const MainView = ({children,style} : ViewInterface) => {
     return <Pressable style={{flex:1}} onPress={() => {
         Keyboard.dismiss()
     }}><KeyboardAwareScrollView
+    style={[{width:Window.width},style]}
     contentContainerStyle={[Styles.mainView,style]}
     scrollEnabled={false}
     >

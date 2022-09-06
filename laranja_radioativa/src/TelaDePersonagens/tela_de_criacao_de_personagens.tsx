@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { View,Text, TouchableOpacity } from "react-native"
-import { DBContext } from "./../geral"
+import { DBContext, GlobalContext } from "./../geral"
 import { AppColors, AppConstants, Styles } from "./../styles"
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainView } from "./../components/MainView";
@@ -15,7 +15,7 @@ import { TelaDePericias } from "./tela_de_pericias";
 import { TelaInfoSecundaria } from "./tela_info_secundaria";
 import { TelaInfoAdicional } from "./tela_info_adicional";
 import { MainTextInput } from "../components/MainTextInput";
-
+import { PersonagemContext } from "./tela_de_personagens";
 
 
 
@@ -26,7 +26,9 @@ export const TelaDeCriacaoDePersonagens = () => {
     const [attributes,setAttributes] = useState([{}]);
     const [specificClass,setSpecificClassData] = useState('');
     const db = useContext(DBContext);
-
+    const global = useContext(GlobalContext);
+    const personagem = useContext(PersonagemContext);
+    
     const textoDosBotoes = ['classes','raças','atributos','proficiências','salvaguardas','perícias','informações secundárias','informações adicionais']
 
     const renderizarDentroDoBotao = (nome : string) => {
@@ -52,9 +54,8 @@ export const TelaDeCriacaoDePersonagens = () => {
 
 
     return <MainView>
-        <View style={{}}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingTop:'40%',paddingBottom:'20%',width:'100%'}}>
             <MainTextInput title={'Nome do personagem'}></MainTextInput>
-            <MainTextInput textInputProps={{multiline: true}} title={"Descrição"}></MainTextInput>
             <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
             {[...Array(textoDosBotoes.length/2)].map((item,index) => {
                 return <View style={{flexDirection: "row",width:'100%',marginVertical:'5%'}}>
@@ -64,7 +65,32 @@ export const TelaDeCriacaoDePersonagens = () => {
                 </View>
             })}
             </View>
-        </View>
+            <PageButton title={'background'} style={{marginTop:20}}></PageButton>
+            <PageButton title={'Criar'} onPress={() => {
+                fetch('https://dnd-party.herokuapp.com/database/character',{
+                    method:'POST',
+                    headers:{
+                        'x-access-token':global.token
+                    }
+                }).then(response => response.json()).then(json => {
+                    if(json['state'] == 'success'){
+                        const character_id = JSON.parse(json['message'])['character_id'];
+
+                        fetch(`https://dnd-party.herokuapp.com/database/character/${character_id}`,{
+                            method:'PATCH',
+                            headers:{
+                                'x-access-token':global.token
+                            },
+                            body:JSON.stringify({
+                                class:personagem.classe,
+                                race:personagem.race,
+                                attributes:personagem.atributos
+                            })
+                        }); 
+                    }
+                })
+            }} style={{marginTop:20}}></PageButton>
+        </ScrollView>
 
     </MainView>
     
