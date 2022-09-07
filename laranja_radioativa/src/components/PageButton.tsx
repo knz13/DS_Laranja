@@ -5,6 +5,7 @@ import { CreationButton } from "./CreationButton"
 import { MainView } from "./MainView"
 import BackButton from '../components/BackButton'
 import { Window } from "../geral"
+import Animated from "react-native-reanimated"
 
 
 
@@ -22,26 +23,13 @@ interface PageButtonInterface {
 }
 
 
-export const PageButton = ({title,children,textStyle,style,onPress,mainViewStyle,shouldGoBack,textRender,onBack}:PageButtonInterface) => {
-    return <CreationButton shouldGoBack={shouldGoBack} textRender={textRender}
-    headerRender={(backFunc) => {
-        return <View style={{width:'100%',height:'13%',top:0,backgroundColor:AppColors.azul_escuro_fundo,borderBottomWidth:1,borderBottomColor:'white'}}>
-            <View style={{height:'50%'}}></View>
-            <View style={{flexDirection:'row',alignSelf:'center',width:'100%',justifyContent:'center',alignItems:'center'}}>
-                <TouchableOpacity style={{alignSelf:'center',alignItems:'center',position:'absolute',left:Window.width/15,width:Window.width/15,height:Window.width/15,transform:[{scaleX:-1}]}} onPress={() => {
-                        if(onBack){
-                            onBack();
-                        }
-                        backFunc()
-                    }}>
-                        <BackButton fill={AppColors.azul}></BackButton>
-                </TouchableOpacity>
-                <Text style={{color:'white',fontSize:25,alignSelf:'center',fontFamily:'inter'}}>{title}</Text>
-                <Text style={{position:'absolute',right:Window.width/15}}></Text>
-            </View>
-        </View>
-    }}
-    style={[{backgroundColor:AppColors.azul,borderRadius:15},style]} textStyle={[{fontFamily:'inter',color:'white',fontSize:17},textStyle]} onPress={onPress} title={title}>{children && <MainView style={mainViewStyle}>
-            {children}
-        </MainView>}</CreationButton>
+export const PageButton = ({title,textStyle,style,onPress,textRender}:PageButtonInterface) => {
+    return <Animated.View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%',backgroundColor:AppColors.azul,borderRadius:15},style]}>
+    <TouchableOpacity  onPress={onPress} style={[{alignItems:'center',width:'100%'}]}>
+        <Animated.View style={[{alignSelf:'center',width:'96%'}]}>
+        {textRender?.valueOf() == null && <Text style={[{margin:'3%',alignSelf:'center',fontFamily:'exo',color:'white',fontSize:20},textStyle]}>{title}</Text>}
+        {textRender}
+    </Animated.View>
+    </TouchableOpacity>
+    </Animated.View>
 }

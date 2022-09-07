@@ -15,7 +15,8 @@ import { TelaDePericias } from "./tela_de_pericias";
 import { TelaInfoSecundaria } from "./tela_info_secundaria";
 import { TelaInfoAdicional } from "./tela_info_adicional";
 import { MainTextInput } from "../components/MainTextInput";
-import { PersonagemContext } from "./tela_de_personagens";
+import { DadosSobrePersonagemContext, PersonagemContext } from "./tela_de_personagens";
+import { useNavigation } from "@react-navigation/native";
 
 
 
@@ -28,28 +29,62 @@ export const TelaDeCriacaoDePersonagens = () => {
     const db = useContext(DBContext);
     const global = useContext(GlobalContext);
     const personagem = useContext(PersonagemContext);
-    
+    const navigation = useNavigation();
+    const dadosContext = useContext(DadosSobrePersonagemContext);
     const textoDosBotoes = ['classes','raças','atributos','proficiências','salvaguardas','perícias','informações secundárias','informações adicionais']
+
+    useEffect(() => {
+        if(dadosContext.classes.length == 0){
+            db.readTransaction(tx => {
+                tx.executeSql(`SELECT * FROM classes`,[],(tx,result) => {
+                    dadosContext.classes = (result.rows._array);
+                })
+            })
+        }
+        if(dadosContext.racas.length == 0){
+            db.readTransaction(tx => {
+                tx.executeSql(`SELECT * FROM races`,[],(tx,result) => {
+                    dadosContext.racas = (result.rows._array);
+                })
+            })
+        }
+    })
 
     const renderizarDentroDoBotao = (nome : string) => {
         if(nome == "classes") {
-            return <TelaDeClasses></TelaDeClasses>
+            return () => {
+                navigation.navigate("Personagens/Criacao/Classes");
+            }
         } else if (nome == 'raças') {
-            return <TelaDeRaces></TelaDeRaces>
+            return () => {
+                navigation.navigate("Personagens/Criacao/Racas");
+            }
         } else if (nome == 'atributos') {
-            return <TelaDeAtributos></TelaDeAtributos>
+            return () => {
+                navigation.navigate("Personagens/Criacao/Atributos");
+            }
         } else if (nome == 'proficiências') {
-
+            return () => {
+                navigation.navigate("Personagens/Criacao/Proficiencias");
+            }
         } else if (nome == 'salvaguardas') {
- 
+            return () => {
+                navigation.navigate("Personagens/Criacao/Salvaguardas");
+            }
         } else if (nome == 'perícias') {
-            return <TelaDePericias></TelaDePericias>
+            return () => {
+                navigation.navigate("Personagens/Criacao/Pericias");
+            }
         } else if (nome == 'informações secundárias') {
-            return <TelaInfoSecundaria></TelaInfoSecundaria>
+            return () => {
+                navigation.navigate("Personagens/Criacao/InfoSecundarias");
+            }
         } else if (nome == 'informações adicionais') {
-            return <TelaInfoAdicional></TelaInfoAdicional>
+            return () => {
+                navigation.navigate("Personagens/Criacao/InfoAdicionais");
+            }
         } 
-        return <View></View>
+        return () => {}
     }
 
 
@@ -59,9 +94,9 @@ export const TelaDeCriacaoDePersonagens = () => {
             <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
             {[...Array(textoDosBotoes.length/2)].map((item,index) => {
                 return <View style={{flexDirection: "row",width:'100%',marginVertical:'5%'}}>
-                    <PageButton title={textoDosBotoes[index*2]}>{renderizarDentroDoBotao(textoDosBotoes[index*2])}</PageButton>
+                    <PageButton title={textoDosBotoes[index*2]} onPress={renderizarDentroDoBotao(textoDosBotoes[index*2])}></PageButton>
                     <View style={{width:'7%'}}></View>
-                    <PageButton title={textoDosBotoes[index*2+1]}>{renderizarDentroDoBotao(textoDosBotoes[index*2+1])}</PageButton>
+                    <PageButton title={textoDosBotoes[index*2+1]} onPress={renderizarDentroDoBotao(textoDosBotoes[index*2+1])}></PageButton>
                 </View>
             })}
             </View>

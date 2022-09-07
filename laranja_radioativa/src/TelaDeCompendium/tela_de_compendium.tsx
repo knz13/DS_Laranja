@@ -39,7 +39,6 @@ export const TelaDeCompendium = () => {
                 <View style={{flex:0.75,width:Window.width*0.75}}>
                 {item_types.map(type => <PageButton title={type} style={styles1.button} >
                     <SubTela_Button type={type} />
-
                 </PageButton>)}
                 </View>  
             </Compendium_Context.Provider> 

@@ -15,15 +15,16 @@ import * as FileSystem from 'expo-file-system'
 
 interface MenuButtonInterface {
   text:string,
-  children?:React.ReactNode
+  children?:React.ReactNode,
+  onPress?:() => void
 }
 
 export const TelaDeMenu = () => {
 
     const navigation = useNavigation();
 
-    const MenuButton = ({text,children} : MenuButtonInterface) => {
-      return <PageButton textStyle={{fontFamily:'exo',color:'white'}} title={text} style={{backgroundColor:AppColors.azul,marginVertical:'2%',width:'100%',alignSelf:'center'}}>
+    const MenuButton = ({text,children,onPress} : MenuButtonInterface) => {
+      return <PageButton textStyle={{fontFamily:'exo',color:'white'}} onPress={onPress} title={text} style={{backgroundColor:AppColors.azul,marginVertical:'2%',width:'100%',alignSelf:'center'}}>
         {children}
       </PageButton>
     }
@@ -45,14 +46,17 @@ export const TelaDeMenu = () => {
             </TouchableOpacity>
           </View>
         <View style={{alignItems:'center',justifyContent:'center',height:'25%'}}>
-          <MenuButton text={"AVENTURAS"}>
-            <TelaDeAventuras></TelaDeAventuras>
+          <MenuButton text={"AVENTURAS"} onPress={() => {
+            navigation.navigate('Aventuras');
+          }}>
           </MenuButton>
-          <MenuButton text={"PERSONAGENS"}>
-            <TelaDePersonagens></TelaDePersonagens>
+          <MenuButton text={"PERSONAGENS"} onPress={() => {
+            navigation.navigate('Personagens');
+          }}>
           </MenuButton  >
-          <MenuButton text={"COMPENDIUM"}>
-            <TelaDeCompendium></TelaDeCompendium>
+          <MenuButton text={"COMPENDIUM"} onPress={() => {
+            navigation.navigate('Compendium');
+          }}>
           </MenuButton>
         </View>
       </MainView>

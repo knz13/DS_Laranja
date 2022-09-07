@@ -54,7 +54,11 @@ export const TelaDeLogin = () => {
                                     navigation.navigate('Menu');
                                 }
                                 else {
-                                    alert(json['message']);
+                                    if(json['status'] == 440){
+                                        Filesystem.deleteAsync(Filesystem.documentDirectory + 'text.txt');
+                                        setMyToken(null);
+                                        alert(json['message']);
+                                    }
                                 }
                             }))
                 })

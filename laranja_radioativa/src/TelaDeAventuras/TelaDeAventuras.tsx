@@ -9,6 +9,7 @@ import { PageButton } from "../components/PageButton";
 import { PopupCard } from "../components/PopupCard";
 import { MainTextInput } from "../components/MainTextInput";
 import {TelaPrincipalMestre} from '../TelaDeJogo/TelaPrincipalMestre'
+import { useNavigation } from "@react-navigation/native";
 
 
 
@@ -21,8 +22,9 @@ export const TelaDeAventuras = () => {
     const [shouldShowCreationPopup,setShowCreationPopup] = useState(false);
     const [shouldGoBack,setShouldGoBack] = useState(false);
     const [showPopup,setShowPopup] = useState(false);
-    let roomName = useRef('').current
+   
     const global = useContext(GlobalContext)
+    const navigation = useNavigation();
 
     const getSalas = () => {
         const promise = fetch('https://dnd-party.herokuapp.com/database/rooms',{
@@ -36,10 +38,9 @@ export const TelaDeAventuras = () => {
     
             promise.then(response => response.json()).then(json => {
                 try {
-                    console.log(json['message'])
-                    if(JSON.parse(json['message'])['rooms']){
+                    if(json['state'] == 'success'){
                         console.log('setting salas!')
-                        setSalas(JSON.parse(json['message'])['rooms']);
+                        setSalas(JSON.parse(json['message']));
                     }
                     else {
                         console.log(json['message'])
@@ -58,9 +59,9 @@ export const TelaDeAventuras = () => {
         return <PageButton style={{margin:2,backgroundColor:AppColors.azul_escuro_extra,borderWidth:2,borderColor:AppColors.azul,borderRadius:10}} textRender={(() => {
                 return <View style={{width:'100%'}}>
                 <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{item.number_of_players == null? 0 : item.number_of_players}</Text>
-                <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item.room_name}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item}</Text>
                 </View>
-            })()} title={item.room_name}>
+            })()} title={item}>
                 <TelaPrincipalMestre></TelaPrincipalMestre>
             </PageButton>
     }
@@ -70,39 +71,17 @@ export const TelaDeAventuras = () => {
         getSalas()
     }
     return <MainView>
-        <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas} renderItem={renderItem}></FlatList>
+        <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas? Object.keys(salas) : []} renderItem={renderItem}></FlatList>
         <PageButton
         title={'ADICIONAR'} 
         textStyle={{fontSize:20}}
         style={{alignSelf:'center',width:'50%',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
         mainViewStyle={{alignItems:'center',justifyContent:'center'}}
         shouldGoBack={shouldGoBack}
+        onPress={() => {
+            navigation.navigate("Aventuras/Adicao")
+        }}
         >
-            <View style={{width:'100%'}}>
-                <View style={{height:'40%'}}></View>
-                <MainTextInput title={'Nome da Sala'} onChangeText={(text) => roomName = text}></MainTextInput>
-                <PageButton title={'Criar'} onPress={() => {
-                    fetch('https://dnd-party.herokuapp.com/database/rooms',{
-                        method:'POST',
-                        headers:{
-                            Accept:'application/json',
-                            'Content-Type':'application/json',
-                            'x-access-token':global.token
-                        },
-                        body:JSON.stringify({room_name:roomName})
-                    }).then((res) => res.json()).then((json) => {
-                        if(json['state'] == 'success'){
-                            alert('room created!')
-                            getSalas()
-                            setShouldGoBack(false)
-                            setShouldGoBack(true)
-                        }
-                        else {
-                            alert(json['message'])
-                        }
-                    })
-                }} style={{alignSelf:'center'}}></PageButton>
-            </View>
         </PageButton>
     </MainView>
 }

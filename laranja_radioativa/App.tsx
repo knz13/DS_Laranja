@@ -2,14 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState,Component } from 'react';
 import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { NavigationContainer,NavigationProp } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps,NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './src/TelaDeLogin/tela_de_login';
 import { TelaDeMenu } from './src/TelaDeMenu/tela_de_menu';
 import { TelaDePersonagens } from './src/TelaDePersonagens/tela_de_personagens';
 import { TelaDeCompendium } from './src/TelaDeCompendium/tela_de_compendium';
-import { DBContext, GlobalContext } from './src/geral';
+import { DBContext, GlobalContext, Window } from './src/geral';
 import * as SQLite from 'expo-sqlite'
 import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
@@ -17,7 +17,16 @@ import { TelaDeCadastro } from './src/TelaDeLogin/tela_de_cadastro';
 import { TelaDeCriacaoDePersonagens } from './src/TelaDePersonagens/tela_de_criacao_de_personagens';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
-
+import BackButton from './src/components/BackButton'
+import { AppColors } from './src/styles';
+import { HeaderProps } from 'react-native-elements';
+import { TelaDeAventuras } from './src/TelaDeAventuras/TelaDeAventuras';
+import { TelaDeClasses } from './src/TelaDePersonagens/tela_de_classes';
+import { TelaDeRaces } from './src/TelaDePersonagens/tela_de_races';
+import { TelaDeAtributos } from './src/TelaDePersonagens/tela_de_atributos';
+import { TelaDePericias } from './src/TelaDePersonagens/tela_de_pericias';
+import { MainView } from './src/components/MainView';
+import { TelaDeAdicaoDeSalas } from './src/TelaDeAventuras/TelaDeAdicaoDeSalas';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -47,12 +56,33 @@ const loadingFunc = async () => {
 
 export default function App() {
 
+
+
   loadingFunc();
 
   useFonts({
     'exo':require('./assets/fonts/Exo2-Bold.ttf'),
     'inter':require('./assets/fonts/Inter-SemiBold.ttf')
   })
+
+  const HeaderFunc = ({props,titulo}) => {
+    
+    return <View style={{width:'100%',height:Window.height/8,backgroundColor:AppColors.azul_escuro_fundo,borderWidth:1,borderBottomColor:'white'}}>
+    <View style={{height:'50%'}}></View>
+    <View style={{flexDirection:'row',alignSelf:'center',width:'100%',justifyContent:'center',alignItems:'center'}}>
+        <TouchableOpacity style={{alignSelf:'center',alignItems:'center',position:'absolute',left:Window.width/15,width:Window.width/15,height:Window.width/15,transform:[{scaleX:-1}]}} onPress={() => {
+                props.navigation.goBack();
+                
+            }}>
+                <BackButton fill={AppColors.azul}></BackButton>
+        </TouchableOpacity>
+        <Text style={{color:'white',fontSize:25,alignSelf:'center',fontFamily:'inter'}}>{titulo.toUpperCase()}</Text>
+        <Text style={{position:'absolute',right:Window.width/15}}></Text>
+    </View>
+    </View>
+  }
+
+ 
 
   return (
     <GlobalContext.Provider value={{token:null}}>
@@ -68,6 +98,16 @@ export default function App() {
         > 
           <Stack.Screen name="Login" component={TelaDeLogin} options={{gestureEnabled:false,headerLeft: () => <></>,headerShown:false}}></Stack.Screen>
           <Stack.Screen name="Menu" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={TelaDeMenu} />
+          <Stack.Screen name="Personagens" options={{header:(props) => <HeaderFunc props={props} titulo={'personagens'}></HeaderFunc>}} component={TelaDePersonagens} />
+          <Stack.Screen name="Personagens/Criacao" options={{header:(props) => <HeaderFunc props={props} titulo={'criação'}></HeaderFunc>}} component={TelaDeCriacaoDePersonagens} />
+          <Stack.Screen name="Personagens/Criacao/Classes" options={{header:(props) => <HeaderFunc props={props} titulo={'classes'}></HeaderFunc>}} component={TelaDeClasses} />
+          <Stack.Screen name="Personagens/Criacao/Racas" options={{header:(props) => <HeaderFunc props={props} titulo={'raças'}></HeaderFunc>}} component={TelaDeRaces} />
+          <Stack.Screen name="Personagens/Criacao/Atributos" options={{header:(props) => <HeaderFunc props={props} titulo={'atributos'}></HeaderFunc>}} component={TelaDeAtributos} />
+          <Stack.Screen name="Personagens/Criacao/Pericias" options={{header:(props) => <HeaderFunc props={props} titulo={'perícias'}></HeaderFunc>}} component={TelaDePericias} />
+          <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
+          <Stack.Screen name="Aventuras/Adicao" options={{header:(props) => <HeaderFunc props={props} titulo={'Adicionar'}></HeaderFunc>}} component={TelaDeAdicaoDeSalas} />
+          <Stack.Screen name="Compendium" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaDeCompendium} />
+          
         </Stack.Navigator>
       </NavigationContainer>
       </DBContext.Provider>
