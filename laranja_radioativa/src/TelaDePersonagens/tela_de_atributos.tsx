@@ -9,6 +9,7 @@ import { MainTextInput } from "../components/MainTextInput"
 import { PopupCard } from "../components/PopupCard"
 import { AlertPopup } from "../components/AlertPopup"
 import { useNavigation } from "@react-navigation/native"
+import { PersonagemContext } from "./tela_de_personagens"
 
 
 
@@ -16,19 +17,12 @@ import { useNavigation } from "@react-navigation/native"
 
 export const TelaDeAtributos = () => {
 
-    const [atributos,setAtributos] = useState([] as Array<any>)
+    
     const navigation = useNavigation();
-
-    let forca = useRef('').current;
-    let destreza = useRef('').current;
-    let constituicao = useRef('').current;
-    let inteligencia = useRef('').current;
-    let sabedoria = useRef('').current;
-    let carisma = useRef('').current;
+    const personagem = useContext(PersonagemContext);
 
     return <MainView>
         <View style={{width:Window.width/1.8}}>
-
         <PageButton 
         title="?" 
         style= {{width:'25%',height:'10%',marginBottom:'5%',alignItems:'center'}}
@@ -38,35 +32,28 @@ export const TelaDeAtributos = () => {
         </PageButton>
         
         <MainTextInput title="Força" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            forca = text;
-            console.log(forca);
+            personagem.atributos.forca = text;
         }}></MainTextInput>
 
         <MainTextInput title="Destreza" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            destreza = text;
-            console.log(destreza);
+            personagem.atributos.destreza = text;
         }}></MainTextInput>
         
         <MainTextInput title="Constituição" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            constituicao = text;
-            console.log(constituicao);
+            personagem.atributos.constituicao = text;
         }}></MainTextInput>
         
         <MainTextInput title="Inteligência" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            inteligencia = text;
-            console.log(inteligencia);
+            personagem.atributos.inteligencia = text;
         }}></MainTextInput>
 
         <MainTextInput title="Sabedoria" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            sabedoria = text;
-            console.log(sabedoria);
+            personagem.atributos.sabedoria = text;
         }}></MainTextInput>
         
         <MainTextInput title="Carisma" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            carisma = text;
-            console.log(carisma);
+            personagem.atributos.carisma = text;
         }}></MainTextInput>
-
         </View>
     </MainView>
 }

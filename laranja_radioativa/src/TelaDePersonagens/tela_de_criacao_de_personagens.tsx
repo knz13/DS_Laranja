@@ -31,7 +31,7 @@ export const TelaDeCriacaoDePersonagens = () => {
     const personagem = useContext(PersonagemContext);
     const navigation = useNavigation();
     const dadosContext = useContext(DadosSobrePersonagemContext);
-    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais','proficiências','background']
+    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais','proficiências','backstory']
 
     useEffect(() => {
         if(dadosContext.classes.length == 0){
@@ -87,7 +87,7 @@ export const TelaDeCriacaoDePersonagens = () => {
             return () => {
                 navigation.navigate("Personagens/Criacao/Proficiencias");
             }
-        } else if (nome == 'background') {
+        } else if (nome == 'backstory') {
             return () => {
                 navigation.navigate("Personagens/Criacao/Background");
             }
@@ -98,7 +98,7 @@ export const TelaDeCriacaoDePersonagens = () => {
 
     return <MainView>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingTop:'40%',paddingBottom:'20%',width:'100%'}}>
-            <MainTextInput title={'Nome do personagem'}></MainTextInput>
+            <MainTextInput title={'Nome do personagem'} onChangeText={text => personagem.nome = text}></MainTextInput>
             <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
             {[...Array(textoDosBotoes.length/2)].map((item,index) => {
                 return <View style={{flexDirection: "row",width:'100%',marginVertical:'5%'}}>
@@ -118,18 +118,20 @@ export const TelaDeCriacaoDePersonagens = () => {
                 }).then(response => response.json()).then(json => {
                     if(json['state'] == 'success'){
                         const character_id = JSON.parse(json['message'])['character_id'];
-
+                        
                         fetch(`https://dnd-party.herokuapp.com/database/character/${character_id}`,{
                             method:'PATCH',
                             headers:{
                                 'x-access-token':global.token
                             },
                             body:JSON.stringify({
+                                character_name:personagem.nome,
                                 class:personagem.classe,
                                 race:personagem.race,
-                                attributes:personagem.atributos
+                                background:personagem.background,
+                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`
                             })
-                        }); 
+                        }).then(response => response.json()).then(json => console.log(json)); 
                     }
                 })
             }} style={{marginTop:20}}></PageButton>

@@ -12,7 +12,7 @@ import { TelaDeCriacaoDePersonagens } from "./tela_de_criacao_de_personagens";
 
 
 
-export const PersonagemContext = React.createContext({classe:'',race:'',atributos:''});
+export const PersonagemContext = React.createContext({classe:'',race:'',atributos:{forca:'0',destreza:'0',constituicao:'0',sabedoria:'0',carisma:'0',inteligencia:'0'},nome:'',skills:'',background:''});
 export const DadosSobrePersonagemContext = React.createContext({classes:[] as Array<any>,racas:[] as Array<any>});
 
 
@@ -28,8 +28,8 @@ export const TelaDePersonagens = () => {
         return <View></View>
     }
 
-    return <DadosSobrePersonagemContext.Provider>
-    <PersonagemContext.Provider value={{classe:'',race:'',atributos:''}}>
+    return <DadosSobrePersonagemContext.Provider value={{classes:null,racas:null}}>
+    <PersonagemContext.Provider value={{classe:'',race:'',atributos:{},nome:'',skills:'',background:''}}>
         <MainView>
         <FlatList style={{width:'80%'}} data={dados} renderItem={renderItem}></FlatList>
         <PageButton 

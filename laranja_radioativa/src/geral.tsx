@@ -23,6 +23,6 @@ export const Window = {
     height: Dimensions.get("window").height
 };
 
-export const GlobalContext = createContext({token:null as string})
+export const GlobalContext = createContext({token:null as string,compendium_items: null as Object})
 
 export const DBContext = createContext(null as SQLite.WebSQLDatabase);

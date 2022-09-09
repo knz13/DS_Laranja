@@ -36,6 +36,7 @@ import { TelaDeProficiencias } from './src/TelaDePersonagens/tela_de_proficienci
 import { TelaDeSalvaguardas } from './src/TelaDePersonagens/tela_de_salvaguardas';
 import { TelaDeBackground } from './src/TelaDePersonagens/tela_de_background';
 import { TelaDeBackgroundInstrucoes } from './src/TelaDePersonagens/tela_de_background_instrucoes';
+import { TelaGenericaCompendium } from './src/TelaDeCompendium/tela_generica';
 
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -94,7 +95,7 @@ export default function App() {
  
 
   return (
-    <GlobalContext.Provider value={{token:null}}>
+    <GlobalContext.Provider value={{token:null,compendium_items:{}}}>
     <DBContext.Provider value={(() => {
       return SQLite.openDatabase('mainDB.db');
     })()}>
@@ -125,6 +126,7 @@ export default function App() {
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
           <Stack.Screen name="Aventuras/Adicao" options={{header:(props) => <HeaderFunc props={props} titulo={'Adicionar'}></HeaderFunc>}} component={TelaDeAdicaoDeSalas} />
           <Stack.Screen name="Compendium" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaDeCompendium} />
+          <Stack.Screen name="Compendium/TelaGenerica" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaGenericaCompendium} />
           
         </Stack.Navigator>
       </NavigationContainer>
