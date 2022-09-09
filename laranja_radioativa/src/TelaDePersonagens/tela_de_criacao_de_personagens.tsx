@@ -77,7 +77,7 @@ export const TelaDeCriacaoDePersonagens = () => {
             }
         } else if (nome == 'informações secundárias') {
             return () => {
-                navigation.navigate("Personagens/Criacao/InfoSecundarias");
+                navigation.navigate("Personagens/Criacao/InfoSecundaria");
             }
         } else if (nome == 'informações adicionais') {
             return () => {
