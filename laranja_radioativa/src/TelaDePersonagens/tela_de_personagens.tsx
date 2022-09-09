@@ -12,7 +12,7 @@ import { TelaDeCriacaoDePersonagens } from "./tela_de_criacao_de_personagens";
 
 
 
-export const PersonagemContext = React.createContext({classe:'',race:'',atributos:{forca:'0',destreza:'0',constituicao:'0',sabedoria:'0',carisma:'0',inteligencia:'0'},nome:'',skills:'',background:''});
+export const PersonagemContext = React.createContext({id_do_personagem:'',classe:'',race:'',atributos:{forca:'0',destreza:'0',constituicao:'0',sabedoria:'0',carisma:'0',inteligencia:'0'},nome:'',skills:'',background:''});
 export const DadosSobrePersonagemContext = React.createContext({classes:[] as Array<any>,racas:[] as Array<any>});
 
 
@@ -26,7 +26,9 @@ export const TelaDePersonagens = () => {
 
     const renderItem = ({item}) => {
         // renderizar personagem
-        return <PageButton title={item.character_name}></PageButton>
+        return <PageButton title={item.character_name} onPress={() => {
+            
+        }}></PageButton>
     }
 
     useEffect(() => {

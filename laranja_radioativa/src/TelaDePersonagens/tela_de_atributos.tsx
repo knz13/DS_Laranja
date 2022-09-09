@@ -17,9 +17,9 @@ import { PersonagemContext } from "./tela_de_personagens"
 
 export const TelaDeAtributos = () => {
 
-    
     const navigation = useNavigation();
     const personagem = useContext(PersonagemContext);
+
 
     return <MainView>
         <View style={{width:Window.width/1.8}}>
@@ -31,7 +31,7 @@ export const TelaDeAtributos = () => {
         }}>
         </PageButton>
         
-        <MainTextInput title="Força" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
+        <MainTextInput title="Força"  textInputProps={{keyboardType:'numeric',defaultValue:personagem.atributos.forca}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
             personagem.atributos.forca = text;
         }}></MainTextInput>
 

@@ -59,8 +59,8 @@ export const TelaDeAventuras = () => {
     const renderItem = ({item}) => {
         return <PageButton style={{margin:2,backgroundColor:AppColors.azul_escuro_extra,borderWidth:2,borderColor:AppColors.azul,borderRadius:10}} textRender={(() => {
                 return <View style={{width:'100%'}}>
-                <Text style={{color:AppColors.white,margin:10,textAlign:'center',left: 0,position:'absolute'}}>{item.number_of_players == null? 0 : item.number_of_players}</Text>
-                <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{item.number_of_players == null? 0 : item.number_of_players}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center',left: 0,position:'absolute'}}>{salas[item].type}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{salas[item].size}</Text>
                 <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item}</Text>
                 </View>
             })()} title={item}>

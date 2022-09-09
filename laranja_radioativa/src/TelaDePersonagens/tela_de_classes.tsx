@@ -20,7 +20,7 @@ export const TelaDeClasses = () => {
     const db = useContext(DBContext)
     const personagem = useContext(PersonagemContext);
     const dadosContext = useContext(DadosSobrePersonagemContext);
-    const classe = useSharedValue('');
+    const classe = useSharedValue(personagem.classe);
     
     const RenderItem = ({item}) => {
         const style = useAnimatedStyle(() => {
