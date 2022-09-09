@@ -16,7 +16,6 @@ import { useNavigation } from "@react-navigation/native"
 
 export const TelaDeAtributos = () => {
 
-    // const db = useContext(DBContext)
     const [atributos,setAtributos] = useState([] as Array<any>)
     const navigation = useNavigation();
 

@@ -31,7 +31,7 @@ export const TelaDeCriacaoDePersonagens = () => {
     const personagem = useContext(PersonagemContext);
     const navigation = useNavigation();
     const dadosContext = useContext(DadosSobrePersonagemContext);
-    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais']
+    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais','proficiências','background']
 
     useEffect(() => {
         if(dadosContext.classes.length == 0){
@@ -83,6 +83,14 @@ export const TelaDeCriacaoDePersonagens = () => {
             return () => {
                 navigation.navigate("Personagens/Criacao/InfoAdicionais");
             }
+        } else if (nome == 'proficiências') {
+            return () => {
+                navigation.navigate("Personagens/Criacao/Proficiencias");
+            }
+        } else if (nome == 'background') {
+            return () => {
+                navigation.navigate("Personagens/Criacao/Background");
+            }
         } 
         return () => {}
     }
@@ -100,7 +108,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 </View>
             })}
             </View>
-            <PageButton title={'background'} style={{marginTop:20}}></PageButton>
+
             <PageButton title={'Criar'} onPress={() => {
                 fetch('https://dnd-party.herokuapp.com/database/character',{
                     method:'POST',
