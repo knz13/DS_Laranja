@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react"
 import { PageButton } from "../components/PageButton"
-import { DBContext } from "../geral"
+import { DBContext, Window } from "../geral"
 import { AppColors } from "../styles"
 import { View,Text, TouchableOpacity } from "react-native"
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView"
 import { useNavigation } from "@react-navigation/native"
+import { MainTextInput } from "../components/MainTextInput"
 
 
 
@@ -16,44 +17,73 @@ export const TelaInfoAdicional = () => {
 
     return <MainView>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Traços de Personalidade</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
-                </View>
-                
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Ideais</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+    <View style={{width:Window.width/1.5,alignItems:'center'}}>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Ligações</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Traços de Personalidade" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Defeitos</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Ideais" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>       
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Aparência do Personagem</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Ligações" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>História</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Defeitos" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Aliados e Organizações</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View>
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Aparência do Personagem" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
 
-                <Text style={{color:AppColors.azul_escuro_fundo}}>Informações Adicionais/Outros</Text>
-                <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <TextInput style={{margin:'3%',color:AppColors.white}}></TextInput>
-                </View> 
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="História" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
+
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Aliados e Organizações" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
+
+        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
+            <MainTextInput title="Informações Adicionais/Outros" 
+            textInputProps={{keyboardType:'default'}} 
+            textStyle={{textAlign:'center'}}
+            style={{margin:'3%',height:80}}>
+            </MainTextInput>
+        </View>
+
+    </View>
+    
     </MainView>
 }
