@@ -5,30 +5,20 @@ import { AppColors } from "../styles"
 import { View,Text, TouchableOpacity } from "react-native"
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView"
+import { useNavigation } from "@react-navigation/native"
 
 
 
-
+// nao esta funcionando socorro 
 
 export const TelaInfoAdicional = () => {
-
-    // const db = useContext(DBContext)
-    const [atributos,setAtributos] = useState([] as Array<any>)
-
-    
-    // useEffect(() => {
-    //     db.readTransaction(tx => {
-    //         tx.executeSql(`SELECT * FROM races`,[],(tx,result) => {
-    //             setRaces(result.rows._array);
-    //         })
-    //     })
-    // })
+    const navigation = useNavigation();
 
     return <MainView>
 
                 <Text style={{color:AppColors.azul_escuro_fundo}}>Traços de Personalidade</Text>
                 <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                    <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
+                <TextInput style={{margin:'3%',color:AppColors.white,height:80}}></TextInput>
                 </View>
                 
                 <Text style={{color:AppColors.azul_escuro_fundo}}>Ideais</Text>

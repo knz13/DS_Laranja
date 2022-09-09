@@ -31,7 +31,7 @@ export const TelaDeCriacaoDePersonagens = () => {
     const personagem = useContext(PersonagemContext);
     const navigation = useNavigation();
     const dadosContext = useContext(DadosSobrePersonagemContext);
-    const textoDosBotoes = ['classes','raças','atributos','proficiências','salvaguardas','perícias','informações secundárias','informações adicionais']
+    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais']
 
     useEffect(() => {
         if(dadosContext.classes.length == 0){
@@ -63,9 +63,9 @@ export const TelaDeCriacaoDePersonagens = () => {
             return () => {
                 navigation.navigate("Personagens/Criacao/Atributos");
             }
-        } else if (nome == 'proficiências') {
+        } else if (nome == 'modificadores') {
             return () => {
-                navigation.navigate("Personagens/Criacao/Proficiencias");
+                navigation.navigate("Personagens/Criacao/Modificadores");
             }
         } else if (nome == 'salvaguardas') {
             return () => {

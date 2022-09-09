@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native"
 
 
 
-export const TelaDeAtributos = () => {
+export const TelaDeModificadores = () => {
 
     // const db = useContext(DBContext)
     const [atributos,setAtributos] = useState([] as Array<any>)
@@ -34,7 +34,7 @@ export const TelaDeAtributos = () => {
         title="?" 
         style= {{width:'25%',height:'10%',marginBottom:'5%',alignItems:'center'}}
         onPress={() => {
-            navigation.navigate('Personagens/Criacao/Atributos/Instrucoes')
+            navigation.navigate('Personagens/Criacao/Modificadores/Instrucoes')
         }}>
         </PageButton>
         
