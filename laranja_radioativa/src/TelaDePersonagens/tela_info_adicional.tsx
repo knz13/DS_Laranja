@@ -17,11 +17,13 @@ export const TelaInfoAdicional = () => {
 
     return <MainView>
 
-    <View style={{width:Window.width/1.5,alignItems:'center'}}>
+    <ScrollView>
+
+        <View style={{width:Window.width/1.5,alignItems:'center'}}>
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Traços de Personalidade" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -29,7 +31,7 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Ideais" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -37,7 +39,7 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Ligações" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -45,7 +47,7 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Defeitos" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -53,15 +55,7 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Aparência do Personagem" 
-            textInputProps={{keyboardType:'default'}} 
-            textStyle={{textAlign:'center'}}
-            style={{margin:'3%',height:80}}>
-            </MainTextInput>
-        </View>
-
-        <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-            <MainTextInput title="História" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -69,7 +63,7 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Aliados e Organizações" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
@@ -77,13 +71,15 @@ export const TelaInfoAdicional = () => {
 
         <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
             <MainTextInput title="Informações Adicionais/Outros" 
-            textInputProps={{keyboardType:'default'}} 
+            textInputProps={{keyboardType:'default',multiline:true}} 
             textStyle={{textAlign:'center'}}
             style={{margin:'3%',height:80}}>
             </MainTextInput>
         </View>
 
-    </View>
+        </View>
+
+    </ScrollView>
     
     </MainView>
 }

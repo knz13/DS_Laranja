@@ -65,14 +65,6 @@ export const TelaInfoSecundaria = () => {
                 </MainTextInput>
             </View>
 
-            <View style={{borderWidth:1,margin:'3%',width:'70%',borderColor:AppColors.azul_escuro_fundo}}>
-                <MainTextInput title="Bônus de Proficiências" 
-                textInputProps={{keyboardType:'default'}} 
-                textStyle={{textAlign:'center'}}
-                style={{margin:'3%',height:80}}>
-                </MainTextInput>
-            </View>
-
         </View>
 
     </MainView>
