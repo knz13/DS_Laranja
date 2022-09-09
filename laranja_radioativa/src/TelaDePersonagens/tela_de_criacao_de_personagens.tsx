@@ -122,16 +122,23 @@ export const TelaDeCriacaoDePersonagens = () => {
                         fetch(`https://dnd-party.herokuapp.com/database/character/${character_id}`,{
                             method:'PATCH',
                             headers:{
-                                'x-access-token':global.token
+                                'x-access-token':global.token,
+                                'Content-Type': 'application/json'
                             },
                             body:JSON.stringify({
                                 character_name:personagem.nome,
                                 class:personagem.classe,
                                 race:personagem.race,
                                 background:personagem.background,
-                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`
+                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`,
+                                template:true
                             })
-                        }).then(response => response.json()).then(json => console.log(json)); 
+                        }).then(response => response.json()).then(json => {
+                            if(json['state'] == "success"){
+                                alert('Personagem criado!');
+                                navigation.navigate('Personagens');
+                            }
+                        });
                     }
                 })
             }} style={{marginTop:20}}></PageButton>

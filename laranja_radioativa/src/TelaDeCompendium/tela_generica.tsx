@@ -1,4 +1,4 @@
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useContext } from "react"
 import { Text } from "react-native"
@@ -16,8 +16,11 @@ interface subtelaInterface {
 export const TelaGenericaCompendium = (prop: NativeStackScreenProps<{},'Compendium/TelaGenerica'>) => {
     
     const global = useContext(GlobalContext);
+    const navigation = useNavigation();
     const renderItem = ({item}) => {
-        return <PageButton style={{margin:'2%'}} title={item.item_name}>
+        return <PageButton style={{margin:'2%'}} title={item.item_name} onPress={() => {
+            navigation.navigate('Compendium/TelaGenerica/TelaDiscricaoGenerica',{item:item})
+        }}>
             {item.description =! 'null' && (<Text>{item.description}</Text>)}
         </PageButton>
     }

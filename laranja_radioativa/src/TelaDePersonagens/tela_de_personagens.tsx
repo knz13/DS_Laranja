@@ -1,6 +1,6 @@
-import {Props, Window} from "../geral";
-import React, { useState,Component } from 'react';
-import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, SectionList } from 'react-native';
+import {GlobalContext, Props, Window} from "../geral";
+import React, { useState,Component, useEffect, useContext } from 'react';
+import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, SectionList, DatePickerIOS } from 'react-native';
 import { AppColors, Styles } from "../styles";
 import { NavigationContainer, NavigationProp, StackActions, useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
@@ -20,18 +20,31 @@ export const TelaDePersonagens = () => {
     const [dados,setDados] = useState([]);
     const navigation = useNavigation();
     const [id,setId] = useState(-1);
-
+    const global = useContext(GlobalContext);
     
 
     const renderItem = ({item}) => {
         // renderizar personagem
-        return <View></View>
+        return <PageButton title={item.character_name}></PageButton>
     }
+
+    useEffect(() => {
+        if(dados.length == 0){
+            fetch('https://dnd-party.herokuapp.com/database/character',{
+                method:'GET',
+                headers:{
+                    'x-access-token':global.token
+                }
+            }).then(response => response.json()).then(json => {
+                setDados(JSON.parse(json['message']))
+            })
+        }
+    })
 
     return <DadosSobrePersonagemContext.Provider value={{classes:null,racas:null}}>
     <PersonagemContext.Provider value={{classe:'',race:'',atributos:{},nome:'',skills:'',background:''}}>
         <MainView>
-        <FlatList style={{width:'80%'}} data={dados} renderItem={renderItem}></FlatList>
+        <FlatList  style={{width:'80%'}} contentContainerStyle={{paddingTop:'20%'}} data={dados} renderItem={renderItem}></FlatList>
         <PageButton 
         title={'Adicionar'} 
         textStyle={{fontSize:20}}
