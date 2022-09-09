@@ -20,7 +20,7 @@ export const TelaDeRaces = () => {
     const db = useContext(DBContext)
     const dadosContext = useContext(DadosSobrePersonagemContext);
     const personagem = useContext(PersonagemContext);
-    const race = useSharedValue('');
+    const race = useSharedValue(personagem.race);
 
     //const renderItem = ({item}) => {
     //    return <PageButton style={{alignSelf:'center',marginVertical:2,width:'70%'}} title={item.race_name} onPress={() => {}}>

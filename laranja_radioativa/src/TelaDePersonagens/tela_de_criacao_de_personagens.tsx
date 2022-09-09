@@ -7,7 +7,7 @@ import { MainView } from "./../components/MainView";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import Animated,{SlideInDown} from "react-native-reanimated";
 import { PageButton } from "./../components/PageButton";
-import { SafeAreaView } from "react-navigation";
+import { NavigationScreenProp, SafeAreaView } from "react-navigation";
 import { TelaDeClasses } from "./tela_de_classes";
 import { TelaDeRaces } from "./tela_de_races";
 import { TelaDeAtributos } from "./tela_de_atributos";
@@ -15,25 +15,32 @@ import { TelaDePericias } from "./tela_de_pericias";
 import { TelaInfoSecundaria } from "./tela_info_secundaria";
 import { TelaInfoAdicional } from "./tela_info_adicional";
 import { MainTextInput } from "../components/MainTextInput";
-import { DadosSobrePersonagemContext, PersonagemContext } from "./tela_de_personagens";
+import { DadosSobrePersonagemContext, GerarDadosPersonagem, PersonagemContext } from "./tela_de_personagens";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 
 
-export const TelaDeCriacaoDePersonagens = () => {
+export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
     const [classes,setClasses] = useState([{}]);
     const [races,setRaces] = useState([{}]);
     const [attributes,setAttributes] = useState([{}]);
     const [specificClass,setSpecificClassData] = useState('');
     const db = useContext(DBContext);
     const global = useContext(GlobalContext);
-    const personagem = useContext(PersonagemContext);
+    let personagem = useContext(PersonagemContext);
     const navigation = useNavigation();
     const dadosContext = useContext(DadosSobrePersonagemContext);
     const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais','proficiências','backstory']
 
+
+    
+
     useEffect(() => {
+        
+        
+
         if(dadosContext.classes.length == 0){
             db.readTransaction(tx => {
                 tx.executeSql(`SELECT * FROM classes`,[],(tx,result) => {
@@ -48,6 +55,7 @@ export const TelaDeCriacaoDePersonagens = () => {
                 })
             })
         }
+     
     })
 
     const renderizarDentroDoBotao = (nome : string) => {
@@ -98,7 +106,7 @@ export const TelaDeCriacaoDePersonagens = () => {
 
     return <MainView>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingTop:'40%',paddingBottom:'20%',width:'100%'}}>
-            <MainTextInput title={'Nome do personagem'} onChangeText={text => personagem.nome = text}></MainTextInput>
+            <MainTextInput title={'Nome do personagem'} textInputProps={{defaultValue:personagem.nome}} onChangeText={text => personagem.nome = text}></MainTextInput>
             <View style={{width:'40%',marginTop:'5%',alignItems:'center'}}>
             {[...Array(textoDosBotoes.length/2)].map((item,index) => {
                 return <View style={{flexDirection: "row",width:'100%',marginVertical:'5%'}}>
@@ -109,7 +117,8 @@ export const TelaDeCriacaoDePersonagens = () => {
             })}
             </View>
 
-            <PageButton title={'Criar'} onPress={() => {
+            <PageButton title={personagem.id_do_personagem == ''? 'Criar' : 'Modificar'} onPress={() => {
+                if(personagem.id_do_personagem == ''){
                 fetch('https://dnd-party.herokuapp.com/database/character',{
                     method:'POST',
                     headers:{
@@ -140,6 +149,27 @@ export const TelaDeCriacaoDePersonagens = () => {
                         });
                     }
                 })
+                } else {
+                    fetch(`https://dnd-party.herokuapp.com/database/character/${personagem.id_do_personagem}`,{
+                            method:'PATCH',
+                            headers:{
+                                'x-access-token':global.token,
+                                'Content-Type': 'application/json'
+                            },
+                            body:JSON.stringify({
+                                character_name:personagem.nome,
+                                class:personagem.classe,
+                                race:personagem.race,
+                                background:personagem.background,
+                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`
+                            })
+                        }).then(response => response.json()).then(json => {
+                            if(json['state'] == "success"){
+                                alert('Personagem atualizado!');
+                                navigation.navigate('Personagens');
+                            }
+                        });
+                }
             }} style={{marginTop:20}}></PageButton>
         </ScrollView>
 

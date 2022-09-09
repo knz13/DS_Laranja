@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './src/TelaDeLogin/tela_de_login';
 import { TelaDeMenu } from './src/TelaDeMenu/tela_de_menu';
-import { TelaDePersonagens } from './src/TelaDePersonagens/tela_de_personagens';
+import { GerarDadosPersonagem, PersonagemContext, TelaDePersonagens } from './src/TelaDePersonagens/tela_de_personagens';
 import { TelaDeCompendium } from './src/TelaDeCompendium/tela_de_compendium';
 import { DBContext, GlobalContext, Window } from './src/geral';
 import * as SQLite from 'expo-sqlite'
@@ -75,12 +75,15 @@ export default function App() {
     'inter':require('./assets/fonts/Inter-SemiBold.ttf')
   })
 
-  const HeaderFunc = ({props,titulo}) => {
+  const HeaderFunc = ({props,titulo,backFunc} : {props:any,titulo:string,backFunc?:() => void}) => {
     
     return <View style={{width:'100%',height:Window.height/8,backgroundColor:AppColors.azul_escuro_fundo,borderWidth:1,borderBottomColor:'white'}}>
     <View style={{height:'50%'}}></View>
     <View style={{flexDirection:'row',alignSelf:'center',width:'100%',justifyContent:'center',alignItems:'center'}}>
         <TouchableOpacity style={{alignSelf:'center',alignItems:'center',position:'absolute',left:Window.width/15,width:Window.width/15,height:Window.width/15,transform:[{scaleX:-1}]}} onPress={() => {
+                if(backFunc){
+                  backFunc()
+                }
                 props.navigation.goBack();
                 
             }}>
@@ -95,6 +98,7 @@ export default function App() {
  
 
   return (
+    <PersonagemContext.Provider value={GerarDadosPersonagem()}>
     <GlobalContext.Provider value={{token:null,compendium_items:{}}}>
     <DBContext.Provider value={(() => {
       return SQLite.openDatabase('mainDB.db');
@@ -132,6 +136,7 @@ export default function App() {
       </NavigationContainer>
       </DBContext.Provider>
       </GlobalContext.Provider>
+      </PersonagemContext.Provider>
     );
 
 }

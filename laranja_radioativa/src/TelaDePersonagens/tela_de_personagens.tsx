@@ -7,27 +7,43 @@ import { FlatList } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView";
 import { PageButton } from "../components/PageButton";
 import { TelaDeCriacaoDePersonagens } from "./tela_de_criacao_de_personagens";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 
+export const GerarDadosPersonagem = () => {
+    return {id_do_personagem:'',classe:'',race:'',atributos:{forca:'10',destreza:'10',constituicao:'10',sabedoria:'10',carisma:'10',inteligencia:'10'},nome:'',skills:'',background:''}
+}
 
-
-export const PersonagemContext = React.createContext({id_do_personagem:'',classe:'',race:'',atributos:{forca:'0',destreza:'0',constituicao:'0',sabedoria:'0',carisma:'0',inteligencia:'0'},nome:'',skills:'',background:''});
+export const PersonagemContext = React.createContext(GerarDadosPersonagem());
 export const DadosSobrePersonagemContext = React.createContext({classes:[] as Array<any>,racas:[] as Array<any>});
 
 
-export const TelaDePersonagens = () => {
+export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
     const [dados,setDados] = useState([]);
     const [dadosSet,setDadosSet] = useState(false);
     const navigation = useNavigation();
     const [id,setId] = useState(-1);
     const global = useContext(GlobalContext);
-    
+    const personagem = useContext(PersonagemContext);
 
+    
     const renderItem = ({item}) => {
         // renderizar personagem
         return <PageButton title={item.character_name} onPress={() => {
-            
+            console.log(JSON.stringify(item))
+            personagem.id_do_personagem = item.character_id;
+            personagem.nome = item.character_name;
+            personagem.classe = item.class;
+            personagem.race = item.race;
+            const atributos = item.attributes.split(' ');
+            personagem.atributos.forca = atributos[0]
+            personagem.atributos.destreza = atributos[1]
+            personagem.atributos.constituicao = atributos[2]
+            personagem.atributos.inteligencia = atributos[3]
+            personagem.atributos.sabedoria = atributos[4]
+            personagem.atributos.carisma = atributos[5]
+            navigation.navigate('Personagens/Criacao')
         }}></PageButton>
     }
 
@@ -46,7 +62,7 @@ export const TelaDePersonagens = () => {
     })
 
     return <DadosSobrePersonagemContext.Provider value={{classes:null,racas:null}}>
-    <PersonagemContext.Provider value={{classe:'',race:'',atributos:{},nome:'',skills:'',background:''}}>
+    
         <MainView>
         <FlatList  style={{width:'80%'}} contentContainerStyle={{paddingTop:'20%'}} data={dados} renderItem={renderItem}></FlatList>
         <PageButton 
@@ -58,7 +74,6 @@ export const TelaDePersonagens = () => {
         }}>
         </PageButton>
     </MainView>
-    </PersonagemContext.Provider>
     </DadosSobrePersonagemContext.Provider>
 }
 
