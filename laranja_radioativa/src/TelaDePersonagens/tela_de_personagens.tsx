@@ -18,6 +18,7 @@ export const DadosSobrePersonagemContext = React.createContext({classes:[] as Ar
 
 export const TelaDePersonagens = () => {
     const [dados,setDados] = useState([]);
+    const [dadosSet,setDadosSet] = useState(false);
     const navigation = useNavigation();
     const [id,setId] = useState(-1);
     const global = useContext(GlobalContext);
@@ -29,7 +30,7 @@ export const TelaDePersonagens = () => {
     }
 
     useEffect(() => {
-        if(dados.length == 0){
+        if(!dadosSet){
             fetch('https://dnd-party.herokuapp.com/database/character',{
                 method:'GET',
                 headers:{
@@ -37,6 +38,7 @@ export const TelaDePersonagens = () => {
                 }
             }).then(response => response.json()).then(json => {
                 setDados(JSON.parse(json['message']))
+                setDadosSet(true);
             })
         }
     })
