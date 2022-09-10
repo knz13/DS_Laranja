@@ -27,13 +27,34 @@ export const TelaDeCompendium = () => {
     useEffect(() => {
         let dict = {}
         item_types.map((type) => {
+        switch(type){
+            case 'Armor':
+                db.readTransaction(tx => {
+                    tx.executeSql('SELECT * FROM items INNER JOIN armors ON armors.item_id = items.item_id',[type],(tx,result) => {
+                        dict[type] = (result.rows._array)},(tx,err) => {
+                        console.log(err.message)
+                        return false; })
+                })
+                break;
+            case 'Weapon':
+                db.readTransaction(tx => {
+                    tx.executeSql('SELECT * FROM items INNER JOIN weapons ON weapons.item_id = items.item_id',[type],(tx,result) => {
+                        dict[type] = (result.rows._array)},(tx,err) => {
+                        console.log(err.message)
+                        return false; })
+                })
+                break;
+                
 
-        db.readTransaction(tx => {
-            tx.executeSql('SELECT * FROM items WHERE item_type = ?',[type],(tx,result) => {
-                dict[type] = (result.rows._array)},(tx,err) => {
-                console.log(err.message)
-                return false; })
-        })})
+            default:
+                db.readTransaction(tx => {
+                    tx.executeSql('SELECT * FROM items WHERE item_type = ?',[type],(tx,result) => {
+                        dict[type] = (result.rows._array)},(tx,err) => {
+                        console.log(err.message)
+                        return false; })
+                })
+        }
+        })
         global.compendium_items = dict;
     })
     return <MainView>
