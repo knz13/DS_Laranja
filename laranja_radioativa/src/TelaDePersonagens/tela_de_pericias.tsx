@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { PageButton } from "../components/PageButton"
 import { DBContext } from "../geral"
 import { AppColors } from "../styles"
@@ -6,6 +6,8 @@ import { View,Text, TouchableOpacity } from "react-native"
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView"
 import { MainTextInput } from "../components/MainTextInput"
+import { PersonagemContext } from "./tela_de_personagens"
+import { useNavigation } from "@react-navigation/native"
 
 
 
@@ -13,51 +15,76 @@ import { MainTextInput } from "../components/MainTextInput"
 
 export const TelaDePericias = () => {
 
-    let acrobacia = useRef('').current;
-    let arcanismo = useRef('').current;
-    let atletismo = useRef('').current;
-    let atuacao = useRef('').current;
-    let enganacao = useRef('').current;
-    let furtividade = useRef('').current;
-    let historia = useRef('').current;
-    let intimidacao = useRef('').current;
-    let intuicao = useRef('').current;
-    let investigacao = useRef('').current;
-    let lidarComAnimais = useRef('').current;
-    let medicina = useRef('').current;
-    let natureza = useRef('').current;
-    let percepcao = useRef('').current;
-    let persuasao = useRef('').current;
-    let prestidigitacao = useRef('').current;
-    let religiao = useRef('').current;
-    let sobrevivencia = useRef('').current;
+    const navigation = useNavigation();
+    const personagem = useContext(PersonagemContext);
+
+
+    const [acrobacia,setAcrobacia] = useState(parseInt(personagem.pericias.acrobacia));
+    const [arcanismo,setArcanismo] = useState(parseInt(personagem.pericias.arcanismo));
+    const [atletismo,setAtletismo] = useState(parseInt(personagem.pericias.atletismo));
+    const [atuacao,setAtuacao] = useState(parseInt(personagem.pericias.atuacao));
+    const [enganacao,setEnganacao] = useState(parseInt(personagem.pericias.enganacao));
+    const [furtividade,setFurtividade] = useState(parseInt(personagem.pericias.furtividade));
+    const [historia,setHistoria] = useState(parseInt(personagem.pericias.historia));
+    const [intimidacao,setIntimidacao] = useState(parseInt(personagem.pericias.intimidacao));
+    const [intuicao,setIntuicao] = useState(parseInt(personagem.pericias.intuicao));
+    const [investigacao,setInvestigacao] = useState(parseInt(personagem.pericias.investigacao));
+    const [lidarComAnimais,setLidarComAnimais] = useState(parseInt(personagem.pericias.lidarComAnimais));
+    const [medicina,setMedicina] = useState(parseInt(personagem.pericias.medicina));
+    const [natureza,setNatureza] = useState(parseInt(personagem.pericias.natureza));
+    const [percepcao,setPercepcao] = useState(parseInt(personagem.pericias.percepcao));
+    const [persuasao,setPersuasao] = useState(parseInt(personagem.pericias.persuasao));
+    const [prestidigitacao,setPrestidigitacao] = useState(parseInt(personagem.pericias.prestidigitacao));
+    const [religiao,setReligiao] = useState(parseInt(personagem.pericias.religiao));
+    const [sobrevivencia,setSobrevivencia] = useState(parseInt(personagem.pericias.sobrevivencia));
+    
+
+    useEffect(() => {
+
+        personagem.pericias.acrobacia = acrobacia.toString();
+        personagem.pericias.arcanismo = arcanismo.toString();
+        personagem.pericias.atletismo = atletismo.toString();
+        personagem.pericias.atuacao = atuacao.toString();
+        personagem.pericias.enganacao = enganacao.toString();
+        personagem.pericias.furtividade = furtividade.toString();
+        personagem.pericias.historia = historia.toString();
+        personagem.pericias.intimidacao = intimidacao.toString();
+        personagem.pericias.intuicao = intuicao.toString();
+        personagem.pericias.investigacao = investigacao.toString();
+        personagem.pericias.lidarComAnimais = lidarComAnimais.toString();
+        personagem.pericias.medicina = medicina.toString();
+        personagem.pericias.natureza = natureza.toString();
+        personagem.pericias.percepcao = percepcao.toString();
+        personagem.pericias.persuasao = persuasao.toString();
+        personagem.pericias.prestidigitacao = prestidigitacao.toString();
+        personagem.pericias.religiao = religiao.toString();
+        personagem.pericias.sobrevivencia = sobrevivencia.toString();
+
+    },[acrobacia,arcanismo,atletismo,atuacao,enganacao,furtividade,historia,intimidacao,intuicao,investigacao,lidarComAnimais,medicina,natureza,percepcao,persuasao,prestidigitacao,religiao,sobrevivencia]);
+
+    const renderItem = (title:string,func:(text:string) => void,value:number) => {
+        return <MainTextInput title={`${title}`} textInputProps={{keyboardType:'numeric',defaultValue:value.toString() != 'NaN'? value.toString() : ''}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
+                if(func){
+                    func(text)
+                }
+        }}></MainTextInput>
+    }
+
 
     return <MainView>
 
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Acrobacia" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            acrobacia = text;
-            console.log(acrobacia);
-            }}>
-            </MainTextInput>
+            {renderItem('Acrobacia',text => setAcrobacia(parseInt(text)),acrobacia)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Arcanismo" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            arcanismo = text;
-            console.log(arcanismo);
-            }}>
-            </MainTextInput>
+            {renderItem('Arcanismo',text => setArcanismo(parseInt(text)),arcanismo)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Atletismo" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            atletismo = text;
-            console.log(atletismo);
-            }}>
-            </MainTextInput>
+            {renderItem('Atletismo',text => setAtletismo(parseInt(text)),atletismo)}
         </View>
 
         </View>
@@ -67,27 +94,15 @@ export const TelaDePericias = () => {
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Atuação" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            atuacao = text;
-            console.log(atuacao);
-            }}>
-            </MainTextInput>
+            {renderItem('Atuação',text => setAtuacao(parseInt(text)),atuacao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Enganação" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            enganacao = text;
-            console.log(enganacao);
-            }}>
-            </MainTextInput>
+            {renderItem('Enganação',text => setEnganacao(parseInt(text)),enganacao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Furtividade" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            furtividade = text;
-            console.log(furtividade);
-            }}>
-            </MainTextInput>
+            {renderItem('Furtividade',text => setFurtividade(parseInt(text)),furtividade)}
         </View>
 
         </View>
@@ -97,27 +112,15 @@ export const TelaDePericias = () => {
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="História" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            historia = text;
-            console.log(historia);
-            }}>
-            </MainTextInput>
+            {renderItem('História',text => setHistoria(parseInt(text)),historia)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Intimidação" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            intimidacao = text;
-            console.log(intimidacao);
-            }}>
-            </MainTextInput>
+            {renderItem('Intimidação',text => setIntimidacao(parseInt(text)),intimidacao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Intuição" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            intuicao = text;
-            console.log(intuicao);
-            }}>
-            </MainTextInput>
+            {renderItem('Intuição',text => setIntuicao(parseInt(text)),intuicao)}
         </View>
 
         </View>
@@ -127,27 +130,15 @@ export const TelaDePericias = () => {
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Investigação" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            investigacao = text;
-            console.log(investigacao);
-            }}>
-            </MainTextInput>
+            {renderItem('Investigação',text => setInvestigacao(parseInt(text)),investigacao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Lidar com Animais" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            lidarComAnimais = text;
-            console.log(lidarComAnimais);
-            }}>
-            </MainTextInput>
+            {renderItem('Lidar com Animais',text => setLidarComAnimais(parseInt(text)),lidarComAnimais)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Medicina" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            medicina = text;
-            console.log(medicina);
-            }}>
-            </MainTextInput>
+            {renderItem('Medicina',text => setMedicina(parseInt(text)),medicina)}
         </View>
 
         </View>
@@ -157,27 +148,15 @@ export const TelaDePericias = () => {
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Natureza" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            natureza = text;
-            console.log(natureza);
-            }}>
-            </MainTextInput>
+            {renderItem('Natureza',text => setNatureza(parseInt(text)),natureza)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Percepção" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            percepcao = text;
-            console.log(percepcao);
-            }}>
-            </MainTextInput>
+            {renderItem('Percepção',text => setPercepcao(parseInt(text)),percepcao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Persuasão" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            persuasao = text;
-            console.log(persuasao);
-            }}>
-            </MainTextInput>
+            {renderItem('Persuasão',text => setPersuasao(parseInt(text)),persuasao)}
         </View>
 
         </View>
@@ -187,27 +166,15 @@ export const TelaDePericias = () => {
         <View style={{flexDirection:'row',width:'80%',justifyContent:'space-between'}}>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Prestidigitação" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            prestidigitacao = text;
-            console.log(prestidigitacao);
-            }}>
-            </MainTextInput>
+            {renderItem('Prestidigitação',text => setPrestidigitacao(parseInt(text)),prestidigitacao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Religião" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            religiao = text;
-            console.log(religiao);
-            }}>
-            </MainTextInput>
+            {renderItem('Religião',text => setReligiao(parseInt(text)),religiao)}
         </View>
 
         <View style={{width:'30%'}}>
-            <MainTextInput title="Sobrevivência" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            sobrevivencia = text;
-            console.log(sobrevivencia);
-            }}>
-            </MainTextInput>
+            {renderItem('Sobrevivência',text => setSobrevivencia(parseInt(text)),sobrevivencia)}
         </View>
 
         </View>

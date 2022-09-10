@@ -12,7 +12,43 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 export const GerarDadosPersonagem = () => {
-    return {id_do_personagem:'',classe:'',race:'',atributos:{forca:'10',destreza:'10',constituicao:'10',sabedoria:'10',carisma:'10',inteligencia:'10'},nome:'',skills:'',background:''}
+    return {
+        id_do_personagem:'',
+        classe:'',
+        race:'',
+        atributos:{
+            forca:'10',
+            destreza:'10',
+            constituicao:'10',
+            sabedoria:'10',
+            carisma:'10',
+            inteligencia:'10'
+        },
+        nome:'',
+        skills:'',
+        background:'',
+        nivel:'1',
+        pericias:{
+            acrobacia:'10',
+            arcanismo:'10',
+            atletismo:'10',
+            atuacao:'10',
+            enganacao:'10',
+            furtividade:'10',
+            historia:'10',
+            intimidacao:'10',
+            intuicao:'10',
+            investigacao:'10',
+            lidarComAnimais:'10',
+            medicina:'10',
+            natureza:'10',
+            percepcao:'10',
+            persuasao:'10',
+            prestidigitacao:'10',
+            religiao:'10',
+            sobrevivencia:'10'
+        }
+    }
 }
 
 export const PersonagemContext = React.createContext(GerarDadosPersonagem());
@@ -43,6 +79,7 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
             personagem.atributos.inteligencia = atributos[3]
             personagem.atributos.sabedoria = atributos[4]
             personagem.atributos.carisma = atributos[5]
+            
             navigation.navigate('Personagens/Criacao')
         }}></PageButton>
     }
