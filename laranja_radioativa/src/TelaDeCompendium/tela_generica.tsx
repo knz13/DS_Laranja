@@ -18,7 +18,7 @@ export const TelaGenericaCompendium = (prop: NativeStackScreenProps<{},'Compendi
     const global = useContext(GlobalContext);
     const navigation = useNavigation();
     const renderItem = ({item}) => {
-        return <PageButton style={{margin:'2%'}} title={item.item_name} onPress={ () => navigation.navigate('Compendium/TelaGenerica/TelaDescricaoGenerica',{type: item.type, item_id: item.item_id})}/>
+        return <PageButton style={{margin:'2%'}} title={item.item_name} onPress={ () => navigation.navigate('Compendium/TelaGenerica/TelaDescricaoGenerica',{type:item.item_type,id:item.item_id})}/>
     }
 
     return <MainView>
