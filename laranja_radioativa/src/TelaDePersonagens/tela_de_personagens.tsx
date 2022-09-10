@@ -15,12 +15,7 @@ export const GerarDadosPersonagem = () => {
     return {id_do_personagem:'',classe:'',race:'',atributos:{forca:'10',destreza:'10',constituicao:'10',sabedoria:'10',carisma:'10',inteligencia:'10'},nome:'',skills:'',background:''}
 }
 
-<<<<<<< Updated upstream
 export const PersonagemContext = React.createContext(GerarDadosPersonagem());
-=======
-
-export const PersonagemContext = React.createContext({id_do_personagem:'',classe:'',race:'',atributos:{forca:'0',destreza:'0',constituicao:'0',sabedoria:'0',carisma:'0',inteligencia:'0'},nome:'',skills:'',background:'',nivel:'1'});
->>>>>>> Stashed changes
 export const DadosSobrePersonagemContext = React.createContext({classes:[] as Array<any>,racas:[] as Array<any>});
 
 
