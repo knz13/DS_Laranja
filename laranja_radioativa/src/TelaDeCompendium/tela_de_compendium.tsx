@@ -36,7 +36,6 @@ export const TelaDeCompendium = () => {
         })})
         global.compendium_items = dict;
     })
-
     return <MainView>
             <View style={{flex:0.75,width:Window.width*0.75}}>
             {item_types.map(type => <PageButton title={type} style={styles1.button} onPress={() => {
