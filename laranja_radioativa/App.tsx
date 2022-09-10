@@ -125,7 +125,7 @@ export default function App() {
           <Stack.Screen name="Personagens/Criacao/Salvaguardas" options={{header:(props) => <HeaderFunc props={props} titulo={'salvaguardas'}></HeaderFunc>}} component={TelaDeSalvaguardas} />
           <Stack.Screen name="Personagens/Criacao/Modificadores/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeModificadoresInstrucoes} />
           <Stack.Screen name="Personagens/Criacao/Proficiencias" options={{header:(props) => <HeaderFunc props={props} titulo={'proficiências'}></HeaderFunc>}} component={TelaDeProficiencias} />
-          <Stack.Screen name="Personagens/Criacao/Background" options={{header:(props) => <HeaderFunc props={props} titulo={'background'}></HeaderFunc>}} component={TelaDeBackground} />
+          <Stack.Screen name="Personagens/Criacao/Background" options={{header:(props) => <HeaderFunc props={props} titulo={'backstory'}></HeaderFunc>}} component={TelaDeBackground} />
           <Stack.Screen name="Personagens/Criacao/Background/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeBackgroundInstrucoes} />
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
           <Stack.Screen name="Aventuras/Adicao" options={{header:(props) => <HeaderFunc props={props} titulo={'Adicionar'}></HeaderFunc>}} component={TelaDeAdicaoDeSalas} />

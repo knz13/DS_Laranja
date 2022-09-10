@@ -12,8 +12,6 @@ import { useNavigation } from "@react-navigation/native"
 
 
 
-
-
 export const TelaDeSalvaguardas = () => {
 
     const navigation = useNavigation();
