@@ -28,13 +28,13 @@ import { AppColors } from "../styles";
       }
     },[isFocused])
 
-
+    console.log(item)
     return <ScrollView contentContainerStyle={{paddingBottom:'20%',paddingTop:'20%'}} style={{flex:1,
       alignSelf:'center',
       width:'100%',
       backgroundColor:AppColors.azul_escuro_fundo}}>
 
-      {item.description != 'null' && 
+      {item.description != null && 
       <View>
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 50,marginRight:'10%'}}>{item.item_name}</Text>
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Description</Text>
