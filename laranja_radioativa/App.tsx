@@ -29,10 +29,7 @@ import { MainView } from './src/components/MainView';
 import { TelaDeAdicaoDeSalas } from './src/TelaDeAventuras/TelaDeAdicaoDeSalas';
 import { TelaDeAtributosInstrucoes } from './src/TelaDePersonagens/tela_de_atributos_instrucoes';
 import { TelaInfoAdicional } from './src/TelaDePersonagens/tela_info_adicional';
-import { TelaDeModificadores } from './src/TelaDePersonagens/tela_de_modificadores';
-import { TelaDeModificadoresInstrucoes } from './src/TelaDePersonagens/tela_de_modificadores_instrucoes';
 import { TelaInfoSecundaria } from './src/TelaDePersonagens/tela_info_secundaria';
-import { TelaDeProficiencias } from './src/TelaDePersonagens/tela_de_proficiencias';
 import { TelaDeSalvaguardas } from './src/TelaDePersonagens/tela_de_salvaguardas';
 import { TelaDeBackground } from './src/TelaDePersonagens/tela_de_background';
 import { TelaDeBackgroundInstrucoes } from './src/TelaDePersonagens/tela_de_background_instrucoes';
@@ -121,10 +118,7 @@ export default function App() {
           <Stack.Screen name="Personagens/Criacao/Pericias" options={{header:(props) => <HeaderFunc props={props} titulo={'perícias'}></HeaderFunc>}} component={TelaDePericias} />
           <Stack.Screen name="Personagens/Criacao/InfoAdicionais" options={{header:(props) => <HeaderFunc props={props} titulo={'info adicional'}></HeaderFunc>}} component={TelaInfoAdicional} />
           <Stack.Screen name="Personagens/Criacao/InfoSecundaria" options={{header:(props) => <HeaderFunc props={props} titulo={'info secundária'}></HeaderFunc>}} component={TelaInfoSecundaria} />
-          <Stack.Screen name="Personagens/Criacao/Modificadores" options={{header:(props) => <HeaderFunc props={props} titulo={'modificadores'}></HeaderFunc>}} component={TelaDeModificadores} />
-          <Stack.Screen name="Personagens/Criacao/Salvaguardas" options={{header:(props) => <HeaderFunc props={props} titulo={'salvaguardas'}></HeaderFunc>}} component={TelaDeSalvaguardas} />
-          <Stack.Screen name="Personagens/Criacao/Modificadores/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeModificadoresInstrucoes} />
-          <Stack.Screen name="Personagens/Criacao/Proficiencias" options={{header:(props) => <HeaderFunc props={props} titulo={'proficiências'}></HeaderFunc>}} component={TelaDeProficiencias} />
+          <Stack.Screen name="Personagens/Criacao/Salvaguardas" options={{header:(props) => <HeaderFunc props={props} titulo={'proficiências e salvaguardas'}></HeaderFunc>}} component={TelaDeSalvaguardas} />
           <Stack.Screen name="Personagens/Criacao/Background" options={{header:(props) => <HeaderFunc props={props} titulo={'background'}></HeaderFunc>}} component={TelaDeBackground} />
           <Stack.Screen name="Personagens/Criacao/Background/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeBackgroundInstrucoes} />
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />

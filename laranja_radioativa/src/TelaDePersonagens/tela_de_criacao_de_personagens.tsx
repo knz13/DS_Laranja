@@ -32,7 +32,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
     let personagem = useContext(PersonagemContext);
     const navigation = useNavigation();
     const dadosContext = useContext(DadosSobrePersonagemContext);
-    const textoDosBotoes = ['classes','raças','atributos','modificadores','salvaguardas','perícias','informações secundárias','informações adicionais','proficiências','backstory']
+    const textoDosBotoes = ['classes','raças','atributos','proficiências e salvaguardas','perícias','informações secundárias','informações adicionais','backstory']
 
 
     
@@ -71,11 +71,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
             return () => {
                 navigation.navigate("Personagens/Criacao/Atributos");
             }
-        } else if (nome == 'modificadores') {
-            return () => {
-                navigation.navigate("Personagens/Criacao/Modificadores");
-            }
-        } else if (nome == 'salvaguardas') {
+        } else if (nome == 'proficiências e salvaguardas') {
             return () => {
                 navigation.navigate("Personagens/Criacao/Salvaguardas");
             }
@@ -90,10 +86,6 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
         } else if (nome == 'informações adicionais') {
             return () => {
                 navigation.navigate("Personagens/Criacao/InfoAdicionais");
-            }
-        } else if (nome == 'proficiências') {
-            return () => {
-                navigation.navigate("Personagens/Criacao/Proficiencias");
             }
         } else if (nome == 'backstory') {
             return () => {
@@ -140,7 +132,8 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                                 race:personagem.race,
                                 background:personagem.background,
                                 attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`,
-                                skills:`${personagem.pericias.acrobacia} ${personagem.pericias.arcanismo} ${personagem.pericias.atletismo} ${personagem.pericias.atuacao} ${personagem.pericias.enganacao} ${personagem.pericias.furtividade} ${personagem.pericias.historia} ${personagem.pericias.intimidacao} ${personagem.pericias.intuicao} ${personagem.pericias.investigacao} ${personagem.pericias.lidarComAnimais} ${personagem.pericias.medicina} ${personagem.pericias.natureza} ${personagem.pericias.percepcao} ${personagem.pericias.persuasao} ${personagem.pericias.prestidigitacao} ${personagem.pericias.religiao} ${personagem.pericias.sobrevivencia}`
+                                skills:`${personagem.pericias.acrobacia} ${personagem.pericias.arcanismo} ${personagem.pericias.atletismo} ${personagem.pericias.atuacao} ${personagem.pericias.enganacao} ${personagem.pericias.furtividade} ${personagem.pericias.historia} ${personagem.pericias.intimidacao} ${personagem.pericias.intuicao} ${personagem.pericias.investigacao} ${personagem.pericias.lidarComAnimais} ${personagem.pericias.medicina} ${personagem.pericias.natureza} ${personagem.pericias.percepcao} ${personagem.pericias.persuasao} ${personagem.pericias.prestidigitacao} ${personagem.pericias.religiao} ${personagem.pericias.sobrevivencia}`,
+                                level:personagem.nivel
                             })
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
@@ -162,7 +155,9 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                                 class:personagem.classe,
                                 race:personagem.race,
                                 background:personagem.background,
-                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`
+                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`,
+                                skills:`${personagem.pericias.acrobacia} ${personagem.pericias.arcanismo} ${personagem.pericias.atletismo} ${personagem.pericias.atuacao} ${personagem.pericias.enganacao} ${personagem.pericias.furtividade} ${personagem.pericias.historia} ${personagem.pericias.intimidacao} ${personagem.pericias.intuicao} ${personagem.pericias.investigacao} ${personagem.pericias.lidarComAnimais} ${personagem.pericias.medicina} ${personagem.pericias.natureza} ${personagem.pericias.percepcao} ${personagem.pericias.persuasao} ${personagem.pericias.prestidigitacao} ${personagem.pericias.religiao} ${personagem.pericias.sobrevivencia}`,
+                                level:personagem.nivel
                             })
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
