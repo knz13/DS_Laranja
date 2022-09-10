@@ -33,26 +33,32 @@ import { AppColors } from "../styles";
       alignSelf:'center',
       width:'100%',
       backgroundColor:AppColors.azul_escuro_fundo}}>
+
       {item.description != 'null' && 
       <View>
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 50,marginRight:'10%'}}>{item.item_name}</Text>
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Description</Text>
       <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
         <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.description}</Text>
+
       </View>
       </View>}
       {item['rarity'] && 
       <View>
+
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Rarity</Text>
       <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
         <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.rarity}</Text>
+
       </View>
       </View>}
       {item['price'] && 
       <View>
+
       <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Price</Text>
       <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
         <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.price}</Text>
+
       </View>
       </View>}
       </ScrollView>
