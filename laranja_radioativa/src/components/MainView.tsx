@@ -16,12 +16,10 @@ export const MainView = ({children,style} : ViewInterface) => {
     const headerHeight = useHeaderHeight();
     return <Pressable style={{flex:1}} onPress={() => {
         Keyboard.dismiss()
-    }}><KeyboardAwareScrollView
-    style={[{width:Window.width}]}
-    contentContainerStyle={[Styles.mainView,style]}
-    scrollEnabled={false}
+    }}><KeyboardAvoidingView
+    style={[{width:Window.width},Styles.mainView,style]} behavior={'height'}
     >
     {children}
-    </KeyboardAwareScrollView>
+    </KeyboardAvoidingView>
     </Pressable>
 }

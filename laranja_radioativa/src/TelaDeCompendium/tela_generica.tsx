@@ -22,6 +22,6 @@ export const TelaGenericaCompendium = (prop: NativeStackScreenProps<{},'Compendi
     }
 
     return <MainView>
-        <FlatList showsVerticalScrollIndicator={false} style={{width:'75%',paddingTop:'20%'}} data={global.compendium_items[prop.route.params['type']]} renderItem={renderItem}></FlatList>
+        <FlatList showsVerticalScrollIndicator={false} style={{width:'75%'}} contentContainerStyle={{paddingBottom:'20%',paddingTop:'20%'}} data={global.compendium_items[prop.route.params['type']]} renderItem={renderItem}></FlatList>
 </MainView>
 }

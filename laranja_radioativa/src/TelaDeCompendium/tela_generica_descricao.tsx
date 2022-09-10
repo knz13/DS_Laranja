@@ -13,8 +13,7 @@ import { AppColors } from "../styles";
 
   export const TelaGenericaCompendiumDescricao = (prop: NativeStackScreenProps<{},'Compendium/TelaGenerica/TelaDescricaoGenerica'>) => {
     
-
-    return <ScrollView style={{flex:1,
+    return <ScrollView contentContainerStyle={{paddingBottom:'20%',paddingTop:'20%'}} style={{flex:1,
       alignSelf:'center',
       width:'100%',
       backgroundColor:AppColors.azul_escuro_fundo}}>

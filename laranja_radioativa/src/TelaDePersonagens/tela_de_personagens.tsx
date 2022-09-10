@@ -1,8 +1,8 @@
-import {GlobalContext, Props, Window} from "../geral";
+import {GlobalContext, Props, useUpdate, Window} from "../geral";
 import React, { useState,Component, useEffect, useContext } from 'react';
 import { StyleSheet,Switch, Text, View,Button, TextInput,TouchableOpacity, Pressable,Keyboard, TouchableHighlight, TouchableWithoutFeedback, ScrollView, SectionList, DatePickerIOS } from 'react-native';
 import { AppColors, Styles } from "../styles";
-import { NavigationContainer, NavigationProp, StackActions, useNavigation } from "@react-navigation/native";
+import { NavigationContainer, NavigationProp, StackActions, useIsFocused, useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 import { MainView } from "../components/MainView";
 import { PageButton } from "../components/PageButton";
@@ -61,9 +61,9 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
     const navigation = useNavigation();
     const [id,setId] = useState(-1);
     const global = useContext(GlobalContext);
-    const personagem = useContext(PersonagemContext);
+    let personagem = useContext(PersonagemContext);
+    const isFocused = useIsFocused();
 
-    
     const renderItem = ({item}) => {
         // renderizar personagem
         return <PageButton title={item.character_name} onPress={() => {
@@ -85,7 +85,7 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
     }
 
     useEffect(() => {
-        if(!dadosSet){
+        if(isFocused){
             fetch('https://dnd-party.herokuapp.com/database/character',{
                 method:'GET',
                 headers:{
@@ -93,13 +93,13 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
                 }
             }).then(response => response.json()).then(json => {
                 setDados(JSON.parse(json['message']))
-                setDadosSet(true);
             })
         }
-    })
+
+        
+    },[isFocused])
 
     return <DadosSobrePersonagemContext.Provider value={{classes:null,racas:null}}>
-    
         <MainView>
         <FlatList  style={{width:'80%'}} contentContainerStyle={{paddingTop:'20%'}} data={dados} renderItem={renderItem}></FlatList>
         <PageButton 
@@ -107,6 +107,7 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
         textStyle={{fontSize:20}}
         style={{bottom:Window.height/15,width:'50%'}}
         onPress={() => {
+            Object.assign(personagem,GerarDadosPersonagem())
             navigation.navigate('Personagens/Criacao')
         }}>
         </PageButton>

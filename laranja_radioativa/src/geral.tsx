@@ -1,5 +1,5 @@
 import { NavigationContainer,NavigationProp } from '@react-navigation/native';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
 import * as SQLite from 'expo-sqlite';
 import { Database } from 'expo-sqlite';
 import * as Crypto from 'expo-crypto';
@@ -22,6 +22,12 @@ export const Window = {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height
 };
+
+export const useUpdate = () => {
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+    return forceUpdate;
+}
 
 export const GlobalContext = createContext({token:null as string,compendium_items: null as Object})
 
