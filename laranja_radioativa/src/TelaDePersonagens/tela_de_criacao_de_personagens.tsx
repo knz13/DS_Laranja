@@ -139,8 +139,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                                 class:personagem.classe,
                                 race:personagem.race,
                                 background:personagem.background,
-                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`,
-                                level:personagem.nivel
+                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`
                             })
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
