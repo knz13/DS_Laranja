@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { PageButton } from "../components/PageButton"
 import { DBContext, GlobalContext, Window } from "../geral"
 import { AppColors } from "../styles"
@@ -13,12 +13,13 @@ import { PersonagemContext } from "./tela_de_personagens"
 
 
 
-
+// nao ta salvando no banco de dados!
 
 export const TelaDeBackground = () => {
 
     const navigation = useNavigation();
     const personagem = useContext(PersonagemContext);
+    const [background,setBackground] = useState(personagem.background);
     const UselessTextInputMultiline = () => {
         const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
     }
@@ -26,6 +27,12 @@ export const TelaDeBackground = () => {
         const [text, onChangeText] = React.useState("Useless Text");
         const [number, onChangeNumber] = React.useState(null);
     }    
+
+    useEffect(() => {
+
+        personagem.background = background.toString();
+        
+    },[background]);
 
     return <MainView>
         <View style={{width:Window.width/1.3,height:Window.height/1.3}}>
@@ -39,10 +46,12 @@ export const TelaDeBackground = () => {
         </PageButton>
 
         <MainTextInput
-        onChangeText={text => personagem.background}
-        title="Backstory" 
+        title="Background" 
         textInputProps={{keyboardType:'default',multiline:true}} 
         textStyle={{textAlign:'center'}} 
+        onChangeText={(text) => {
+            setBackground(text)
+        }}
         ></MainTextInput>
 
         </View>

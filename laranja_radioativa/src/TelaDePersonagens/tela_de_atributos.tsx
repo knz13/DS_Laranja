@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { PageButton } from "../components/PageButton"
 import { DBContext, Window } from "../geral"
 import { AppColors } from "../styles"
@@ -17,9 +17,36 @@ import { PersonagemContext } from "./tela_de_personagens"
 
 export const TelaDeAtributos = () => {
 
-    
     const navigation = useNavigation();
     const personagem = useContext(PersonagemContext);
+    const [forca,setForca] = useState(parseInt(personagem.atributos.forca));
+    const [destreza,setDest] = useState(parseInt(personagem.atributos.destreza));
+    const [constituicao,setConst] = useState(parseInt(personagem.atributos.constituicao));
+    const [inteligencia,setInt] = useState(parseInt(personagem.atributos.inteligencia));
+    const [sabedoria,setSab] = useState(parseInt(personagem.atributos.sabedoria));
+    const [carisma,setCaris] = useState(parseInt(personagem.atributos.carisma));
+
+    useEffect(() => {
+
+        personagem.atributos.forca = forca.toString();
+        personagem.atributos.destreza = destreza.toString();
+        personagem.atributos.constituicao = constituicao.toString();
+        personagem.atributos.inteligencia =inteligencia.toString();
+        personagem.atributos.sabedoria = sabedoria.toString();
+        personagem.atributos.carisma = carisma.toString();
+
+    },[forca,destreza,constituicao,inteligencia,sabedoria,carisma]);
+
+
+    const renderItem = (title:string,func:(text:string) => void,value:number) => {
+        return <MainTextInput title={`${title} (${value != NaN? `${(value - 10)/2 >= 0? '+' : ''}${Math.floor((value - 10)/2)}` : ''})`} textInputProps={{keyboardType:'numeric',defaultValue:value.toString() != 'NaN'? value.toString() : ''}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
+                if(func){
+                    func(text)
+                }
+            }}></MainTextInput>
+            
+            
+    }
 
     return <MainView>
         <View style={{width:Window.width/1.8}}>
@@ -31,29 +58,14 @@ export const TelaDeAtributos = () => {
         }}>
         </PageButton>
         
-        <MainTextInput title="Força" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.forca = text;
-        }}></MainTextInput>
 
-        <MainTextInput title="Destreza" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.destreza = text;
-        }}></MainTextInput>
+        {renderItem('Força',text => setForca(parseInt(text)),forca)}
+        {renderItem('Destreza',text => setDest(parseInt(text)),destreza)}
+        {renderItem('Constituição',text => setConst(parseInt(text)),constituicao)}
+        {renderItem('Inteligência',text => setInt(parseInt(text)),inteligencia)}
+        {renderItem('Sabedoria',text => setSab(parseInt(text)),sabedoria)}
+        {renderItem('Carisma',text => setCaris(parseInt(text)),carisma)}
         
-        <MainTextInput title="Constituição" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.constituicao = text;
-        }}></MainTextInput>
-        
-        <MainTextInput title="Inteligência" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.inteligencia = text;
-        }}></MainTextInput>
-
-        <MainTextInput title="Sabedoria" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.sabedoria = text;
-        }}></MainTextInput>
-        
-        <MainTextInput title="Carisma" textInputProps={{keyboardType:'numeric'}} textStyle={{textAlign:'center'}} onChangeText={(text) => {
-            personagem.atributos.carisma = text;
-        }}></MainTextInput>
         </View>
     </MainView>
 }

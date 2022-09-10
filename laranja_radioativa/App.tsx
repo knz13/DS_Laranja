@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { TelaDeLogin } from './src/TelaDeLogin/tela_de_login';
 import { TelaDeMenu } from './src/TelaDeMenu/tela_de_menu';
-import { TelaDePersonagens } from './src/TelaDePersonagens/tela_de_personagens';
+import { GerarDadosPersonagem, PersonagemContext, TelaDePersonagens } from './src/TelaDePersonagens/tela_de_personagens';
 import { TelaDeCompendium } from './src/TelaDeCompendium/tela_de_compendium';
 import { DBContext, GlobalContext, Window } from './src/geral';
 import * as SQLite from 'expo-sqlite'
@@ -29,10 +29,7 @@ import { MainView } from './src/components/MainView';
 import { TelaDeAdicaoDeSalas } from './src/TelaDeAventuras/TelaDeAdicaoDeSalas';
 import { TelaDeAtributosInstrucoes } from './src/TelaDePersonagens/tela_de_atributos_instrucoes';
 import { TelaInfoAdicional } from './src/TelaDePersonagens/tela_info_adicional';
-import { TelaDeModificadores } from './src/TelaDePersonagens/tela_de_modificadores';
-import { TelaDeModificadoresInstrucoes } from './src/TelaDePersonagens/tela_de_modificadores_instrucoes';
 import { TelaInfoSecundaria } from './src/TelaDePersonagens/tela_info_secundaria';
-import { TelaDeProficiencias } from './src/TelaDePersonagens/tela_de_proficiencias';
 import { TelaDeSalvaguardas } from './src/TelaDePersonagens/tela_de_salvaguardas';
 import { TelaDeBackground } from './src/TelaDePersonagens/tela_de_background';
 import { TelaDeBackgroundInstrucoes } from './src/TelaDePersonagens/tela_de_background_instrucoes';
@@ -79,12 +76,15 @@ export default function App() {
     'inter':require('./assets/fonts/Inter-SemiBold.ttf')
   })
 
-  const HeaderFunc = ({props,titulo}) => {
+  const HeaderFunc = ({props,titulo,backFunc} : {props:any,titulo:string,backFunc?:() => void}) => {
     
     return <View style={{width:'100%',height:Window.height/8,backgroundColor:AppColors.azul_escuro_fundo,borderWidth:1,borderBottomColor:'white'}}>
     <View style={{height:'50%'}}></View>
     <View style={{flexDirection:'row',alignSelf:'center',width:'100%',justifyContent:'center',alignItems:'center'}}>
         <TouchableOpacity style={{alignSelf:'center',alignItems:'center',position:'absolute',left:Window.width/15,width:Window.width/15,height:Window.width/15,transform:[{scaleX:-1}]}} onPress={() => {
+                if(backFunc){
+                  backFunc()
+                }
                 props.navigation.goBack();
                 
             }}>
@@ -99,6 +99,7 @@ export default function App() {
  
 
   return (
+    <PersonagemContext.Provider value={GerarDadosPersonagem()}>
     <GlobalContext.Provider value={{token:null,compendium_items:{}}}>
     <DBContext.Provider value={(() => {
       return SQLite.openDatabase('mainDB.db');
@@ -121,10 +122,7 @@ export default function App() {
           <Stack.Screen name="Personagens/Criacao/Pericias" options={{header:(props) => <HeaderFunc props={props} titulo={'perícias'}></HeaderFunc>}} component={TelaDePericias} />
           <Stack.Screen name="Personagens/Criacao/InfoAdicionais" options={{header:(props) => <HeaderFunc props={props} titulo={'info adicional'}></HeaderFunc>}} component={TelaInfoAdicional} />
           <Stack.Screen name="Personagens/Criacao/InfoSecundaria" options={{header:(props) => <HeaderFunc props={props} titulo={'info secundária'}></HeaderFunc>}} component={TelaInfoSecundaria} />
-          <Stack.Screen name="Personagens/Criacao/Modificadores" options={{header:(props) => <HeaderFunc props={props} titulo={'modificadores'}></HeaderFunc>}} component={TelaDeModificadores} />
-          <Stack.Screen name="Personagens/Criacao/Salvaguardas" options={{header:(props) => <HeaderFunc props={props} titulo={'salvaguardas'}></HeaderFunc>}} component={TelaDeSalvaguardas} />
-          <Stack.Screen name="Personagens/Criacao/Modificadores/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeModificadoresInstrucoes} />
-          <Stack.Screen name="Personagens/Criacao/Proficiencias" options={{header:(props) => <HeaderFunc props={props} titulo={'proficiências'}></HeaderFunc>}} component={TelaDeProficiencias} />
+          <Stack.Screen name="Personagens/Criacao/Salvaguardas" options={{header:(props) => <HeaderFunc props={props} titulo={'proficiências e salvaguardas'}></HeaderFunc>}} component={TelaDeSalvaguardas} />
           <Stack.Screen name="Personagens/Criacao/Background" options={{header:(props) => <HeaderFunc props={props} titulo={'background'}></HeaderFunc>}} component={TelaDeBackground} />
           <Stack.Screen name="Personagens/Criacao/Background/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeBackgroundInstrucoes} />
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
@@ -137,6 +135,7 @@ export default function App() {
       </NavigationContainer>
       </DBContext.Provider>
       </GlobalContext.Provider>
+      </PersonagemContext.Provider>
     );
 
 }

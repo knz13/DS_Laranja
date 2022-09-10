@@ -12,7 +12,7 @@ import { MainView } from "./../components/MainView";
 import Beholder from './../components/beholder'
 import * as Filesystem from 'expo-file-system';
 import { MainTextInput } from "../components/MainTextInput";
-
+import Logo from '../components/logo'
 
 export const TelaDeLogin = () => {
     let login = useRef('').current;
@@ -73,7 +73,7 @@ export const TelaDeLogin = () => {
     <Pressable style={{flex:1}} onPress={() => Keyboard.dismiss()}>
     <MainView>
         <View style={{width:'40%',height:'40%'}}>
-            <Beholder style={{}}></Beholder>
+            <Logo></Logo>
         </View>
         <MainTextInput title={'Nome de usuário'} textStyle={{width:Window.width/1.6}} onChangeText={(text) => {
             login = text;

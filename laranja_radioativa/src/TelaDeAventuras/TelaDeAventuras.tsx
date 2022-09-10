@@ -41,6 +41,7 @@ export const TelaDeAventuras = () => {
                     if(json['state'] == 'success'){
                         console.log('setting salas!')
                         setSalas(JSON.parse(json['message']));
+                        console.log(`salas = ${json['message']}`)
                     }
                     else {
                         console.log(json['message'])
@@ -58,7 +59,8 @@ export const TelaDeAventuras = () => {
     const renderItem = ({item}) => {
         return <PageButton style={{margin:2,backgroundColor:AppColors.azul_escuro_extra,borderWidth:2,borderColor:AppColors.azul,borderRadius:10}} textRender={(() => {
                 return <View style={{width:'100%'}}>
-                <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{item.number_of_players == null? 0 : item.number_of_players}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center',left: 0,position:'absolute'}}>{salas[item].type}</Text>
+                <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{salas[item].size}</Text>
                 <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item}</Text>
                 </View>
             })()} title={item}>
@@ -73,7 +75,19 @@ export const TelaDeAventuras = () => {
     return <MainView>
         <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas? Object.keys(salas) : []} renderItem={renderItem}></FlatList>
         <PageButton
-        title={'ADICIONAR'} 
+        title={'Entrar com codigo'} 
+        textStyle={{fontSize:20}}
+        style={{alignSelf:'center',width:'50%',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
+        mainViewStyle={{alignItems:'center',justifyContent:'center'}}
+        shouldGoBack={shouldGoBack}
+        onPress={() => {
+            navigation.navigate("Aventuras/Adicao")
+        }}
+        >
+        </PageButton>
+        <View style={{height:'2%'}}></View>
+        <PageButton
+        title={'Criar como mestre'} 
         textStyle={{fontSize:20}}
         style={{alignSelf:'center',width:'50%',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
         mainViewStyle={{alignItems:'center',justifyContent:'center'}}
