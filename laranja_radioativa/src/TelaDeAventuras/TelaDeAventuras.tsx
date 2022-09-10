@@ -9,7 +9,7 @@ import { PageButton } from "../components/PageButton";
 import { PopupCard } from "../components/PopupCard";
 import { MainTextInput } from "../components/MainTextInput";
 import {TelaPrincipalMestre} from '../TelaDeJogo/TelaPrincipalMestre'
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
 
 
@@ -22,7 +22,7 @@ export const TelaDeAventuras = () => {
     const [shouldShowCreationPopup,setShowCreationPopup] = useState(false);
     const [shouldGoBack,setShouldGoBack] = useState(false);
     const [showPopup,setShowPopup] = useState(false);
-   
+    const isFocused = useIsFocused();
     const global = useContext(GlobalContext)
     const navigation = useNavigation();
 
@@ -68,10 +68,12 @@ export const TelaDeAventuras = () => {
             </PageButton>
     }
 
-    if(salas?.valueOf() == null){
-        console.log('get salas!')
-        getSalas()
-    }
+    useEffect(() => {
+        if(isFocused){
+            getSalas();
+        }
+    },[isFocused])
+
     return <MainView>
         <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas? Object.keys(salas) : []} renderItem={renderItem}></FlatList>
         <PageButton
