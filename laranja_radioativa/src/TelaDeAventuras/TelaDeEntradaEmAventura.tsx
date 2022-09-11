@@ -11,7 +11,7 @@ import { GlobalContext, Hash } from "../geral"
 
 
 
-export const TelaDeAdicaoDeSalas = () => {
+export const TelaDeEntradaEmAventura = () => {
     const global = useContext(GlobalContext)
     let roomName = useRef('').current
     let roomPassword = useRef('').current
@@ -23,7 +23,7 @@ export const TelaDeAdicaoDeSalas = () => {
     <MainTextInput title={'Senha'} onChangeText={(text) => roomPassword = text}></MainTextInput>
     <PageButton title={'Criar'} onPress={() => {
         Hash(roomPassword).then(hash => {
-            fetch('https://dnd-party.herokuapp.com/database/rooms',{
+            fetch('https://dnd-party.herokuapp.com/database/rooms/entrar',{
                 method:'POST',
                 headers:{
                     Accept:'application/json',
@@ -33,8 +33,13 @@ export const TelaDeAdicaoDeSalas = () => {
                 body:JSON.stringify({room_name:roomName,room_password_hash:hash})
             }).then((res) => res.json()).then((json) => {
                 if(json['state'] == 'success'){
-                    alert('room created!')
-                    navigation.navigate('Aventuras');
+                    const result = JSON.parse(json['message']);
+                    if(result.type == 'M') {
+                        navigation.navigate('Jogo/Mestre/Principal',{room_id:result.room_id});
+                    }
+                    else {
+                        navigation.navigate('Jogo/Player/Principal',{room_id:result.room_id})
+                    }
                 }
                 else {
                     alert(json['message'])

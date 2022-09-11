@@ -34,7 +34,7 @@ export const TelaDeBackground = () => {
         
     },[background]);
 
-    return <MainView>
+    return <MainView style={{paddingTop:'50%'}}>
         <View style={{width:Window.width/1.3,height:Window.height/1.3}}>
 
         <PageButton 

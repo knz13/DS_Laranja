@@ -63,8 +63,14 @@ export const TelaDeAventuras = () => {
                 <Text style={{color:AppColors.white,margin:10,textAlign:'center',right: 0,position:'absolute'}}>{salas[item].size}</Text>
                 <Text style={{color:AppColors.white,margin:10,textAlign:'center'}}>{item}</Text>
                 </View>
-            })()} title={item}>
-                <TelaPrincipalMestre></TelaPrincipalMestre>
+            })()} onPress={() => {
+                if(salas[item].type == 'M') {
+                    navigation.navigate('Jogo/Mestre/Principal',{room_id:salas[item].room_id});
+                }
+                else {
+                    navigation.navigate('Jogo/Player/Principal',{room_id:salas[item].type})
+                }
+            }} title={item}>
             </PageButton>
     }
 
@@ -77,13 +83,13 @@ export const TelaDeAventuras = () => {
     return <MainView>
         <FlatList style={{width:'80%',paddingTop:'20%'}} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:200}} data={salas? Object.keys(salas) : []} renderItem={renderItem}></FlatList>
         <PageButton
-        title={'Entrar com codigo'} 
+        title={'Entrar em nova'} 
         textStyle={{fontSize:20}}
         style={{alignSelf:'center',width:'50%',bottom:Window.height/15,borderRadius:15,backgroundColor:AppColors.azul}}
         mainViewStyle={{alignItems:'center',justifyContent:'center'}}
         shouldGoBack={shouldGoBack}
         onPress={() => {
-            navigation.navigate("Aventuras/Adicao")
+            navigation.navigate("Aventuras/Entrada")
         }}
         >
         </PageButton>

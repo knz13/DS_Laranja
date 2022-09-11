@@ -126,15 +126,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                                 'x-access-token':global.token,
                                 'Content-Type': 'application/json'
                             },
-                            body:JSON.stringify({
-                                character_name:personagem.nome,
-                                class:personagem.classe,
-                                race:personagem.race,
-                                background:personagem.background,
-                                attributes:`${personagem.atributos.forca} ${personagem.atributos.destreza} ${personagem.atributos.constituicao} ${personagem.atributos.inteligencia} ${personagem.atributos.sabedoria} ${personagem.atributos.carisma}`,
-                                skills:`${personagem.pericias.acrobacia} ${personagem.pericias.arcanismo} ${personagem.pericias.atletismo} ${personagem.pericias.atuacao} ${personagem.pericias.enganacao} ${personagem.pericias.furtividade} ${personagem.pericias.historia} ${personagem.pericias.intimidacao} ${personagem.pericias.intuicao} ${personagem.pericias.investigacao} ${personagem.pericias.lidarComAnimais} ${personagem.pericias.medicina} ${personagem.pericias.natureza} ${personagem.pericias.percepcao} ${personagem.pericias.persuasao} ${personagem.pericias.prestidigitacao} ${personagem.pericias.religiao} ${personagem.pericias.sobrevivencia}`,
-                                level:personagem.nivel
-                            })
+                            body:JSON.stringify(personagem)
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
                                 alert('Personagem criado!');
