@@ -38,7 +38,10 @@ export const TelaDeEntradaEmAventura = () => {
                         navigation.navigate('Jogo/Mestre/Principal',{room_id:result.room_id});
                     }
                     else {
-                        navigation.navigate('Jogo/Player/Principal',{room_id:result.room_id})
+
+                        navigation.navigate('Aventuras/EscolhaPersonagem',{room_id:result.room_id})
+
+                        
                     }
                 }
                 else {

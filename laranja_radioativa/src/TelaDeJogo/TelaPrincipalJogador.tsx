@@ -18,7 +18,7 @@ export const TelaPrincipalJogador = () => {
     return <MainView>
     <View style={{width:'10%',height:'10%',position:'absolute',top:Window.height/20,left:Window.width/20}}>
       <TouchableOpacity onPress={() => {
-        navigation.navigate('Menu')
+        navigation.navigate('Aventuras')
       }}>
         <View style={{backgroundColor:AppColors.azul,width:50,height:50,borderRadius:25,borderWidth:5,borderColor:AppColors.marrom}}>
         <Logout fill={'black'} style={{transform:[{rotate:'0deg'},{scale:0.5}]}}></Logout>
