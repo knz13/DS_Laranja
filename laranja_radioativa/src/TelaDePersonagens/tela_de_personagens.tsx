@@ -47,6 +47,14 @@ export const GerarDadosPersonagem = () => {
             prestidigitacao:'10',
             religiao:'10',
             sobrevivencia:'10'
+        },
+        infoSec:{
+            classeDeArmadura:'0',
+            iniciativa:'0',
+            deslocamento:'0',
+            pvAtuais:'0',
+            pvTemporarios:'0',
+            inspiracao:'0'
         }
     }
 }
