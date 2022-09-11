@@ -35,6 +35,10 @@ import { TelaDeBackground } from './src/TelaDePersonagens/tela_de_background';
 import { TelaDeBackgroundInstrucoes } from './src/TelaDePersonagens/tela_de_background_instrucoes';
 import { TelaGenericaCompendium } from './src/TelaDeCompendium/tela_generica';
 import { TelaGenericaCompendiumDescricao } from './src/TelaDeCompendium/tela_generica_descricao';
+import { TelaDeEntradaEmAventura } from './src/TelaDeAventuras/TelaDeEntradaEmAventura';
+import { TelaPrincipalMestre } from './src/TelaDeJogo/TelaPrincipalMestre';
+import { TelaPrincipalJogador } from './src/TelaDeJogo/TelaPrincipalJogador';
+import { TelaDeEscolhaDoPersonagem } from './src/TelaDeAventuras/TelaDeEscolhaDoPersonagem';
 
 
 
@@ -127,6 +131,10 @@ export default function App() {
           <Stack.Screen name="Personagens/Criacao/Background/Instrucoes" options={{header:(props) => <HeaderFunc props={props} titulo={'instruções'}></HeaderFunc>}} component={TelaDeBackgroundInstrucoes} />
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
           <Stack.Screen name="Aventuras/Adicao" options={{header:(props) => <HeaderFunc props={props} titulo={'Adicionar'}></HeaderFunc>}} component={TelaDeAdicaoDeSalas} />
+          <Stack.Screen name="Aventuras/Entrada" options={{header:(props) => <HeaderFunc props={props} titulo={'Entrar'}></HeaderFunc>}} component={TelaDeEntradaEmAventura} />
+          <Stack.Screen name="Aventuras/EscolhaPersonagem" options={{header:(props) => <HeaderFunc props={props} titulo={'Entrar'}></HeaderFunc>}} component={TelaDeEscolhaDoPersonagem} />
+          <Stack.Screen name="Jogo/Mestre/Principal" options={{gestureEnabled:false,headerShown:false,headerLeft: () => <></>}} component={TelaPrincipalMestre} />
+          <Stack.Screen name="Jogo/Jogador/Principal" options={{gestureEnabled:false,headerShown:false,headerLeft: () => <></>}} component={TelaPrincipalJogador} />
           <Stack.Screen name="Compendium" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaDeCompendium} />
           <Stack.Screen name="Compendium/TelaGenerica" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaGenericaCompendium} />
           <Stack.Screen name="Compendium/TelaGenerica/TelaDescricaoGenerica" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaGenericaCompendiumDescricao} />

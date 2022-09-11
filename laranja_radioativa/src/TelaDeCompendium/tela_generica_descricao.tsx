@@ -28,7 +28,7 @@ import { AppColors } from "../styles";
       }
     },[isFocused])
 
-    console.log(item)
+    
     return <ScrollView contentContainerStyle={{paddingBottom:'20%',paddingTop:'20%'}} style={{flex:1,
       alignSelf:'center',
       width:'100%',

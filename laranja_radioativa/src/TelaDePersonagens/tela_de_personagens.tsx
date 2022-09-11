@@ -47,7 +47,22 @@ export const GerarDadosPersonagem = () => {
             prestidigitacao:'10',
             religiao:'10',
             sobrevivencia:'10'
-        }
+        },
+        infoSec:{
+            classeDeArmadura:'0',
+            iniciativa:'0',
+            deslocamento:'0',
+            pvAtuais:'0',
+            pvTemporarios:'0',
+            inspiracao:'0'
+        },
+        personalidade:'',
+        ideais:'',
+        ligacoes:'',
+        defeitos:'',
+        aparencia:'',
+        aliadosOrganizacoes:'',
+        adicionais:''
     }
 }
 
@@ -66,19 +81,9 @@ export const TelaDePersonagens = (props: NativeStackScreenProps<{}>) => {
 
     const renderItem = ({item}) => {
         // renderizar personagem
-        return <PageButton title={item.character_name} onPress={() => {
-            console.log(JSON.stringify(item))
-            personagem.id_do_personagem = item.character_id;
-            personagem.nome = item.character_name;
-            personagem.classe = item.class;
-            personagem.race = item.race;
-            const atributos = item.attributes.split(' ');
-            personagem.atributos.forca = atributos[0]
-            personagem.atributos.destreza = atributos[1]
-            personagem.atributos.constituicao = atributos[2]
-            personagem.atributos.inteligencia = atributos[3]
-            personagem.atributos.sabedoria = atributos[4]
-            personagem.atributos.carisma = atributos[5]
+        return <PageButton title={item.nome} onPress={() => {
+            Object.assign(personagem,item);
+            console.log(JSON.stringify(personagem))
             
             navigation.navigate('Personagens/Criacao')
         }}></PageButton>

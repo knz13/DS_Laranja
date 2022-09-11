@@ -12,9 +12,6 @@ import { useNavigation } from "@react-navigation/native"
 import { PersonagemContext } from "./tela_de_personagens"
 
 
-
-// nao ta salvando no banco de dados!
-
 export const TelaDeBackground = () => {
 
     const navigation = useNavigation();
@@ -30,11 +27,11 @@ export const TelaDeBackground = () => {
 
     useEffect(() => {
 
-        personagem.background = background.toString();
+        personagem.background = background;
         
     },[background]);
 
-    return <MainView>
+    return <MainView style={{paddingTop:'50%'}}>
         <View style={{width:Window.width/1.3,height:Window.height/1.3}}>
 
         <PageButton 
@@ -47,7 +44,7 @@ export const TelaDeBackground = () => {
 
         <MainTextInput
         title="Background" 
-        textInputProps={{keyboardType:'default',multiline:true}} 
+        textInputProps={{keyboardType:'default',multiline:true,defaultValue:background}} 
         textStyle={{textAlign:'center'}} 
         onChangeText={(text) => {
             setBackground(text)
