@@ -38,6 +38,7 @@ import { TelaGenericaCompendiumDescricao } from './src/TelaDeCompendium/tela_gen
 import { TelaDeEntradaEmAventura } from './src/TelaDeAventuras/TelaDeEntradaEmAventura';
 import { TelaPrincipalMestre } from './src/TelaDeJogo/TelaPrincipalMestre';
 import { TelaPrincipalJogador } from './src/TelaDeJogo/TelaPrincipalJogador';
+import { TelaDeEscolhaDoPersonagem } from './src/TelaDeAventuras/TelaDeEscolhaDoPersonagem';
 
 
 
@@ -131,6 +132,7 @@ export default function App() {
           <Stack.Screen name="Aventuras" options={{header:(props) => <HeaderFunc props={props} titulo={'aventuras'}></HeaderFunc>}} component={TelaDeAventuras} />
           <Stack.Screen name="Aventuras/Adicao" options={{header:(props) => <HeaderFunc props={props} titulo={'Adicionar'}></HeaderFunc>}} component={TelaDeAdicaoDeSalas} />
           <Stack.Screen name="Aventuras/Entrada" options={{header:(props) => <HeaderFunc props={props} titulo={'Entrar'}></HeaderFunc>}} component={TelaDeEntradaEmAventura} />
+          <Stack.Screen name="Aventuras/EscolhaPersonagem" options={{header:(props) => <HeaderFunc props={props} titulo={'Entrar'}></HeaderFunc>}} component={TelaDeEscolhaDoPersonagem} />
           <Stack.Screen name="Jogo/Mestre/Principal" options={{gestureEnabled:false,headerShown:false,headerLeft: () => <></>}} component={TelaPrincipalMestre} />
           <Stack.Screen name="Jogo/Jogador/Principal" options={{gestureEnabled:false,headerShown:false,headerLeft: () => <></>}} component={TelaPrincipalJogador} />
           <Stack.Screen name="Compendium" options={{header:(props) => <HeaderFunc props={props} titulo={'compendium'}></HeaderFunc>}} component={TelaDeCompendium} />

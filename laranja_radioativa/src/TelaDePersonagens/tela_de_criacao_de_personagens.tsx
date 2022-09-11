@@ -130,7 +130,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
                                 alert('Personagem criado!');
-                                navigation.navigate('Personagens');
+                                navigation.goBack();
                             }
                         });
                     }
@@ -146,7 +146,7 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                         }).then(response => response.json()).then(json => {
                             if(json['state'] == "success"){
                                 alert('Personagem atualizado!');
-                                navigation.navigate('Personagens');
+                                navigation.goBack();
                             }
                         });
                 }
