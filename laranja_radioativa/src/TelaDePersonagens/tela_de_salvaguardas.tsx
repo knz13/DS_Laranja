@@ -22,12 +22,6 @@ export const TelaDeSalvaguardas = () => {
     const personagem = useContext(PersonagemContext);
     const [nivel,setNivel] = useState(parseInt(personagem.nivel));
 
-    function minhaSalvaguarda(minhaClasse : personagem.classe) {
-
-
-
-    }
-
     function bonus(nivel: number) {
         if (nivel >= 1 && nivel <= 4) {
             bonus = 2
@@ -59,14 +53,6 @@ export const TelaDeSalvaguardas = () => {
     }
 
     return <MainView>
-        <View style={{width:Window.width/1.8,alignContent:'center',alignItems:'center'}}>
-        <PageButton 
-        title="?" 
-        style= {{width:'25%',height:'20%',marginBottom:'5%',alignItems:'center'}}
-        onPress={() => {
-            navigation.navigate()
-        }}>
-        </PageButton>
         
         {renderItem('Nível',text => setNivel(parseInt(text)),nivel)}
 
@@ -78,6 +64,5 @@ export const TelaDeSalvaguardas = () => {
 
         </View>
         
-        </View>
     </MainView>
 }
