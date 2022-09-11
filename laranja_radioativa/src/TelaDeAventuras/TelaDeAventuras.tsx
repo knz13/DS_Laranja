@@ -68,7 +68,7 @@ export const TelaDeAventuras = () => {
                     navigation.navigate('Jogo/Mestre/Principal',{room_id:salas[item].room_id});
                 }
                 else {
-                    navigation.navigate('Jogo/Jogador/Principal',{room_id:salas[item].type})
+                    navigation.navigate('Jogo/Jogador/Principal',salas[item])
                 }
             }} title={item}>
             </PageButton>

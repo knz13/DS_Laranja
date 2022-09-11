@@ -8,12 +8,29 @@ import { PopupCard } from "../components/PopupCard";
 import { MainTextInput } from "../components/MainTextInput";
 import Logout from './../components/logout'
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 
 
-export const TelaPrincipalJogador = () => {
+export const TelaPrincipalJogador = (props: NativeStackScreenProps<{}>) => {
     const navigation = useNavigation();
+    const global = useContext(GlobalContext);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetch(`https://dnd-party.herokuapp.com/database/gameplay/${props.route.params.char_id}`,{
+                method:"GET",
+                headers:{
+                    'x-access-token':global.token
+                }
+            }).then(response => response.json()).then(json => {
+                console.log(JSON.stringify(json))
+            })
+        }, 5000);
+        
+        return () => clearInterval(interval); 
+    }, [])
 
     return <MainView>
     <View style={{width:'10%',height:'10%',position:'absolute',top:Window.height/20,left:Window.width/20}}>

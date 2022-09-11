@@ -20,12 +20,13 @@ interface PageButtonInterface {
     shouldGoBack?: boolean,
     textRender?: React.ReactNode,
     onBack?: () => void,
+    disabled?:boolean
 }
 
 
-export const PageButton = ({title,textStyle,style,onPress,textRender,children}:PageButtonInterface) => {
+export const PageButton = ({title,textStyle,style,onPress,textRender,children,disabled}:PageButtonInterface) => {
     return <Animated.View style={[{alignSelf:'center',alignItems:'center',justifyContent:'center',width:'100%',backgroundColor:AppColors.azul,borderRadius:15},style]}>
-    <TouchableOpacity  onPress={onPress} style={[{alignItems:'center',width:'100%'}]}>
+    <TouchableOpacity  onPress={onPress} style={[{alignItems:'center',width:'100%'}]} disabled={disabled}>
         <Animated.View style={[{alignSelf:'center',width:'96%'}]}>
         {textRender?.valueOf() == null && <Text style={[{margin:'3%',alignSelf:'center',fontFamily:'exo',color:'white',fontSize:20},textStyle]}>{title}</Text>}
         {textRender}

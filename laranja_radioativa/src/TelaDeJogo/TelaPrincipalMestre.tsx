@@ -11,13 +11,38 @@ import { PageButton } from "../components/PageButton";
 import { PopupCard } from "../components/PopupCard";
 import { MainTextInput } from "../components/MainTextInput";
 import Logout from './../components/logout'
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 
 
-export const TelaPrincipalMestre = () => {
+export const TelaPrincipalMestre = (props : NativeStackScreenProps<{}>) => {
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
+    const global = useContext(GlobalContext);
+    const [personagens,setPersonagens] = useState([]);
+    useEffect(() => {
+        if(isFocused){
+            fetch(`https://dnd-party.herokuapp.com/database/room/${props.route.params.room_id}`,{
+                method:"GET",
+                headers:{
+                    'x-access-token':global.token
+                }
+            }).then(response => response.json()).then(json => {
+                setPersonagens(JSON.parse(json['message']))
+            })
+        }
+    },[isFocused])
+    
+    
+    const RenderItem = ({item}) => {
+        return  <>
+            <PageButton disabled textRender={() => {
+                return <View style={{backgroundColor:'red'}}></View>
+            }}></PageButton>
+        </>
+    }
 
     return <MainView>
     <View style={{width:'10%',height:'10%',position:'absolute',top:Window.height/20,left:Window.width/20}}>
@@ -29,5 +54,6 @@ export const TelaPrincipalMestre = () => {
         </View>
       </TouchableOpacity>
     </View>
+    <FlatList data={personagens} renderItem={({item}) => <RenderItem item={item}></RenderItem>}></FlatList>
     </MainView>
 }
