@@ -55,7 +55,14 @@ export const GerarDadosPersonagem = () => {
             pvAtuais:'0',
             pvTemporarios:'0',
             inspiracao:'0'
-        }
+        },
+        personalidade:'',
+        ideais:'',
+        ligacoes:'',
+        defeitos:'',
+        aparencia:'',
+        aliadosOrganizacoes:'',
+        adicionais:''
     }
 }
 
