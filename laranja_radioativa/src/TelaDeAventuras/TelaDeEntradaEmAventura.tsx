@@ -23,7 +23,7 @@ export const TelaDeEntradaEmAventura = () => {
     <MainTextInput title={'Senha'} onChangeText={(text) => roomPassword = text}></MainTextInput>
     <PageButton title={'Criar'} onPress={() => {
         Hash(roomPassword).then(hash => {
-            fetch('https://dnd-party.herokuapp.com/database/rooms/entrar',{
+            fetch('https://dnd-party.herokuapp.com/database/rooms/check_before_entry',{
                 method:'POST',
                 headers:{
                     Accept:'application/json',
