@@ -34,16 +34,14 @@ export const TelaDeCompendium = () => {
                         dict[type] = (result.rows._array)},(tx,err) => {
                         console.log(err.message)
                         return false; })
-                })
-                break;
+                });
             case 'Weapon':
                 db.readTransaction(tx => {
                     tx.executeSql('SELECT * FROM items INNER JOIN weapons ON weapons.item_id = items.item_id',[type],(tx,result) => {
                         dict[type] = (result.rows._array)},(tx,err) => {
                         console.log(err.message)
                         return false; })
-                })
-                break;
+                });
                 
 
             default:
