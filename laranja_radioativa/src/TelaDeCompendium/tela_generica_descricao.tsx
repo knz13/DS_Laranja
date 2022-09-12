@@ -36,28 +36,28 @@ import { AppColors } from "../styles";
 
       {item.description != null && 
       <View>
-      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 50,marginRight:'10%'}}>{item.item_name}</Text>
-      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Description</Text>
-      <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
-        <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.description}</Text>
+      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 50,marginRight:'10%',fontFamily:'inter'}}>{item.item_name}</Text>
+      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%',fontFamily:'inter'}}>Description</Text>
+      <View style={{borderColor:AppColors.azul,borderRadius:15,backgroundColor:AppColors.azul_escuro_extra, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
+        <Text style={{padding:'05%',color:AppColors.white,fontFamily:'inter'}}> {item.description}</Text>
 
       </View>
       </View>}
       {item['rarity'] && 
       <View>
 
-      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Rarity</Text>
-      <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
-        <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.rarity}</Text>
+      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%',fontFamily:'inter'}}>Rarity</Text>
+      <View style={{borderColor:AppColors.azul,borderRadius:15,backgroundColor:AppColors.azul_escuro_extra, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
+        <Text style={{padding:'05%',color:AppColors.white,fontFamily:'inter'}}> {item.rarity}</Text>
 
       </View>
       </View>}
       {item['price'] && 
       <View>
 
-      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%'}}>Price</Text>
-      <View style={{borderColor:AppColors.preto, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
-        <Text style={{backgroundColor:AppColors.azul_escuro_extra, padding:'05%'}}> {item.price}</Text>
+      <Text style={{alignContent:'center',color:AppColors.azul,marginLeft: '10%',textAlign:'left',fontSize: 20,marginRight:'10%',marginTop:'15%',fontFamily:'inter'}}>Price</Text>
+      <View style={{borderColor:AppColors.azul,borderRadius:15,backgroundColor:AppColors.azul_escuro_extra, borderWidth: 2, marginLeft: '10%',marginRight:'10%',marginBottom:'5%',marginTop:'2.5%'}}>
+        <Text style={{padding:'05%',color:AppColors.white,fontFamily:'inter'}}> {item.price}</Text>
 
       </View>
       </View>}
