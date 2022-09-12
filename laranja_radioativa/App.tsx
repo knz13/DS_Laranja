@@ -118,7 +118,7 @@ export default function App() {
           <Stack.Screen name="Login" component={TelaDeLogin} options={{gestureEnabled:false,headerLeft: () => <></>,headerShown:false}}></Stack.Screen>
           <Stack.Screen name="Menu" options={{headerShown:false,gestureEnabled:false,headerLeft: () => <></>}} component={TelaDeMenu} />
           <Stack.Screen name="Personagens" options={{header:(props) => <HeaderFunc props={props} titulo={'personagens'}></HeaderFunc>}} component={TelaDePersonagens} />
-          <Stack.Screen name="Personagens/Criacao" options={{header:(props) => <HeaderFunc props={props} titulo={'criação'}></HeaderFunc>}} component={TelaDeCriacaoDePersonagens} />
+          <Stack.Screen name="Personagens/Criacao" options={{header:(props) => <HeaderFunc props={props} titulo={'personagem'}></HeaderFunc>}} component={TelaDeCriacaoDePersonagens} />
           <Stack.Screen name="Personagens/Criacao/Classes" options={{header:(props) => <HeaderFunc props={props} titulo={'classes'}></HeaderFunc>}} component={TelaDeClasses} />
           <Stack.Screen name="Personagens/Criacao/Racas" options={{header:(props) => <HeaderFunc props={props} titulo={'raças'}></HeaderFunc>}} component={TelaDeRaces} />
           <Stack.Screen name="Personagens/Criacao/Atributos" options={{header:(props) => <HeaderFunc props={props} titulo={'atributos'}></HeaderFunc>}} component={TelaDeAtributos} />

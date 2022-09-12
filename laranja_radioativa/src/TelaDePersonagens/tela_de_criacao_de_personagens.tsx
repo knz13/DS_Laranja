@@ -110,6 +110,20 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
             </View>
 
             <PageButton title={personagem.id_do_personagem == ''? 'Criar' : 'Modificar'} onPress={() => {
+                if(personagem.classe == ''){
+                    alert('Por favor, escolha uma classe.');
+                    return;
+                }
+                if(personagem.race == ''){
+                    alert('Por favor, escolha uma raça');
+                    return;
+                }
+                if(personagem.nome == ''){
+                    alert('Por favor, dê um nome ao seu personagem');
+                    return;
+                }
+
+
                 if(personagem.id_do_personagem == ''){
                 fetch('https://dnd-party.herokuapp.com/database/character',{
                     method:'POST',
@@ -132,6 +146,9 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                                 alert('Personagem criado!');
                                 navigation.goBack();
                             }
+                            else {
+                                console.log(json['message'])
+                            }
                         });
                     }
                 })
@@ -147,6 +164,9 @@ export const TelaDeCriacaoDePersonagens = (props: NavigationScreenProp<{}>) => {
                             if(json['state'] == "success"){
                                 alert('Personagem atualizado!');
                                 navigation.goBack();
+                            }
+                            else {
+                                console.log(json['message'])
                             }
                         });
                 }
